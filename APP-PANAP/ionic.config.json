@@ -1,0 +1,7 @@
+{
+  "name": "APP-PANAP",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

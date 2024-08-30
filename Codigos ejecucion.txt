@@ -1,0 +1,12 @@
+npm install -g @ionic/cli
+
+ionic start nombre-proyecto blank
+
+ionic cap add android
+
+ionic cap sync
+
+ionic cap open android
+
+ionic serve
+
