@@ -10,3 +10,6 @@ ionic cap open android
 
 ionic serve
 
+ionic generate page mi-vista
+
+
