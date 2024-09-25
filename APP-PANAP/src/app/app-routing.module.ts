@@ -12,9 +12,62 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'prueba',
-    loadChildren: () => import('./prueba/prueba.module').then( m => m.PruebaPageModule)
+    path: 'home-cliente',
+    loadChildren: () => import('./1-cliente/home-cliente/home-cliente.module').then( m => m.HomeClientePageModule)
   },
+  {
+    path: 'home-negocio',
+    loadChildren: () => import('./2-negocio/home-negocio/home-negocio.module').then( m => m.HomeNegocioPageModule)
+  },
+  {
+    path: 'mapa-cliente',
+    loadChildren: () => import('./1-cliente/mapa-cliente/mapa-cliente.module').then( m => m.MapaClientePageModule)
+  },
+  {
+    path: 'pedido-cliente',
+    loadChildren: () => import('./1-cliente/pedido-cliente/pedido-cliente.module').then( m => m.PedidoClientePageModule)
+  },
+  {
+    path: 'iniciar-sesion',
+    loadChildren: () => import('./0-general/iniciar-sesion/iniciar-sesion.module').then( m => m.IniciarSesionPageModule)
+  },
+  {
+    path: 'registro-cliente',
+    loadChildren: () => import('./1-cliente/registro-cliente/registro-cliente.module').then( m => m.RegistroClientePageModule)
+  },
+  {
+    path: 'registro-negocio',
+    loadChildren: () => import('./2-negocio/registro-negocio/registro-negocio.module').then( m => m.RegistroNegocioPageModule)
+  },
+  {
+    path: 'reservas-negocio',
+    loadChildren: () => import('./2-negocio/reservas-negocio/reservas-negocio.module').then( m => m.ReservasNegocioPageModule)
+  },
+  {
+    path: 'ingreso-pan-negocio',
+    loadChildren: () => import('./2-negocio/ingreso-pan-negocio/ingreso-pan-negocio.module').then( m => m.IngresoPanNegocioPageModule)
+  },
+  {
+    path: 'modificar-pan-negocio',
+    loadChildren: () => import('./2-negocio/modificar-pan-negocio/modificar-pan-negocio.module').then( m => m.ModificarPanNegocioPageModule)
+  },
+  {
+    path: 'cerrar-sesion-cli',
+    loadChildren: () => import('./1-cliente/cerrar-sesion-cli/cerrar-sesion-cli.module').then( m => m.CerrarSesionCliPageModule)
+  },
+  {
+    path: 'cerrar-sesion-neg',
+    loadChildren: () => import('./2-negocio/cerrar-sesion-neg/cerrar-sesion-neg.module').then( m => m.CerrarSesionNegPageModule)
+  },  {
+    path: 'restablecer-contra',
+    loadChildren: () => import('./0-general/restablecer-contra/restablecer-contra.module').then( m => m.RestablecerContraPageModule)
+  },
+  {
+    path: 'pruebas-api',
+    loadChildren: () => import('./3-pruebas/pruebas-api/pruebas-api.module').then( m => m.PruebasApiPageModule)
+  },
+
+
 ];
 
 @NgModule({
