@@ -1,6 +1,3 @@
-![Logo aplicación](https://cdn.discordapp.com/attachments/1273048522958049290/1279173412031430676/logo.png?ex=66d37a93&is=66d22913&hm=222019f756fc1e78bebdab7cc650602d282f9958cf5c94fdb88c233daca1415e&)
-
-
 # "PANAP" Proyecto de título Capstone_001D
 
 El proyecto **PANAP** es una aplicación móvil diseñada para **conectar a los usuarios con los negocios locales**, permitiéndoles **visualizar en tiempo real la disponibilidad de pan** en su área mediante un mapa. La aplicación ofrece una funcionalidad clave: la **reserva de pan**, que asegura a los usuarios que podrán adquirir su producto en el local de su elección, **evitando la frustración de encontrar pan agotado**.
