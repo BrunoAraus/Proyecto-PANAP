@@ -58,7 +58,8 @@ const routes: Routes = [
   {
     path: 'cerrar-sesion-neg',
     loadChildren: () => import('./2-negocio/cerrar-sesion-neg/cerrar-sesion-neg.module').then( m => m.CerrarSesionNegPageModule)
-  },  {
+  },
+  {
     path: 'restablecer-contra',
     loadChildren: () => import('./0-general/restablecer-contra/restablecer-contra.module').then( m => m.RestablecerContraPageModule)
   },
@@ -67,6 +68,57 @@ const routes: Routes = [
     loadChildren: () => import('./3-pruebas/pruebas-api/pruebas-api.module').then( m => m.PruebasApiPageModule)
   },
 
+  {
+    path: 'tabs-cliente',
+    loadComponent: () => import('./1-cliente/tabs-cliente/tabs-cliente.component').then( c => c.TabsClienteComponent),
+    children: [
+      {
+        path: 'home-cliente',
+        loadChildren: () => import('./1-cliente/home-cliente/home-cliente.module').then( m => m.HomeClientePageModule)
+      },
+      {
+        path: 'mapa-cliente',
+        loadChildren: () => import('./1-cliente/mapa-cliente/mapa-cliente.module').then( m => m.MapaClientePageModule)
+      },
+      {
+        path: 'pedido-cliente',
+        loadChildren: () => import('./1-cliente/pedido-cliente/pedido-cliente.module').then( m => m.PedidoClientePageModule)
+      },
+      {
+        path: 'cerrar-sesion-cli',
+        loadChildren: () => import('./1-cliente/cerrar-sesion-cli/cerrar-sesion-cli.module').then( m => m.CerrarSesionCliPageModule)
+      },
+
+    ]
+  },
+
+  {
+    path: 'tabs-negocio',
+    loadComponent: () => import('./2-negocio/tabs-negocio/tabs-negocio.component').then( c => c.TabsNegocioComponent),
+    children: [
+      {
+        path: 'home-negocio',
+        loadChildren: () => import('./2-negocio/home-negocio/home-negocio.module').then( m => m.HomeNegocioPageModule)
+      },
+      {
+        path: 'reservas-negocio',
+        loadChildren: () => import('./2-negocio/reservas-negocio/reservas-negocio.module').then( m => m.ReservasNegocioPageModule)
+      },
+      {
+        path: 'ingreso-pan-negocio',
+        loadChildren: () => import('./2-negocio/ingreso-pan-negocio/ingreso-pan-negocio.module').then( m => m.IngresoPanNegocioPageModule)
+      },
+      {
+        path: 'modificar-pan-negocio',
+        loadChildren: () => import('./2-negocio/modificar-pan-negocio/modificar-pan-negocio.module').then( m => m.ModificarPanNegocioPageModule)
+      },
+      {
+        path: 'cerrar-sesion-neg',
+        loadChildren: () => import('./2-negocio/cerrar-sesion-neg/cerrar-sesion-neg.module').then( m => m.CerrarSesionNegPageModule)
+      },
+
+    ]
+  },
 
 ];
 

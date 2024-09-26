@@ -1,0 +1,23 @@
+ion-tab-bar {
+    background: rgba(255, 145, 0, 0.863) !important;
+    border-color: transparent;
+    border-top-left-radius: 20px; 
+    border-top-right-radius: 20px;
+    height: 10%;
+    font-size: 40px;
+  }
+  
+  ion-tab-button {
+    background-color: rgb(255, 145, 0) !important;
+    color: #fff;
+    // border-top-left-radius: 25px;
+    // border-top-right-radius: 25px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    font-size: 13px;
+}
+
+ion-icon{
+    font-size: 30px;
+    padding-bottom: 8px;
+}

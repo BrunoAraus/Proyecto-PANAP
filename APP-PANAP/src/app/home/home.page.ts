@@ -9,4 +9,8 @@ export class HomePage {
 
   constructor() {}
 
+  swiperSlideChanged(e: any) {
+    console.log('changed: ', e);
+  }
+
 }

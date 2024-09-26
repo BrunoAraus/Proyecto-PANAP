@@ -1,24 +1,39 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
+<ion-header>
+    <ion-toolbar>
+      <ion-title>Slides home</ion-title>
+    </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<swiper-container
+(slidechange)="swiperSlideChanged($event)" 
+[loop]="true"
+[pagination]="true">
 
-  <div id="container">
-    <strong>Carrusel de información principal</strong>
-    <p>--------------- + ---------------</p>
-    <strong>información de la app </strong>
-  </div>
-  <button>
-    <a routerLink="/iniciar-sesion">ejemplo de nevagación</a>
-  </button>
-</ion-content>
+    <swiper-slide>
+        <ion-img src="assets/image/imagen_slide.PNG"></ion-img>
+    </swiper-slide>
+    <swiper-slide>
+        <ion-img src="assets/image/imagen_slide_2.PNG"></ion-img>
+    </swiper-slide>
+    <swiper-slide>
+        <ion-img src="assets/image/imagen_slide_3.PNG"></ion-img>
+    </swiper-slide>
+</swiper-container>
+
+
+<ion-container>
+    <!-- Insertar botones acá con los links para cada  -->
+    
+    <a href="/iniciar-sesion" id="iniciarSesion">
+        <ion-button>
+            <p id="btn-is">Iniciar sesión</p>
+        </ion-button>
+    </a>
+
+    <br>
+
+    <div id="union-texto">
+        <p id="btn-re1">¿No tienes cuenta?</p>
+        <a href="/registro-cliente" id="linkRegistrarse">Registrarse</a>   
+    </div>
+</ion-container>

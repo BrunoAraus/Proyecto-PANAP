@@ -12,4 +12,7 @@ ionic serve
 
 ionic generate page mi-vista
 
+# Recurso para utilizar slides
+npm install swiper@latest
+
 
