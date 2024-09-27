@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { PruebasApiPageRoutingModule } from './pruebas-api-routing.module';
 
 import { PruebasApiPage } from './pruebas-api.page';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    PruebasApiPageRoutingModule
+    PruebasApiPageRoutingModule,
+    HttpClientModule 
   ],
   declarations: [PruebasApiPage]
 })
