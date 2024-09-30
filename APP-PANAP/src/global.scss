@@ -59,3 +59,7 @@
 //     font-size: 35px;
 //     padding-bottom: 10px;
 // }
+
+body,ion-content::part(background) {
+    background-color: #fff;
+}

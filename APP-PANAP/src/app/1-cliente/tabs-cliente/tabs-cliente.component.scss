@@ -21,3 +21,21 @@ ion-icon{
     font-size: 35px;
     padding-bottom: 8px;
 }
+
+/* Definir la animación para el movimiento hacia arriba */
+@keyframes moveUp {
+  0% {
+    transform: translateY(0); /* Posición original */
+  }
+  50% {
+    transform: translateY(-10px); /* Mover hacia arriba 5px */
+  }
+  100% {
+    transform: translateY(0); /* Volver a la posición original */
+  }
+}
+
+/* Estilo aplicado cuando se clickea el botón */
+.icon-animate {
+  animation: moveUp 0.4s ease-in-out; /* Duración de 0.3 segundos */
+}

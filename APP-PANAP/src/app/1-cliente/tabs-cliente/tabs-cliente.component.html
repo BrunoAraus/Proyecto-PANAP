@@ -1,19 +1,19 @@
 <ion-tabs>
   <ion-tab-bar slot="bottom">
     <ion-tab-button tab="home-cliente">
-      <ion-icon name="home-outline"></ion-icon>
+      <ion-icon name="home-outline" (click)="animateIcon($event)"></ion-icon>
       Inicio
     </ion-tab-button>
     <ion-tab-button tab="mapa-cliente">
-      <ion-icon name="location-outline"></ion-icon>
+      <ion-icon name="location-outline" (click)="animateIcon($event)"></ion-icon>
       Mapa
     </ion-tab-button>
     <ion-tab-button tab="pedido-cliente">
-      <ion-icon name="bag-add-outline"></ion-icon>
+      <ion-icon name="bag-add-outline" (click)="animateIcon($event)"></ion-icon>
         Pedidos
     </ion-tab-button>
     <ion-tab-button tab="cerrar-sesion-cli">
-      <ion-icon name="exit-outline"></ion-icon>
+      <ion-icon name="exit-outline" (click)="animateIcon($event)"></ion-icon>
         Salir
     </ion-tab-button>
   </ion-tab-bar>

@@ -61,6 +61,7 @@ ion-button {
   color:  #fff !important;
   height: 6%;
   width: 40%;
+  min-width: 165px;
 }
 
 #btn-is{
@@ -69,27 +70,31 @@ ion-button {
   text-transform: capitalize;
 }
 
-// TODO: REVISAR SI PUEDO ARREGLAR LOS BOTONES (PROBLEMAS CON LOS ANCHOS Y LARGOS)
 #union-texto{
-  width: 20px;
-  display: flex;
-  min-width: 247px;
-}
-
-#linkRegistrarse{
+  width: 100%;
+  height: 5%;
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 20%;
-  color: rgb(88, 166, 255);
-  font-size: 15px;
+  gap: 5px;
 }
 
 #btn-re1{
   display: flex;
-  justify-content: center;
-  width: 70%;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
   color: black;
   font-size: 15px;
+  padding-left: 10px;
+}
+
+#linkRegistrarse{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  color: rgb(88, 166, 255);
+  font-size: 15px;
+  padding-left: 5px;
+  text-decoration: none;
 }
