@@ -1,9 +1,3 @@
-<ion-header>
-    <ion-toolbar>
-      <ion-title>Slides home</ion-title>
-    </ion-toolbar>
-</ion-header>
-
 <swiper-container
 (slidechange)="swiperSlideChanged($event)" 
 [loop]="true"
@@ -24,7 +18,7 @@
 <ion-container>
     <!-- Insertar botones acá con los links para cada  -->
     
-    <a href="/iniciar-sesion" id="iniciarSesion">
+    <a href="/tabs-cliente/home-cliente" id="iniciarSesion">
         <ion-button>
             <p id="btn-is">Iniciar sesión</p>
         </ion-button>
@@ -34,6 +28,6 @@
 
     <div id="union-texto">
         <p id="btn-re1">¿No tienes cuenta?</p>
-        <a href="/registro-cliente" id="linkRegistrarse">Registrarse</a>   
+        <a href="/registro-cliente" id="linkRegistrarse">Registrate aquí</a>   
     </div>
 </ion-container>

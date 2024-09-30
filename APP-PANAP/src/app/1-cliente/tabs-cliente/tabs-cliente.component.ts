@@ -12,7 +12,15 @@ import { IonIcon, IonTabBar, IonTabButton, IonTabs } from '@ionic/angular/standa
 })
 export class TabsClienteComponent  implements OnInit {
 
-  constructor() { }
+  animateIcon(event: any) {
+    const icon = event.target; // Obtener el ícono clickeado
+    icon.classList.add('icon-animate');
+
+    // Remover la clase después de que la animación termine
+    setTimeout(() => {
+      icon.classList.remove('icon-animate');
+    }, 300); // La duración debe coincidir con la duración de la animación
+  }
 
   ngOnInit() {}
 
