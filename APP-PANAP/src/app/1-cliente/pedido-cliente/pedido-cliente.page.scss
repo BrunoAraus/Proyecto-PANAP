@@ -1,0 +1,38 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+#contenido{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    height: 100%;    
+    // background-color: black;
+}
+
+#titulo{
+    font-size: 28px;
+    font-weight: bold;
+    color: black;
+    margin: 30px 5px 10px 5px;
+}
+
+#subTitulo{
+    color: black;
+    font-size: 20px;
+    margin: 5px 10px 0px 5px;
+    padding: 0px 15px 0px 15px;
+}
+
+#mapaPedido{
+    margin-top: 20px;
+    width: 80%;
+    height: 600px;
+    background-color: blue;
+    border-radius: 20px;
+    box-shadow: 1px 3px 10px black;
+}
