@@ -1,13 +1,25 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>registro-cliente</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content>
+  <form (ngSubmit)="probarAPI()" #userForm="ngForm">
+    <ion-item>
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input type="text" [(ngModel)]="nombre" name="nombre" required></ion-input>
+    </ion-item>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">registro-cliente</ion-title>
-    </ion-toolbar>
-  </ion-header>
+    <ion-item>
+      <ion-label position="floating">Apellido</ion-label>
+      <ion-input type="text" [(ngModel)]="apellido" name="apellido" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Correo</ion-label>
+      <ion-input type="email" [(ngModel)]="correo" name="correo" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Clave</ion-label>
+      <ion-input type="password" [(ngModel)]="clave" name="clave" required></ion-input>
+    </ion-item>
+
+    <ion-button expand="full" type="submit">Probar API</ion-button>
+  </form>
 </ion-content>
