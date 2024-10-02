@@ -10,11 +10,12 @@ PANAP no solo busca ser una herramienta útil para compradores y vendedores, sin
 *"No se trata de hacer que la gente tema a la tecnología, sino de empoderarlos para que la utilicen al máximo."*
 
 ~ *Satya Nadella*, CEO de Microsoft.
+
 ## Lenguajes de programación a utilizar
- - [Capacitor](https://capacitorjs.com)
+ - [Ionic](https://ionicframework.com)
 
 ## Framework
- - [Ionic](https://ionicframework.com)
+ - [Angular](https://angular.dev)
 
 ## Preguntas frecuentes
 
