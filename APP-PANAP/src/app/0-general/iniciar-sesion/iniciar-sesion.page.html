@@ -1,13 +1,35 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>iniciar-sesion</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content fullscrean="true">
+  <div class="contenedor-login">
+    <h1 class="titulo">Iniciar sesión</h1>
+    <h2 id="subTitulo">Rellene los campos (<span class="obligatorio">*</span>)</h2>
+    <form>
+      <ion-label position="stacked" class="etiqueta">Correo (<span class="obligatorio">*</span>)</ion-label>
+      <ion-item lines="none" class="campo1">
+        <ion-input type="email" placeholder="ejemplo@gmail.com" class="input"></ion-input>
+      </ion-item>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">iniciar-sesion</ion-title>
-    </ion-toolbar>
-  </ion-header>
+      <ion-label position="stacked" class="etiqueta">Contraseña (<span class="obligatorio">*</span>)</ion-label>
+      <ion-item lines="none" class="campo2">
+        <div id="unionClave">
+          <ion-input type="password" placeholder="Contraseña..." class="input"></ion-input>
+          <ion-icon name="eye-off-outline" class="icono-password"></ion-icon>
+        </div>
+      </ion-item>
+
+      <div class="restablecer">
+        <span>¿Olvidaste tu contraseña?</span><a href="/restablecer-contra" class="enlace-restablecer"><span>Restablecer</span></a>
+      </div>
+    </form>
+
+    <ion-button expand="block" class="boton-acceder">
+      <span class="btn-Acceder">Acceder</span>
+    </ion-button>
+
+    <div class="footer">
+      <p>Creado por Yuzzo inc. © Copyright</p>
+    </div>
+
+  </div>
+
 </ion-content>
+
