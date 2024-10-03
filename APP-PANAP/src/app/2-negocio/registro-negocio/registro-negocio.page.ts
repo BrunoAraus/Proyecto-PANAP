@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-registro-negocio',
@@ -9,16 +10,22 @@ import { Component, OnInit } from '@angular/core';
 export class RegistroNegocioPage {
   apiUrl = 'https://panapp.duckdns.org/rest/API_PRUEBA.php';
 
-  usuario: string = '';
+  nombre: string = '';
+  apellido: string = '';
   clave: string = '';
   correo: string = '';
-  tipo: string = '';
+  tipo: string = 'Cliente';
 
-  constructor(private http: HttpClient) {}
+
+  errorMensaje: string = '';
+
+  constructor(private http: HttpClient, private navCtrl: NavController) {}
 
   probarAPI() {
     const body = {
-      usuario: this.usuario,
+      accion: 'registro', 
+      nombre: this.nombre,
+      apellido: this.apellido,
       clave: this.clave,
       correo: this.correo,
       tipo: this.tipo,
@@ -30,10 +37,20 @@ export class RegistroNegocioPage {
     });
 
     this.http.post(this.apiUrl, body, { headers: headers })
-      .subscribe(response => {
-        console.log('Respuesta de la API:', response);
-      }, error => {
-        console.error('Error al consumir la API:', error);
-      });
+      .subscribe(
+        (response: any) => {
+          if (response.success) {
+            console.log('Usuario registrado correctamente:', response.message);
+            this.navCtrl.navigateRoot('/iniciar-sesion');
+            this.errorMensaje = ''; 
+          } else {
+            this.errorMensaje = response.message; 
+          }
+        },
+        (error) => {
+          console.error('Error al consumir la API:', error);
+          this.errorMensaje = 'Ocurrió un error inesperado. Inténtalo más tarde.'; 
+        }
+      );
   }
 }

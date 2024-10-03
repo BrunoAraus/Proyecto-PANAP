@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-registro-cliente',
@@ -15,10 +16,14 @@ export class RegistroClientePage {
   correo: string = '';
   tipo: string = 'Cliente';
 
-  constructor(private http: HttpClient) {}
+
+  errorMensaje: string = '';
+
+  constructor(private http: HttpClient, private navCtrl: NavController) {}
 
   probarAPI() {
     const body = {
+      accion: 'registro', 
       nombre: this.nombre,
       apellido: this.apellido,
       clave: this.clave,
@@ -32,10 +37,20 @@ export class RegistroClientePage {
     });
 
     this.http.post(this.apiUrl, body, { headers: headers })
-      .subscribe(response => {
-        console.log('Respuesta de la API:', response);
-      }, error => {
-        console.error('Error al consumir la API:', error);
-      });
+      .subscribe(
+        (response: any) => {
+          if (response.success) {
+            console.log('Usuario registrado correctamente:', response.message);
+            this.navCtrl.navigateRoot('/iniciar-sesion');
+            this.errorMensaje = ''; 
+          } else {
+            this.errorMensaje = response.message; 
+          }
+        },
+        (error) => {
+          console.error('Error al consumir la API:', error);
+          this.errorMensaje = 'Ocurrió un error inesperado. Inténtalo más tarde.'; 
+        }
+      );
   }
 }
