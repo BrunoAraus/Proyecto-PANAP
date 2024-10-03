@@ -1,25 +1,30 @@
 <ion-content>
-  <form (ngSubmit)="probarAPI()" #userForm="ngForm">
+  <form (ngSubmit)="probarAPI()">
     <ion-item>
       <ion-label position="floating">Nombre</ion-label>
-      <ion-input type="text" [(ngModel)]="nombre" name="nombre" required></ion-input>
+      <ion-input [(ngModel)]="nombre" name="nombre"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Apellido</ion-label>
-      <ion-input type="text" [(ngModel)]="apellido" name="apellido" required></ion-input>
+      <ion-input [(ngModel)]="apellido" name="apellido"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Correo</ion-label>
-      <ion-input type="email" [(ngModel)]="correo" name="correo" required></ion-input>
+      <ion-input [(ngModel)]="correo" name="correo" type="email"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Clave</ion-label>
-      <ion-input type="password" [(ngModel)]="clave" name="clave" required></ion-input>
+      <ion-input [(ngModel)]="clave" name="clave" type="password"></ion-input>
     </ion-item>
 
-    <ion-button expand="full" type="submit">Probar API</ion-button>
+    <ion-button expand="block" type="submit">Registrar</ion-button>
   </form>
+  
+  <!-- Mostrar mensaje de error si existe -->
+  <p  style="color: red;" *ngIf="errorMensaje" class="error">
+    {{ errorMensaje }}
+  </p>
 </ion-content>
