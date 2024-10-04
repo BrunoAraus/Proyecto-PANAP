@@ -1,3 +1,33 @@
-<ion-content [fullscreen]="true">
-
+<ion-content [fullscreen]="true"class="contenido">
+    <div class="contenedor-central">
+      <div class="fecha-hora">
+        <p>Fecha y hora de hoy</p>
+        <h2>12-11-2024 | 12:45</h2>
+      </div>
+      <div id="ordenCampos">
+        <div class="campoIndividual">  
+          <ion-label class="textoInput">Cantidad de Pan disponible (Kg)</ion-label>
+          <ion-item class="campo-item">
+            <p class="simbologia">Kg:</p><ion-input class="input-texto" id="cantidad-pan"></ion-input>
+          </ion-item>
+        </div>
+        <div class="campoIndividual"> 
+          <ion-label class="textoInput">Valor del Pan por Kilo</ion-label>
+          <ion-item class="campo-item">
+            <p class="simbologia">$</p><ion-input class="input-texto" id="valor-pan"></ion-input>
+          </ion-item>
+        </div>
+        <div class="campoIndividual"> 
+          <ion-label class="textoInput">Confirmar Valor</ion-label>
+          <ion-item class="campo-item">
+            <p class="simbologia">$</p><ion-input class="input-texto" id="confirmar-valor"></ion-input>
+          </ion-item>
+        </div>
+        <a href="/tabs-negocio/reservas-negocio" class="botonGeneral">
+          <ion-button>
+              <p class="botones">Confirmar</p>
+          </ion-button>
+        </a>
+      </div>
+    </div>
 </ion-content>

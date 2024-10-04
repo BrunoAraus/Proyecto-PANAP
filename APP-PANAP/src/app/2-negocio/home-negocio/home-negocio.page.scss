@@ -3,4 +3,139 @@
     margin: 0;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
+.contenedor-recordatorio{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
+.titulo{
+    font-size: 30px;
+    margin: 40px 10px 10px 10px;
+    text-align: center;
+    font-weight: lighter;
+    color: black;
+}
+
+.subTitulo{
+    font-size: 30px;
+    margin: 10px 5px 0px 5px;
+    text-align: center;
+    font-weight: bold;
+    color: black;
+}
+
+.icono-opcion{
+    min-width: 35px;
+    min-height: 35px;
+    padding: 0px 0px 0px 0px;
+}
+
+.texto-opcion{
+    font-size: 21px;
+    padding: 20px 5px 20px 5px;
+    margin: 20px 5px 20px 5px;
+}
+
+#separacionCampos{
+    width: 100%;
+    height: 80%;
+    gap: 35px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 25px 0px 0px 0px;
+}
+
+.opcion{
+    height: 100px;
+    display: flex;
+    align-items: center;
+}
+
+#opcion-reservas{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    min-width: 100%;
+    height: 13%;
+    border-radius: 10px 0px 0px 10px;
+    background-color: rgb(255, 145, 0);
+    text-align: end;
+    padding: 0px 75px 0px 10px;
+    margin: 0px 0px 0px 120px;
+}
+
+#opcion-agregar{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    height: 13%;
+    border-radius: 0px 10px 10px 0px;
+    background-color: rgb(255, 145, 0);
+    text-align: start;
+    padding: 0px 10px 0px 75px;
+    margin: 0px 120px 0px 0px;
+}
+
+#opcion-editar{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    min-width: 100%;
+    height: 13%;
+    border-radius: 10px 0px 0px 10px;
+    background-color: rgb(255, 145, 0);
+    text-align: end;
+    padding: 0px 75px 0px 10px;
+    margin: 0px 0px 0px 120px;
+}
+
+#opcion-cerrar-sesion{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    height: 13%;
+    border-radius: 0px 10px 10px 0px;
+    background-color: rgb(255, 145, 0);
+    text-align: start;
+    padding: 0px 10px 0px 130px;
+    margin: 0px 260px 0px 0px;
+}
+
+#navegacion{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    font-weight: bold;
+    font-size: 30px;
+    font-weight: bold;
+    top: 90%;
+    gap: 10px;
+}
+
+.nevegar{
+    font-size: 25px;
+    color: black;
+}
+
+.iconoNavegacion{
+    color: black;
+    animation: bounce 1s infinite; /* Aplica la animación */
+}
+
+@keyframes bounce {
+    0%, 100% {
+      transform: translateY(0); /* Posición inicial y final */
+    }
+    50% {
+      transform: translateY(-10px); /* Movimiento hacia arriba */
+    }
+  }

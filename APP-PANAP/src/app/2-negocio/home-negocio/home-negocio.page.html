@@ -1,3 +1,32 @@
-<ion-content [fullscreen]="true">
+<ion-content fullscreen="true">
+    <div class="contenedor-recordatorio">
+      <h1 class="titulo">¡Hola!, Bienvenido a PanaP</h1>
+      <h2 class="subTitulo">Recuerda:</h2>
 
-</ion-content>
+      <div id="separacionCampos">
+        <div class="opcion" id="opcion-reservas">
+          <ion-icon name="book-outline" class="icono-opcion"></ion-icon>
+          <p class="texto-opcion">Para revisar las reservas de Pan.</p>
+        </div>
+    
+        <div class="opcion" id="opcion-agregar">
+          <p class="texto-opcion">Para agregar el Pan que tendrás disponible.</p>
+          <ion-icon name="duplicate-outline" class="icono-opcion"></ion-icon>
+        </div>
+    
+        <div class="opcion" id="opcion-editar">
+          <ion-icon name="create-outline" class="icono-opcion"></ion-icon>
+          <p class="texto-opcion">Para editar el Pan que tienes disponible.</p>
+        </div>
+    
+        <div class="opcion" id="opcion-cerrar-sesion">
+          <p class="texto-opcion">Para cerrar sesión.</p>
+          <ion-icon name="exit-outline" class="icono-opcion"></ion-icon>
+        </div>
+      </div>
+      <div id="navegacion">
+        <h2 class="nevegar">Navega con este Menú</h2>
+        <ion-icon name="arrow-down" class="iconoNavegacion"></ion-icon>
+    </div>
+    </div>
+  </ion-content>
