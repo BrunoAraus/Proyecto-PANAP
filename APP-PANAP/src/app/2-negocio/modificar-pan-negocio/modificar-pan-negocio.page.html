@@ -1,3 +1,47 @@
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="contenido">
+    <div class="contenedor-central">
+      <div class="fecha-hora">
+        <p id="Hora">Fecha y hora de hoy</p>
+        <h2 id="fecha">12-11-2024 | 13:25</h2>
+      </div>
+  
+      <div class="disponibilidad">
+        <h3 class="titulo">Disponibilidad del Pan</h3>
+        <p class="subtexto">*Puedes editarlo dependiendo de cuanto pan queda*</p>
+  
+        <!-- Grupo de radio -->
+        <ion-radio-group class="grupo-radio" value="disponible">
+          <ion-item class="radio-item">
+            <ion-label>Disponible</ion-label>
+            <ion-radio slot="start" value="disponible"></ion-radio>
+          </ion-item>
+  
+          <ion-item class="radio-item">
+            <ion-label>Queda poco</ion-label>
+            <ion-radio slot="start" value="queda-poco"></ion-radio>
+          </ion-item>
+  
+          <ion-item class="radio-item">
+            <ion-label>Agotado</ion-label>
+            <ion-radio slot="start" value="agotado"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </div>
+
+      <div class="campoIndividual"> 
+        <ion-label class="textoInput">Valor del Pan por Kilo</ion-label>
+        <ion-item class="campo-item">
+          <p class="simbologia">$2.190</p><ion-input class="input-texto" id="valor-pan-kilo" readonly="true"></ion-input>
+        </ion-item>
+      </div>
+
+      <div class="ordenBoton">
+        <ion-button expand="block" class="boton-actualizar" id="boton-actualizar">
+          <h2 class="textBoton">
+          Actualizar
+          </h2>
+        </ion-button>
+      </div>
+    </div>
 
 </ion-content>

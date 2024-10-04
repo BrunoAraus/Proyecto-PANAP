@@ -3,3 +3,134 @@
     margin: 0;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
+
+.contenedor-central{
+    width: 100%;
+    height: 400px !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.fecha-hora{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 40%;
+    color: black;
+    text-align: center;
+    padding: 20px 5px 20px 5px;
+}
+
+#Hora{
+    font-size: 25px;
+}
+
+#fecha{
+    font-size: 35px;
+}
+
+.titulo{
+    text-align: center;
+    font-size: 30px;
+    padding: 5px 5px 5px 5px;
+    margin: 5px 5px 0px 5px;
+    color: black;
+}
+
+.subtexto{
+    text-align: center;
+    font-size: 20px;
+    padding: 5px 5px 5px 5px;
+    margin: 0px 5px 20px 5px;
+    color: black;
+}
+
+.disponibilidad{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.grupo-radio{
+    width: 60%;
+    height: auto;
+}
+
+.radio-item{
+    width: 100%;
+    border-radius: 15px;
+    margin: 10px 5px 30px 5px;
+}
+
+.campoIndividual{
+    width: 50%;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 80px;
+    margin-top: 50px;
+}
+
+.textoInput{
+    font-size: 20px;
+    color: black;
+}
+
+ion-item{
+    text-decoration: none;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    --background: #75757542;
+    color: black;
+    font-size: 20px;
+}
+
+.ordenBoton{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 5px 20px 5px;
+}
+
+.campo-item{
+    text-align: center;
+    border-radius: 15px;
+}
+
+.boton-actualizar {
+    width: 55%;
+    min-width: 150px;
+    height: 45%;
+    min-height: 60px;
+    --background:  rgb(255, 145, 0) !important;
+    --background-hover:  rgb(255, 145, 0) !important;
+    --background-activated:  rgb(255, 145, 0) !important;
+    --background-focused:  rgb(255, 145, 0) !important;
+
+    --color: rgb(255, 255, 255);
+
+    --border-radius: 10px;
+
+    --box-shadow: 0 5px 15px 1px rgba(0, 0, 0, 0.144);
+
+    --ripple-color: rgb(255, 255, 255);
+}
+
+.textBoton{
+    font-size: 25px;
+    color: #fff;
+    text-transform: none;
+}
