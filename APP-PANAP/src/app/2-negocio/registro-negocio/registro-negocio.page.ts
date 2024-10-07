@@ -14,7 +14,7 @@ export class RegistroNegocioPage {
   apellido: string = '';
   clave: string = '';
   correo: string = '';
-  tipo: string = 'Cliente';
+  tipo: string = 'Negocio';
 
 
   errorMensaje: string = '';

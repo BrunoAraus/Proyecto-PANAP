@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { IniciarSesionPageRoutingModule } from './iniciar-sesion-routing.module';
 
 import { IniciarSesionPage } from './iniciar-sesion.page';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    IniciarSesionPageRoutingModule
+    IniciarSesionPageRoutingModule,
+    HttpClientModule
   ],
   declarations: [IniciarSesionPage]
 })
