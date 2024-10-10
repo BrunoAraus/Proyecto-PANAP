@@ -12,7 +12,6 @@ export class IniciarSesionPage {
 
   correo: string = ''; 
   clave: string = '';  
-
   errorMensaje: string = ''; 
 
   constructor(private http: HttpClient, private navCtrl: NavController) {}
@@ -37,15 +36,19 @@ export class IniciarSesionPage {
 
             this.errorMensaje = ''; 
 
+            const usuarioData = response.user; 
+            const negociosData = response.negocios; 
+
             
-            if (response.tipo === 'Cliente') {
-              
+            localStorage.setItem('usuarioData', JSON.stringify(usuarioData));
+            localStorage.setItem('negociosData', JSON.stringify(negociosData));
+
+            
+            if (usuarioData.tipo === 'Cliente') {
               this.navCtrl.navigateRoot('/tabs-cliente/home-cliente');
-            } else if (response.tipo === 'Negocio'){
-              
+            } else if (usuarioData.tipo === 'Negocio') {
               this.navCtrl.navigateRoot('/tabs-negocio/home-negocio');
             }
-
           } else {
             this.errorMensaje = response.message; 
           }
