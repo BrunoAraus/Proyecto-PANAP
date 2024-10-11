@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { MapaClientePageRoutingModule } from './mapa-cliente-routing.module';
 
 import { MapaClientePage } from './mapa-cliente.page';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    MapaClientePageRoutingModule
+    MapaClientePageRoutingModule,
+    HttpClientModule
   ],
   declarations: [MapaClientePage]
 })

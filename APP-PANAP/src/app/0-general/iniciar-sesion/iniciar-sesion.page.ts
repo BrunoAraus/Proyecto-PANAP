@@ -42,6 +42,8 @@ export class IniciarSesionPage {
             
             localStorage.setItem('usuarioData', JSON.stringify(usuarioData));
             localStorage.setItem('negociosData', JSON.stringify(negociosData));
+            localStorage.setItem('userEmail', this.correo);
+            localStorage.setItem('userPassword', this.clave);
 
             
             if (usuarioData.tipo === 'Cliente') {
