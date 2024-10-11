@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { NavController } from '@ionic/angular';
 declare var google: any;
 
 @Component({
@@ -10,8 +12,12 @@ export class MapaClientePage implements OnInit {
   currentLocation: { lat: number; lng: number } | null = null;
   map: any; 
   markers: any[] = []; 
+  usuario: any;
+  negocios: any[] = [];
+  apiUrl = 'https://panapp.duckdns.org/rest/API_PRUEBA.php';
+  intervalId: any;
 
-  constructor() {}
+  constructor(private http: HttpClient, private navCtrl: NavController) {}
 
   ngOnInit() {
     this.getCurrentLocation().then(() => {
@@ -21,7 +27,74 @@ export class MapaClientePage implements OnInit {
         console.error('No se puede obtener la ubicacion');
       }
     });
+    this.cargarDatos();
+
+
+    this.intervalId = setInterval(() => {
+      this.reconectar();
+    }, 60000); 
   }
+
+  cargarDatos() {
+    const usuarioData = localStorage.getItem('usuarioData');
+    const negociosData = localStorage.getItem('negociosData');
+
+    if (usuarioData) {
+      this.usuario = JSON.parse(usuarioData); 
+    }
+
+    if (negociosData) {
+      this.negocios = JSON.parse(negociosData);
+      console.log('Datos de negocios cargados:', this.negocios);
+      this.agregarMarcadoresNegocios();
+    }
+  }
+
+
+  reconectar() {
+    const correo = localStorage.getItem('userEmail');
+    const clave = localStorage.getItem('userPassword');
+
+    if (correo && clave) {
+      const body = {
+        accion: 'login',
+        correo: correo,
+        clave: clave
+      };
+
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': ''
+      });
+
+      this.http.post(this.apiUrl, body, { headers: headers })
+        .subscribe(
+          (response: any) => {
+            if (response.success) {
+              console.log('Reconexión exitosa:', response.message);
+
+              const usuarioData = response.user;
+              const negociosData = response.negocios;
+
+              localStorage.setItem('usuarioData', JSON.stringify(usuarioData));
+              localStorage.setItem('negociosData', JSON.stringify(negociosData));
+
+              this.usuario = usuarioData;
+              this.negocios = negociosData;
+              this.agregarMarcadoresNegocios();
+            } else {
+              console.log('Error en la reconexión:', response.message);
+            }
+          },
+          (error) => {
+            console.error('Error al intentar reconectar:', error);
+          }
+        );
+    } else {
+      console.error('No hay credenciales guardadas para reconectar.');
+    }
+  }
+
 
   getCurrentLocation(): Promise<void> {
     return new Promise((resolve, reject) => {
@@ -43,12 +116,13 @@ export class MapaClientePage implements OnInit {
     });
   }
 
+
   loadMap() {
     const mapContainer = document.getElementById('mapaPan') as HTMLElement;
 
     this.map = new google.maps.Map(mapContainer, {
       center: this.currentLocation || { lat: 0, lng: 0 },
-      zoom: 19,
+      zoom: 17,
       disableDefaultUI: true,
       styles: [
         {
@@ -77,28 +151,55 @@ export class MapaClientePage implements OnInit {
       ],
     });
 
-    if (this.currentLocation) {
-      this.addMarker(this.currentLocation, 'Mi Ubicación', true);
-    }
+
+    google.maps.event.addListenerOnce(this.map, 'idle', () => {
+      console.log('Mapa cargado completamente');
+      if (this.currentLocation) {
+        this.addMarker(this.currentLocation, 'Mi Ubicación', true);
+      }
+      this.agregarMarcadoresNegocios();
+    });
   }
 
+
+  agregarMarcadoresNegocios() {
+    console.log('Agregando marcadores para los negocios:', this.negocios);
+    this.negocios.forEach(negocio => {
+      const latitud = negocio.LATITUD;
+      const longitud = negocio.LONGITUD;
+
+      if (latitud && longitud) {
+        console.log(`Agregando marcador para: ${negocio.N_NOMBRE} en (${latitud}, ${longitud})`);
+        this.addMarker({ lat: latitud, lng: longitud }, `Negocio: ${negocio.N_NOMBRE}`, false);
+      } else {
+        console.warn(`Datos de ubicación faltantes para: ${negocio.N_NOMBRE}`);
+      }
+    });
+  }
   addMarker(location: { lat: number; lng: number }, title: string, isFixed: boolean = false) {
     const marker = new google.maps.Marker({
       position: location,
       map: this.map,
-      title: title,
       icon: {
-        path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
-        scale: 6,
+        path: google.maps.SymbolPath.CIRCLE,
+        scale: 10, 
         fillColor: isFixed ? 'blue' : 'red',
-        fillOpacity: 1,
+        fillOpacity: 0.8,
         strokeColor: 'white',
         strokeWeight: 2,
+        labelOrigin: new google.maps.Point(0, 2)
       },
+      label: {
+        text: title, 
+        color: 'black', 
+        fontSize: '90%', 
+        fontWeight: 'bold', 
+      }
     });
-
+  
+    
     if (!isFixed) {
       this.markers.push(marker);
     }
-  }
+  } 
 }
