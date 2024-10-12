@@ -1,0 +1,54 @@
+<ion-content fullscrean="true">
+  <div class="contenedorRegistro">
+
+    <div class="titulares">
+      <h1 class="titulo">Registro de usuario</h1>
+      <h2 id="subTitulo">Rellene los campos (<span class="obligatorio">*</span>)</h2>
+    </div>
+
+    <form (ngSubmit)="probarAPI()">
+      
+      <div class="tipoUsuario">
+        <!-- Acá se debe cambiar el tipo de usuario, ya sea CLIENTE o NEGOCIO -->
+         <!-- Un selector de tipo -->
+      </div>
+
+      <ion-label class="etiqueta">Nombre (<span class="obligatorio">*</span>)</ion-label>
+      <ion-item lines="none" class="campo1">
+        <ion-input [(ngModel)]="nombre" name="nombre" type="name" placeholder="Ejemplo: Juan" class="input"></ion-input>
+      </ion-item>
+
+      <ion-label class="etiqueta">Apellido (<span class="obligatorio">*</span>)</ion-label>
+      <ion-item lines="none" class="campo1">
+        <ion-input [(ngModel)]="apellido" name="apellido" type="lastname" placeholder="Ejemplo: Marquez" class="input"></ion-input>
+      </ion-item>
+
+      <hr style="background-color: rgba(0, 0, 0, 0.253);">
+
+      <ion-label class="etiqueta">Correo (<span class="obligatorio">*</span>)</ion-label>
+      <ion-item lines="none" class="campo1">
+        <ion-input [(ngModel)]="correo" name="correo" type="email" placeholder="ejemplo@gmail.com" class="input"></ion-input>
+      </ion-item>
+
+      <ion-label class="etiqueta">Contraseña (<span class="obligatorio">*</span>)</ion-label>
+      <ion-item lines="none" class="campo1">
+        <ion-input [(ngModel)]="clave" name="clave" type="password" placeholder="Contraseña" class="input"></ion-input>
+      </ion-item>
+
+      <ion-label class="etiqueta">Confirmar contraseña (<span class="obligatorio">*</span>)</ion-label>
+      <ion-item lines="none" class="campo1">
+        <ion-input name="claveConfirmada" type="password" placeholder="Contraseña nuevamente" class="input"></ion-input>
+      </ion-item>
+
+    </form>
+
+    <ion-button expand="block" type="submit" class="boton-acceder">
+        <span class="textoBoton">Continuar</span>
+    </ion-button>
+
+  </div>
+  <!-- Mostrar mensaje de error si existe -->
+  <p style="color: red;" *ngIf="errorMensaje" class="error">
+    {{ errorMensaje }}
+  </p>
+</ion-content>

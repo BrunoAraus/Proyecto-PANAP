@@ -1,20 +1,20 @@
+import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 
 @Component({
-  selector: 'app-registro-negocio',
-  templateUrl: './registro-negocio.page.html',
-  styleUrls: ['./registro-negocio.page.scss'],
+  selector: 'app-informacion-negocio',
+  templateUrl: './informacion-negocio.page.html',
+  styleUrls: ['./informacion-negocio.page.scss'],
 })
-export class RegistroNegocioPage {
+export class InformacionNegocioPage {
   apiUrl = 'https://panapp.duckdns.org/rest/API_PRUEBA.php';
 
   nombre: string = '';
   apellido: string = '';
   clave: string = '';
   correo: string = '';
-  tipo: string = 'Negocio';
+  tipo: string = '';
 
 
   errorMensaje: string = '';
@@ -53,4 +53,5 @@ export class RegistroNegocioPage {
         }
       );
   }
+
 }

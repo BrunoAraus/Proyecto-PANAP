@@ -32,14 +32,6 @@ const routes: Routes = [
     loadChildren: () => import('./0-general/iniciar-sesion/iniciar-sesion.module').then( m => m.IniciarSesionPageModule)
   },
   {
-    path: 'registro-cliente',
-    loadChildren: () => import('./1-cliente/registro-cliente/registro-cliente.module').then( m => m.RegistroClientePageModule)
-  },
-  {
-    path: 'registro-negocio',
-    loadChildren: () => import('./2-negocio/registro-negocio/registro-negocio.module').then( m => m.RegistroNegocioPageModule)
-  },
-  {
     path: 'reservas-negocio',
     loadChildren: () => import('./2-negocio/reservas-negocio/reservas-negocio.module').then( m => m.ReservasNegocioPageModule)
   },
@@ -67,7 +59,19 @@ const routes: Routes = [
     path: 'pruebas-api',
     loadChildren: () => import('./3-pruebas/pruebas-api/pruebas-api.module').then( m => m.PruebasApiPageModule)
   },
-
+  {
+    path: 'registro',
+    loadChildren: () => import('./0-general/registro/registro.module').then( m => m.RegistroPageModule)
+  },
+  {
+    path: 'informacion-negocio',
+    loadChildren: () => import('./2-negocio/informacion-negocio/informacion-negocio.module').then( m => m.InformacionNegocioPageModule)
+  },
+  {
+    path: 'validacion-codigo',
+    loadChildren: () => import('./0-general/validacion-codigo/validacion-codigo.module').then( m => m.ValidacionCodigoPageModule)
+  },
+  
   {
     path: 'tabs-cliente',
     loadComponent: () => import('./1-cliente/tabs-cliente/tabs-cliente.component').then( c => c.TabsClienteComponent),
@@ -88,10 +92,10 @@ const routes: Routes = [
         path: 'cerrar-sesion-cli',
         loadChildren: () => import('./1-cliente/cerrar-sesion-cli/cerrar-sesion-cli.module').then( m => m.CerrarSesionCliPageModule)
       },
-
+      
     ]
   },
-
+  
   {
     path: 'tabs-negocio',
     loadComponent: () => import('./2-negocio/tabs-negocio/tabs-negocio.component').then( c => c.TabsNegocioComponent),
