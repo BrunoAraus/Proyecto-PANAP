@@ -121,7 +121,7 @@ export class MapaClientePage implements OnInit {
 
     this.map = new google.maps.Map(mapContainer, {
       center: this.currentLocation || { lat: 0, lng: 0 },
-      zoom: 16.9,
+      zoom: 15,
       disableDefaultUI: true,
       draggable: false,
       scrollwheel: false,
