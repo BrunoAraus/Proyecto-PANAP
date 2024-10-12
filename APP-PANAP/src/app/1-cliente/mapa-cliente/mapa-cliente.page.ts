@@ -10,12 +10,15 @@ declare var google: any;
 })
 export class MapaClientePage implements OnInit {
   currentLocation: { lat: number; lng: number } | null = null;
-  map: any; 
-  markers: any[] = []; 
+  map: any;
+  markers: any[] = [];
   usuario: any;
   negocios: any[] = [];
   apiUrl = 'https://panapp.duckdns.org/rest/API_PRUEBA.php';
   intervalId: any;
+  directionsService: any;
+  directionsRenderer: any;
+  activeRouteMarker: any = null;
 
   constructor(private http: HttpClient, private navCtrl: NavController) {}
 
@@ -24,15 +27,14 @@ export class MapaClientePage implements OnInit {
       if (this.currentLocation) {
         this.loadMap();
       } else {
-        console.error('No se puede obtener la ubicacion');
+        console.error('No se puede obtener la ubicación');
       }
     });
     this.cargarDatos();
 
-
     this.intervalId = setInterval(() => {
       this.reconectar();
-    }, 60000); 
+    }, 60000);
   }
 
   cargarDatos() {
@@ -40,7 +42,7 @@ export class MapaClientePage implements OnInit {
     const negociosData = localStorage.getItem('negociosData');
 
     if (usuarioData) {
-      this.usuario = JSON.parse(usuarioData); 
+      this.usuario = JSON.parse(usuarioData);
     }
 
     if (negociosData) {
@@ -49,7 +51,6 @@ export class MapaClientePage implements OnInit {
       this.agregarMarcadoresNegocios();
     }
   }
-
 
   reconectar() {
     const correo = localStorage.getItem('userEmail');
@@ -95,7 +96,6 @@ export class MapaClientePage implements OnInit {
     }
   }
 
-
   getCurrentLocation(): Promise<void> {
     return new Promise((resolve, reject) => {
       if (navigator.geolocation) {
@@ -116,14 +116,17 @@ export class MapaClientePage implements OnInit {
     });
   }
 
-
   loadMap() {
     const mapContainer = document.getElementById('mapaPan') as HTMLElement;
 
     this.map = new google.maps.Map(mapContainer, {
       center: this.currentLocation || { lat: 0, lng: 0 },
-      zoom: 17,
+      zoom: 16.9,
       disableDefaultUI: true,
+      draggable: false,
+      scrollwheel: false,
+      disableDoubleClickZoom: true,
+      gestureHandling: 'none',
       styles: [
         {
           featureType: 'all',
@@ -150,7 +153,9 @@ export class MapaClientePage implements OnInit {
         },
       ],
     });
-
+    this.directionsService = new google.maps.DirectionsService();
+    this.directionsRenderer = new google.maps.DirectionsRenderer();
+    this.directionsRenderer.setMap(this.map); 
 
     google.maps.event.addListenerOnce(this.map, 'idle', () => {
       console.log('Mapa cargado completamente');
@@ -161,7 +166,6 @@ export class MapaClientePage implements OnInit {
     });
   }
 
-
   agregarMarcadoresNegocios() {
     console.log('Agregando marcadores para los negocios:', this.negocios);
     this.negocios.forEach(negocio => {
@@ -170,13 +174,14 @@ export class MapaClientePage implements OnInit {
 
       if (latitud && longitud) {
         console.log(`Agregando marcador para: ${negocio.N_NOMBRE} en (${latitud}, ${longitud})`);
-        this.addMarker({ lat: latitud, lng: longitud }, `Negocio: ${negocio.N_NOMBRE}`, false);
+        this.addMarker({ lat: latitud, lng: longitud }, `Negocio: ${negocio.N_NOMBRE}`, false, negocio);
       } else {
         console.warn(`Datos de ubicación faltantes para: ${negocio.N_NOMBRE}`);
       }
     });
   }
-  addMarker(location: { lat: number; lng: number }, title: string, isFixed: boolean = false) {
+
+  addMarker(location: { lat: number; lng: number }, title: string, isFixed: boolean = false, negocio?: any) {
     const marker = new google.maps.Marker({
       position: location,
       map: this.map,
@@ -196,10 +201,49 @@ export class MapaClientePage implements OnInit {
         fontWeight: 'bold', 
       }
     });
-  
-    
+
+    if (negocio) {
+      google.maps.event.addListener(marker, 'click', () => {
+        this.toggleRoute(marker, location);
+      });
+    }
+
     if (!isFixed) {
       this.markers.push(marker);
     }
-  } 
+  }
+
+  toggleRoute(marker: any, destino: { lat: number; lng: number }) {
+    if (this.activeRouteMarker === marker) {
+      this.directionsRenderer.set('directions', null);
+      this.activeRouteMarker = null; 
+    } else {
+      if (this.activeRouteMarker) {
+        this.directionsRenderer.set('directions', null);
+      }
+      this.calcularRutaHaciaNegocio(destino);
+      this.activeRouteMarker = marker;
+    }
+  }
+
+  calcularRutaHaciaNegocio(destino: { lat: number; lng: number }) {
+    if (!this.currentLocation) {
+      console.error('Ubicación actual no disponible');
+      return;
+    }
+
+    const request = {
+      origin: this.currentLocation,
+      destination: destino,
+      travelMode: google.maps.TravelMode.DRIVING,
+    };
+
+    this.directionsService.route(request, (result: any, status: any) => {
+      if (status === google.maps.DirectionsStatus.OK) {
+        this.directionsRenderer.setDirections(result);
+      } else {
+        console.error('Error al calcular la ruta:', status);
+      }
+    });
+  }
 }
