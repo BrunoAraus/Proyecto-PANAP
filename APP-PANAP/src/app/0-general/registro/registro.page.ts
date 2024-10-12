@@ -3,18 +3,19 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { NavController } from '@ionic/angular';
 
 @Component({
-  selector: 'app-registro-cliente',
-  templateUrl: './registro-cliente.page.html',
-  styleUrls: ['./registro-cliente.page.scss'],
+  selector: 'app-registro',
+  templateUrl: './registro.page.html',
+  styleUrls: ['./registro.page.scss'],
 })
-export class RegistroClientePage {
+
+export class RegistroPage {
   apiUrl = 'https://panapp.duckdns.org/rest/API_PRUEBA.php';
 
   nombre: string = '';
   apellido: string = '';
   clave: string = '';
   correo: string = '';
-  tipo: string = 'Cliente';
+  tipo: string = '';
 
 
   errorMensaje: string = '';

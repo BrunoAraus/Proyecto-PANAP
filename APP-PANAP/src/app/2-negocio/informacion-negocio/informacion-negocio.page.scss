@@ -1,0 +1,126 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.contenedorRegistro{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.titulares{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 18%;
+    width: 100%;
+    padding: 10px;
+}
+
+#subTitulo{
+    padding: 10px 30px 5px 30px;
+    text-align: center;
+    font-size: 23px;
+    color: black;
+    font-weight: bold;
+}
+
+.obligatorio{
+    color: red;
+}
+
+.etiqueta{
+    margin: 5px 0px 15px 5px;
+    font-size: 22px;
+    color: black;
+}
+
+.etiqueta2{
+    margin: 50px 0px 10px 5px;
+    font-size: 22px;
+    color: black;
+    text-align: center;
+    font-weight: bold;
+}
+
+.etiqueta3{
+    margin: 0px 0px 20px 5px;
+    padding: 0px 50px 0px 50px;
+    font-size: 18px;
+    color: black;
+    text-align: center;
+}
+
+form{
+    position: fixed;
+    top: 15%;
+    width: 80%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.boton-acceder{
+    min-width: 170px;
+    min-height: 60px;
+    --background:  rgb(255, 145, 0) !important;
+    --background-hover:  rgb(255, 145, 0) !important;
+    --background-activated:  rgb(255, 145, 0) !important;
+    --background-focused:  rgb(255, 145, 0) !important;
+  
+    --color: rgb(255, 255, 255);
+  
+    --border-radius: 15px;
+  
+    --box-shadow: 0 5px 15px 1px rgba(0, 0, 0, 0.144);
+  
+    --ripple-color: rgb(255, 255, 255);
+    margin: 30px 0px 0px 0px;
+    text-transform: capitalize;
+    position: fixed;
+    top: 84%;
+}
+
+ion-item{
+    --background: #9c9c9c6c;
+    --color: black;
+}
+
+.campo1{
+    padding: 0px 5px 15px 5px;
+}
+
+.textoBoton{
+    font-size: 20px;
+    color: #fff;
+}
+
+.titularFotografia{
+    color: black;
+    font-size: 20px;
+    text-align: center;
+    padding: 40px 40px 0px 40px;
+    font-weight: bold;
+}
+
+.ordenImagen{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+ion-icon{
+    width: 50px;
+    height: 50px;
+    background-color: black;
+}

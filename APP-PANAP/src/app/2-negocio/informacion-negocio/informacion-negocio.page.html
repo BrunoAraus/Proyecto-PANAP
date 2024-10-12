@@ -1,0 +1,50 @@
+<ion-content fullscrean="true">
+  <div class="contenedorRegistro">
+
+    <div class="titulares">
+      <h2 id="subTitulo">Por favor, rellene todos los campos solicitados (<span class="obligatorio">*</span>)</h2>
+    </div>
+
+    <form (ngSubmit)="probarAPI()">
+      
+      <div class="tipoUsuario">
+        <!-- Acá se debe cambiar el tipo de usuario, ya sea CLIENTE o NEGOCIO -->
+         <!-- Un selector de tipo -->
+      </div>
+
+      <ion-label class="etiqueta">Nombre del negocio (<span class="obligatorio">*</span>)</ion-label>
+      <ion-item lines="none" class="campo1">
+        <ion-input [(ngModel)]="nombre" name="nombre" type="name" placeholder="Ejemplo: Juan" class="input"></ion-input>
+      </ion-item>
+
+      <ion-label class="etiqueta">Número del negocio (<span class="obligatorio">*</span>)</ion-label>
+      <ion-item lines="none" class="campo1">
+        <ion-input [(ngModel)]="apellido" name="apellido" type="lastname" placeholder="Ejemplo: Marquez" class="input"></ion-input>
+      </ion-item>
+
+      <ion-label class="etiqueta2">Métodos de pago en tienda</ion-label>
+      <ion-label class="etiqueta3">Marca cuales son tus métodos de pago en tienda</ion-label>
+
+      <div class="selectorMultiple">
+        <!-- Acá van las selecciones (Efectivo - Transferencia - Tarjeta) -->
+        <!-- Tener 3 opciones disponibles, dejando marcado el de Efectivo que siempre estará disponible -->
+      </div>
+
+      <h2 class="titularFotografia">Añadir fotografia del local comercial</h2>
+      <div class="ordenImagen">
+        <!-- Acá falta agregar función de entrar al celular y poder carga la imagen que corresponde -->
+        <ion-icon name="image"></ion-icon>
+      </div>
+
+    </form>
+
+    <ion-button expand="block" type="submit" class="boton-acceder">
+        <span class="textoBoton">Enviar</span>
+    </ion-button>
+
+  </div>
+  <!-- Mostrar mensaje de error si existe -->
+  <p style="color: red;" *ngIf="errorMensaje" class="error">
+    {{ errorMensaje }}
+  </p>
+</ion-content>

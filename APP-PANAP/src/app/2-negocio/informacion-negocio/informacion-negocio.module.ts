@@ -4,19 +4,19 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { RegistroClientePageRoutingModule } from './registro-cliente-routing.module';
+import { InformacionNegocioPageRoutingModule } from './informacion-negocio-routing.module';
 
+import { InformacionNegocioPage } from './informacion-negocio.page';
 import { HttpClientModule } from '@angular/common/http';
-import { RegistroClientePage } from './registro-cliente.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    RegistroClientePageRoutingModule,
-    HttpClientModule 
+    InformacionNegocioPageRoutingModule,
+    HttpClientModule,
   ],
-  declarations: [RegistroClientePage]
+  declarations: [InformacionNegocioPage]
 })
-export class RegistroClientePageModule {}
+export class InformacionNegocioPageModule {}
