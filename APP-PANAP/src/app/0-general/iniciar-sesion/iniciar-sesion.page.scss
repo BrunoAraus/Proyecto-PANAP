@@ -138,7 +138,12 @@ ion-item{
 }
 
 .footer{
-    position: fixed;
-    top: 97%;
+    position: absolute;
+    top: 95%;
+    margin: 5px 0px 5px 0px;
+}
+
+#textoFooter{
+    font-size: 15px;
     color: black;
 }
