@@ -1,3 +1,12 @@
-<ion-content [fullscreen]="true">
-  <!-- Acá todo el html -->
+<ion-content>
+  <div class="contenedor-validacion">
+    <ion-label class="etiqueta">Ingrese el código</ion-label>
+    <ion-item lines="none">
+      <ion-input [(ngModel)]="codigoIngresado" placeholder="Código de validación"></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" (click)="validarCodigo()">Validar</ion-button>
+
+    <p style="color: red;" *ngIf="mensajeError">{{ mensajeError }}</p>
+  </div>
 </ion-content>

@@ -42,7 +42,11 @@ export class RegistroPage {
         (response: any) => {
           if (response.success) {
             console.log('Usuario registrado correctamente:', response.message);
-            this.navCtrl.navigateRoot('/iniciar-sesion');
+            if (this.tipo === 'Cliente') {
+              this.navCtrl.navigateRoot('/iniciar-sesion');
+            } else if (this.tipo === 'Negocio') {
+              this.navCtrl.navigateRoot('/informacion-negocio');
+            }
             this.errorMensaje = ''; 
           } else {
             this.errorMensaje = response.message; 
