@@ -7,10 +7,19 @@
     </div>
 
     <form (ngSubmit)="probarAPI()">
-      
       <div class="tipoUsuario">
-        <!-- Acá se debe cambiar el tipo de usuario, ya sea CLIENTE o NEGOCIO -->
-         <!-- Un selector de tipo -->
+        <ion-label class="etiqueta">Tipo de usuario (<span class="obligatorio">*</span>)</ion-label>
+        <ion-radio-group [(ngModel)]="tipo" name="tipo">
+          <ion-item>
+            <ion-label>Cliente</ion-label>
+            <ion-radio slot="start" value="Cliente"></ion-radio>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Negocio</ion-label>
+            <ion-radio slot="start" value="Negocio"></ion-radio>
+          </ion-item>
+        </ion-radio-group>
       </div>
 
       <ion-label class="etiqueta">Nombre (<span class="obligatorio">*</span>)</ion-label>
@@ -39,15 +48,14 @@
       <ion-item lines="none" class="campo1">
         <ion-input name="claveConfirmada" type="password" placeholder="Contraseña nuevamente" class="input"></ion-input>
       </ion-item>
-
-    </form>
-
-    <ion-button expand="block" type="submit" class="boton-acceder">
+      
+      <ion-button expand="block" type="submit" class="boton-acceder">
         <span class="textoBoton">Continuar</span>
     </ion-button>
 
+    </form>
+
   </div>
-  <!-- Mostrar mensaje de error si existe -->
   <p style="color: red;" *ngIf="errorMensaje" class="error">
     {{ errorMensaje }}
   </p>

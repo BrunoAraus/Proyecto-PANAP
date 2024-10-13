@@ -47,10 +47,28 @@ export class IniciarSesionPage {
 
             
             if (usuarioData.tipo === 'Cliente') {
-              this.navCtrl.navigateRoot('/tabs-cliente/home-cliente');
+              if (usuarioData.valido === 'INVALIDO') {
+                this.navCtrl.navigateRoot('/validacion-codigo');
+              } else if (usuarioData.valido === 'VALIDO') {
+                this.navCtrl.navigateRoot('/tabs-cliente/home-cliente');
+              }
             } else if (usuarioData.tipo === 'Negocio') {
-              this.navCtrl.navigateRoot('/tabs-negocio/home-negocio');
+              if (usuarioData.valido === 'INVALIDO') {
+                this.navCtrl.navigateRoot('/validacion-codigo');
+              } else if (usuarioData.valido === 'VALIDO') {
+                const negocioPendiente = negociosData.find((negocio: any) => negocio.ID_USUARIO === usuarioData.id && negocio.ESTADO === 'PENDIENTE');
+                if (negocioPendiente) {
+                  console.log('Negocio con ID coincidente está en estado PENDIENTE');
+                  this.navCtrl.navigateRoot('/home');
+                } else {
+                  console.log('Negocio no tiene estado PENDIENTE');
+                  this.navCtrl.navigateRoot('/tabs-negocio/home-negocio');
+                }
+              }
+            } else {
+              console.log('Tipo de usuario no reconocido');
             }
+                       
           } else {
             this.errorMensaje = response.message; 
           }
