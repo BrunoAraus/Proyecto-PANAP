@@ -14,13 +14,29 @@ export class ValidacionCodigoPage {
   codigoIngresado: string = '';
   codigoEsperado: string = 'wGgQx';
   mensajeError: string = '';
+  correo: string = '';
+  correoCensurado: string = '';
 
   apiUrl: string = 'https://panapp.duckdns.org/rest/API_PRUEBA.php'; 
 
   ngOnInit() { 
   }
 
-  constructor(private navCtrl: NavController, private http: HttpClient) {}
+  censurarEmail(correo: string): string {
+    const [localPart, domainPart] = correo.split('@');
+  
+    if (localPart.length < 3) return correo;
+  
+    const visiblePart = localPart.slice(0, 3);
+    const hiddenPart = '*'.repeat(localPart.length - 3); 
+  
+    return `${visiblePart}${hiddenPart}@${domainPart}`;
+  }
+  
+  constructor(private navCtrl: NavController, private http: HttpClient) {
+    this.correoCensurado = this.censurarEmail(this.correo);
+  }
+  
 
   validarCodigo() {
     if (this.codigoIngresado === this.codigoEsperado) {
@@ -46,6 +62,7 @@ export class ValidacionCodigoPage {
         (response: any) => {
           if (response.success) {
             this.enviarCorreo();
+            correo: localStorage.getItem('userEmail'); 
             this.navCtrl.navigateRoot('/iniciar-sesion');
           } else {
             this.mensajeError = response.message || 'Error en la validación del usuario.';
@@ -81,5 +98,6 @@ export class ValidacionCodigoPage {
         this.mensajeError = 'No se pudo enviar el correo. Intenta nuevamente.';
       });
   }
+  
   
 }
