@@ -5,10 +5,12 @@
     <h2> <u>Copia</u> y <u>pega</u> el codigo de tu correo para poder ingresar a la App.</h2>
   </div>
   <div class="contenedor-validacion">
+    
     <ion-label class="etiqueta">Ingrese el código</ion-label>
     <ion-item lines="none">
       <ion-input [(ngModel)]="codigoIngresado" placeholder="Código de validación"></ion-input>
     </ion-item>
+
     <div class="botonValidacion">
       <ion-button expand="block" (click)="validarCodigo()">Validar</ion-button>
     </div>

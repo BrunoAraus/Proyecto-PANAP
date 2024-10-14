@@ -18,9 +18,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 18%;
+    height: 14%;
     width: 100%;
-    padding: 10px;
 }
 
 .titulo{
@@ -28,35 +27,104 @@
     font-size: 30px;
     color: black;
     font-weight: bold;
+    padding: 0px 20px 0px 20px;
 }
 
 #subTitulo{
-    padding: 10px 0px 5px 0px;
+    padding: 5px 20px 0px 20px;
     text-align: center;
     font-size: 23px;
     color: black;
     font-weight: lighter;
 }
 
+.ordenSeleccion{
+    display: flex;
+    flex-direction: row;
+}
+
+.tipoUsuario{
+    width: 85%;
+    height: auto;
+    margin: 0px 5px 0px 0px;
+    padding: 5px;
+}
+
+.ordenCasillas1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    height: auto;
+    gap: 10px;
+}
+
+.tituloSeleccion{
+    text-align: center;
+    font-size: 25px;
+    color: black;
+    padding: 10px 5px 10px 5px;
+}
+
+.textoInterno{
+    font-size: 18px;
+    color: black;
+    font-weight: lighter;
+}
+
+ion-radio::part(container) {
+    width: 30px;
+    height: 30px;
+  
+    border-radius: 8px;
+    border: 2px solid #ddd;
+  }
+  
+  ion-radio::part(mark) {
+    background: none;
+    transition: none;
+    transform: none;
+    border-radius: 0;
+  }
+  
+  ion-radio.radio-checked::part(container) {
+    background: rgb(255, 145, 0);
+    border-color: transparent;
+  }
+  
+  ion-radio.radio-checked::part(mark) {
+    width: 6px;
+    height: 10px;
+  
+    border-width: 0px 2px 2px 0px;
+    border-style: solid;
+    border-color: #fff;
+  
+    transform: rotate(45deg);
+  }
+
+
+
 .obligatorio{
     color: red;
 }
 
 .etiqueta{
+    width: 80%;
+    text-align: left;
     margin: 5px 0px 15px 5px;
-    font-size: 22px;
+    font-size: 20px;
     color: black;
 }
 
 form{
     position: fixed;
-    top: 15%;
+    top: 12%;
     width: 80%;
     height: auto;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    margin-top: 20px;
+    align-items: center;
 }
 
 .boton-acceder{
@@ -77,7 +145,7 @@ form{
     margin: 30px 0px 0px 0px;
     text-transform: capitalize;
     position: fixed;
-    top: 84%;
+    top: 88%;
 }
 
 ion-item{
@@ -86,10 +154,57 @@ ion-item{
 }
 
 .campo1{
+    text-align: left;
+    width: 85%;
     padding: 0px 5px 15px 5px;
 }
 
 .textoBoton{
     font-size: 20px;
     color: #fff;
+}
+
+.error-alert {
+    text-align: center;
+    display: none;
+    position: fixed;
+    top: 1%;
+    left: 15%;
+    right: 15%;
+    background-color: #f44336;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 5px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 14px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.error-alert.show {
+    display: block;
+    animation: fade-in 0.5s ease-out, fade-out 0.5s ease-out 2.5s;
+}
+
+/* Animación de entrada de la alerta */
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animación de salida de la alerta */
+@keyframes fade-out {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
 }
