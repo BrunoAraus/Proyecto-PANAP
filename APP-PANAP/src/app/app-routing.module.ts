@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'tabs-cliente/home-cliente',
     pathMatch: 'full'
   },
   {
@@ -122,7 +122,11 @@ const routes: Routes = [
       },
 
     ]
+  },  {
+    path: 'confirmacion-negocio',
+    loadChildren: () => import('./0-general/confirmacion-negocio/confirmacion-negocio.module').then( m => m.ConfirmacionNegocioPageModule)
   },
+
 
 ];
 

@@ -15,7 +15,7 @@ export class RegistroPage {
   apellido: string = '';
   clave: string = '';
   correo: string = '';
-  tipo: string = '';
+  tipo: string = 'Cliente';
 
 
   errorMensaje: string = '';
@@ -24,7 +24,7 @@ export class RegistroPage {
 
   probarAPI() {
     const body = {
-      accion: 'registro', 
+      accion: 'registro',
       nombre: this.nombre,
       apellido: this.apellido,
       clave: this.clave,
@@ -54,8 +54,17 @@ export class RegistroPage {
         },
         (error) => {
           console.error('Error al consumir la API:', error);
-          this.errorMensaje = 'Ocurrió un error inesperado. Inténtalo más tarde.'; 
-        }
+          this.errorMensaje = 'Ocurrió un error inesperado. Inténtalo más tarde.';
+          const alerta = document.getElementById("alertaError");
+            if (alerta) {
+              alerta.classList.add("show");
+              
+              // Remover la clase "show" después de 3 segundos
+              setTimeout(() => {
+                alerta.classList.remove("show");
+              }, 3000);
+            }
+          }
       );
   }
 }

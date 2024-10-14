@@ -3,24 +3,28 @@
 
     <div class="titulares">
       <h1 class="titulo">Registro de usuario</h1>
-      <h2 id="subTitulo">Rellene los campos (<span class="obligatorio">*</span>)</h2>
+      <h2 id="subTitulo">Rellene los campos requeridos (<span class="obligatorio">*</span>)</h2>
     </div>
 
     <form (ngSubmit)="probarAPI()">
+      
+      <h1 class="tituloSeleccion">Selecciona tu perfil (<span class="obligatorio">*</span>)</h1>
       <div class="tipoUsuario">
-        <ion-label class="etiqueta">Tipo de usuario (<span class="obligatorio">*</span>)</ion-label>
-        <ion-radio-group [(ngModel)]="tipo" name="tipo">
-          <ion-item>
-            <ion-label>Cliente</ion-label>
-            <ion-radio slot="start" value="Cliente"></ion-radio>
-          </ion-item>
 
-          <ion-item>
-            <ion-label>Negocio</ion-label>
-            <ion-radio slot="start" value="Negocio"></ion-radio>
-          </ion-item>
+        <ion-radio-group [(ngModel)]="tipo" name="tipo" class="ordenSeleccion">
+          <div class="ordenCasillas1">
+            <h1 class="textoInterno">Cliente</h1>
+            <ion-radio value="Cliente" class="ordenCasilla1"></ion-radio>
+          </div>
+          <div class="ordenCasillas1">
+            <h1 class="textoInterno">Negocio</h1>
+            <ion-radio value="Negocio" class="ordenCasilla1"></ion-radio>
+          </div>
         </ion-radio-group>
+
       </div>
+
+      <hr style="background-color: rgba(0, 0, 0, 0.116); width: 100%; height: 3px; margin: 15px 5px 15px 5px;">
 
       <ion-label class="etiqueta">Nombre (<span class="obligatorio">*</span>)</ion-label>
       <ion-item lines="none" class="campo1">
@@ -32,7 +36,7 @@
         <ion-input [(ngModel)]="apellido" name="apellido" type="lastname" placeholder="Ejemplo: Marquez" class="input"></ion-input>
       </ion-item>
 
-      <hr style="background-color: rgba(0, 0, 0, 0.253);">
+      <hr style="background-color: rgba(0, 0, 0, 0.116); width: 100%; height: 3px; margin: 15px 5px 15px 5px;">
 
       <ion-label class="etiqueta">Correo (<span class="obligatorio">*</span>)</ion-label>
       <ion-item lines="none" class="campo1">
@@ -49,14 +53,20 @@
         <ion-input name="claveConfirmada" type="password" placeholder="Contraseña nuevamente" class="input"></ion-input>
       </ion-item>
       
-      <ion-button expand="block" type="submit" class="boton-acceder">
+      <ion-button type="submit" class="boton-acceder">
         <span class="textoBoton">Continuar</span>
-    </ion-button>
+      </ion-button>
 
     </form>
 
   </div>
-  <p style="color: red;" *ngIf="errorMensaje" class="error">
+
+  <!-- <p style="color: red;" *ngIf="errorMensaje" class="error">
     {{ errorMensaje }}
-  </p>
+  </p> -->
+
+  <div *ngIf="errorMensaje" class="error-alert" id="alertaError">
+    {{ errorMensaje }}
+  </div>
+
 </ion-content>
