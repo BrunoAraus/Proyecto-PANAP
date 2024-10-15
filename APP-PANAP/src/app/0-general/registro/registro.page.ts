@@ -41,6 +41,8 @@ export class RegistroPage {
       .subscribe(
         (response: any) => {
           if (response.success) {
+            localStorage.setItem('userEmail', this.correo);
+            localStorage.setItem('userPassword', this.clave);
             console.log('Usuario registrado correctamente:', response.message);
             if (this.tipo === 'Cliente') {
               this.navCtrl.navigateRoot('/iniciar-sesion');
@@ -58,8 +60,6 @@ export class RegistroPage {
           const alerta = document.getElementById("alertaError");
             if (alerta) {
               alerta.classList.add("show");
-              
-              // Remover la clase "show" después de 3 segundos
               setTimeout(() => {
                 alerta.classList.remove("show");
               }, 3000);
