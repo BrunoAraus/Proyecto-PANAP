@@ -29,10 +29,24 @@
 }
 
 #mapaPedido{
-    margin-top: 20px;
+    margin: 20px 5px 40px 5px;
     width: 80%;
     height: 600px;
     background-color: blue;
     border-radius: 20px;
     box-shadow: 1px 3px 10px black;
+}
+
+#hud {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.342);
+    color: rgb(0, 0, 0);
+    font-weight: lighter;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 18px;
+    z-index: 9999;
+    top: 20%;
+    text-align: center;
+    margin: 20px 0px 0px 0px;
 }

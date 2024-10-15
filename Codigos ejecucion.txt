@@ -12,6 +12,9 @@ ionic serve
 
 ionic generate page mi-vista
 
+#Para la creacion de los tabs inferiores
+ionic g c ionic/tabs --spec=false
+
 # Recurso para utilizar slides
 npm install swiper@latest
 

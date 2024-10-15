@@ -1,7 +1,7 @@
 <ion-content [fullscreen]="true">
     <div id="contenido">
-        <h1>¡Bienvenido!</h1>
-        <h1>{{ usuario?.nombre }} {{ usuario?.apellido }}</h1>
+        <h1 class="TituloPrincipal">¡Bienvenido!</h1>
+        <h1 class="usuarioNombre">~{{ usuario?.nombre }} {{ usuario?.apellido }}~</h1>
             <p id="SubTitulo">En PanaP podrás reservar el Pan y encontrar nuevos negocios.</p>
             <div id="unionContenido">
                 <img src="assets/image/home.gif">
@@ -13,8 +13,8 @@
             </div>
 
             <div id="navegacion">
-                <h2>Navega con este Menú</h2>
-                <ion-icon name="arrow-down"></ion-icon>
+                <h2 class="indicadorFooter">Navega con este Menú</h2>
+                <ion-icon name="arrow-down" class="icono"></ion-icon>
             </div>
     </div>
 </ion-content>
