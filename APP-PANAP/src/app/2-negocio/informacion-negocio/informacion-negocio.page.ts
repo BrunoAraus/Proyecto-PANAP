@@ -8,50 +8,113 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./informacion-negocio.page.scss'],
 })
 export class InformacionNegocioPage {
-  apiUrl = 'https://panapp.duckdns.org/rest/API_PRUEBA.php';
-
-  nombre: string = '';
-  apellido: string = '';
-  clave: string = '';
-  correo: string = '';
-  tipo: string = '';
-
 
   errorMensaje: string = '';
+  usuario: any;
+
+  negocio = {
+    nombre: '',
+    numero: '',
+    efectivo: false,
+    tarjeta: false,
+    transferencia: false
+  };
+
+  apiUrl = 'https://panapp.duckdns.org/rest/API_PRUEBA.php';
+  intervalId: any;
 
   constructor(private http: HttpClient, private navCtrl: NavController) {}
 
-  probarAPI() {
-    const body = {
-      accion: 'registro', 
-      nombre: this.nombre,
-      apellido: this.apellido,
-      clave: this.clave,
-      correo: this.correo,
-      tipo: this.tipo,
-    };
-
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': ''
-    });
-
-    this.http.post(this.apiUrl, body, { headers: headers })
-      .subscribe(
-        (response: any) => {
-          if (response.success) {
-            console.log('Usuario registrado correctamente:', response.message);
-            this.navCtrl.navigateRoot('/iniciar-sesion');
-            this.errorMensaje = ''; 
-          } else {
-            this.errorMensaje = response.message; 
-          }
-        },
-        (error) => {
-          console.error('Error al consumir la API:', error);
-          this.errorMensaje = 'Ocurrió un error inesperado. Inténtalo más tarde.'; 
-        }
-      );
+  ngOnInit() {
+    this.reconectar();
+    this.cargarDatos();
   }
 
+  ngOnDestroy() {
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+    }
+  }
+
+  cargarDatos() {
+    const usuarioData = localStorage.getItem('usuarioData');
+
+    if (usuarioData) {
+      this.usuario = JSON.parse(usuarioData); 
+    }
+  }
+
+  reconectar() {
+    const correo = localStorage.getItem('userEmail');
+    const clave = localStorage.getItem('userPassword');
+
+    if (correo && clave) {
+      const body = {
+        accion: 'login',
+        correo: correo,
+        clave: clave
+      };
+
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': ''
+      });
+
+      this.http.post(this.apiUrl, body, { headers: headers })
+        .subscribe(
+          (response: any) => {
+            if (response.success) {
+              console.log('Reconexión exitosa:', response.message);
+              const usuarioData = response.user;
+              localStorage.setItem('usuarioData', JSON.stringify(usuarioData));
+              this.usuario = usuarioData;
+            } else {
+              console.log('Error en la reconexión:', response.message);
+            }
+          },
+          (error) => {
+            console.error('Error al intentar reconectar:', error);
+          }
+        );
+    } else {
+      console.error('No hay credenciales guardadas para reconectar.');
+    }
+  }
+
+  registrarNegocio() {
+    if (this.usuario && this.usuario.id) {
+      const body = {
+        accion: 'registron',
+        n_nombre: this.negocio.nombre,
+        n_numero: this.negocio.numero,
+        id_usuario: this.usuario.id,
+        efectivo: this.negocio.efectivo ? 1 : 0,
+        tarjeta: this.negocio.tarjeta ? 1 : 0,
+        transferencia: this.negocio.transferencia ? 1 : 0
+      };
+
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': ''
+      });
+
+      this.http.post(this.apiUrl, body, { headers: headers })
+        .subscribe(
+          (response: any) => {
+            if (response.success) {
+              console.log('Negocio registrado correctamente:', response.message);
+              this.navCtrl.navigateBack('/confirmacion-negocio'); 
+            } else {
+              this.errorMensaje = 'Error al registrar el negocio: ' + response.message;
+            }
+          },
+          (error) => {
+            console.error('Error al registrar el negocio:', error);
+            this.errorMensaje = 'Ocurrió un error al registrar el negocio.';
+          }
+        );
+    } else {
+      this.errorMensaje = 'Usuario no autenticado.';
+    }
+  }
 }
