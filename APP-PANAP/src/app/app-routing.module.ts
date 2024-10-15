@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'tabs-cliente/home-cliente',
+    redirectTo: 'tabs-negocio/home-negocio',
     pathMatch: 'full'
   },
   {
@@ -71,6 +71,10 @@ const routes: Routes = [
     path: 'validacion-codigo',
     loadChildren: () => import('./0-general/validacion-codigo/validacion-codigo.module').then( m => m.ValidacionCodigoPageModule)
   },
+  {
+    path: 'confirmacion-negocio',
+    loadChildren: () => import('./0-general/confirmacion-negocio/confirmacion-negocio.module').then( m => m.ConfirmacionNegocioPageModule)
+  },
   
   {
     path: 'tabs-cliente',
@@ -120,12 +124,43 @@ const routes: Routes = [
         path: 'cerrar-sesion-neg',
         loadChildren: () => import('./2-negocio/cerrar-sesion-neg/cerrar-sesion-neg.module').then( m => m.CerrarSesionNegPageModule)
       },
-
+      {
+        path: 'reservas-dia',
+        loadChildren: () => import('./2-negocio/reservas-dia/reservas-dia.module').then( m => m.ReservasDiaPageModule)
+      },
+      {
+        path: 'historial-reservas',
+        loadChildren: () => import('./2-negocio/historial-reservas/historial-reservas.module').then( m => m.HistorialReservasPageModule)
+      },
     ]
-  },  {
-    path: 'confirmacion-negocio',
-    loadChildren: () => import('./0-general/confirmacion-negocio/confirmacion-negocio.module').then( m => m.ConfirmacionNegocioPageModule)
   },
+
+  {
+    path: 'tabs-admin',
+    loadComponent: () => import('./4-admin/tabs-admin/tabs-admin.component').then( c => c.TabsAdminComponent),
+    children: [
+      {
+        path: 'home-admin',
+        loadChildren: () => import('./4-admin/home-admin/home-admin.module').then( m => m.HomeAdminPageModule)
+      },
+      {
+        path: 'pendientes',
+        loadChildren: () => import('./4-admin/pendientes/pendientes.module').then( m => m.PendientesPageModule)
+      },
+      {
+        path: 'aceptados',
+        loadChildren: () => import('./4-admin/aceptados/aceptados.module').then( m => m.AceptadosPageModule)
+      },
+      {
+        path: 'rechazados',
+        loadChildren: () => import('./4-admin/rechazados/rechazados.module').then( m => m.RechazadosPageModule)
+      },
+      {
+        path: 'cerrar-sesion-adm',
+        loadChildren: () => import('./4-admin/cerrar-sesion-adm/cerrar-sesion-adm.module').then( m => m.CerrarSesionAdmPageModule)
+      },
+    ]
+  }
 
 
 ];
