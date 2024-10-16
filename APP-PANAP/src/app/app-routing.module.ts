@@ -75,6 +75,58 @@ const routes: Routes = [
     path: 'confirmacion-negocio',
     loadChildren: () => import('./0-general/confirmacion-negocio/confirmacion-negocio.module').then( m => m.ConfirmacionNegocioPageModule)
   },
+  {
+    path: 'menu-cliente',
+    loadChildren: () => import('./1-cliente/menu-cliente/menu-cliente.module').then( m => m.MenuClientePageModule)
+  },
+  {
+    path: 'menu-negocio',
+    loadChildren: () => import('./2-negocio/menu-negocio/menu-negocio.module').then( m => m.MenuNegocioPageModule)
+  },
+  {
+    path: 'home-admin',
+    loadChildren: () => import('./4-admin/home-admin/home-admin.module').then( m => m.HomeAdminPageModule)
+  },
+  {
+    path: 'pendientes',
+    loadChildren: () => import('./4-admin/pendientes/pendientes.module').then( m => m.PendientesPageModule)
+  },
+  {
+    path: 'aceptados',
+    loadChildren: () => import('./4-admin/aceptados/aceptados.module').then( m => m.AceptadosPageModule)
+  },
+  {
+    path: 'rechazados',
+    loadChildren: () => import('./4-admin/rechazados/rechazados.module').then( m => m.RechazadosPageModule)
+  },
+  {
+    path: 'cerrar-sesion-adm',
+    loadChildren: () => import('./4-admin/cerrar-sesion-adm/cerrar-sesion-adm.module').then( m => m.CerrarSesionAdmPageModule)
+  },
+  {
+    path: 'cambiar-informacion-cli',
+    loadChildren: () => import('./1-cliente/cambiar-informacion-cli/cambiar-informacion-cli.module').then( m => m.CambiarInformacionCliPageModule)
+  },
+  {
+    path: 'cambiar-informacion-neg',
+    loadChildren: () => import('./2-negocio/cambiar-informacion-neg/cambiar-informacion-neg.module').then( m => m.CambiarInformacionNegPageModule)
+  },
+  {
+    path: 'contacto',
+    loadChildren: () => import('./1-cliente/contacto/contacto.module').then( m => m.ContactoPageModule)
+  },
+  {
+    path: 'preguntas-frecuentes',
+    loadChildren: () => import('./1-cliente/preguntas-frecuentes/preguntas-frecuentes.module').then( m => m.PreguntasFrecuentesPageModule)
+  },
+  {
+    path: 'preguntas-frecuentes',
+    loadChildren: () => import('./2-negocio/preguntas-frecuentes/preguntas-frecuentes.module').then( m => m.PreguntasFrecuentesPageModule)
+  },
+  {
+    path: 'contacto',
+    loadChildren: () => import('./2-negocio/contacto/contacto.module').then( m => m.ContactoPageModule)
+  },
   
   {
     path: 'tabs-cliente',
@@ -96,7 +148,22 @@ const routes: Routes = [
         path: 'cerrar-sesion-cli',
         loadChildren: () => import('./1-cliente/cerrar-sesion-cli/cerrar-sesion-cli.module').then( m => m.CerrarSesionCliPageModule)
       },
-      
+      {
+        path: 'menu-cliente',
+        loadChildren: () => import('./1-cliente/menu-cliente/menu-cliente.module').then( m => m.MenuClientePageModule)
+      },
+      {
+        path: 'cambiar-informacion-cli',
+        loadChildren: () => import('./1-cliente/cambiar-informacion-cli/cambiar-informacion-cli.module').then( m => m.CambiarInformacionCliPageModule)
+      },
+      {
+        path: 'contacto',
+        loadChildren: () => import('./1-cliente/contacto/contacto.module').then( m => m.ContactoPageModule)
+      },
+      {
+        path: 'preguntas-frecuentes',
+        loadChildren: () => import('./1-cliente/preguntas-frecuentes/preguntas-frecuentes.module').then( m => m.PreguntasFrecuentesPageModule)
+      },      
     ]
   },
   
@@ -132,6 +199,22 @@ const routes: Routes = [
         path: 'historial-reservas',
         loadChildren: () => import('./2-negocio/historial-reservas/historial-reservas.module').then( m => m.HistorialReservasPageModule)
       },
+      {
+        path: 'menu-negocio',
+        loadChildren: () => import('./2-negocio/menu-negocio/menu-negocio.module').then( m => m.MenuNegocioPageModule)
+      },
+      {
+        path: 'cambiar-informacion-neg',
+        loadChildren: () => import('./2-negocio/cambiar-informacion-neg/cambiar-informacion-neg.module').then( m => m.CambiarInformacionNegPageModule)
+      },
+      {
+        path: 'preguntas-frecuentes',
+        loadChildren: () => import('./2-negocio/preguntas-frecuentes/preguntas-frecuentes.module').then( m => m.PreguntasFrecuentesPageModule)
+      },
+      {
+        path: 'contacto',
+        loadChildren: () => import('./2-negocio/contacto/contacto.module').then( m => m.ContactoPageModule)
+      },
     ]
   },
 
@@ -160,8 +243,7 @@ const routes: Routes = [
         loadChildren: () => import('./4-admin/cerrar-sesion-adm/cerrar-sesion-adm.module').then( m => m.CerrarSesionAdmPageModule)
       },
     ]
-  }
-
+  },
 
 ];
 
