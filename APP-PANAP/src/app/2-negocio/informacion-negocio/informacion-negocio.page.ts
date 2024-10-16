@@ -103,7 +103,7 @@ export class InformacionNegocioPage {
           (response: any) => {
             if (response.success) {
               console.log('Negocio registrado correctamente:', response.message);
-              this.navCtrl.navigateBack('/confirmacion-negocio'); 
+              this.navCtrl.navigateBack('/pruebas-api'); 
             } else {
               this.errorMensaje = 'Error al registrar el negocio: ' + response.message;
             }

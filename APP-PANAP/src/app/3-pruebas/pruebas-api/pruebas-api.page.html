@@ -1,31 +1,17 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Pruebas API</ion-title>
+    <ion-title>Subir Foto del Negocio</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <form (ngSubmit)="probarAPI()" #userForm="ngForm">
-    <ion-item>
-      <ion-label position="floating">Usuario</ion-label>
-      <ion-input type="text" [(ngModel)]="usuario" name="usuario" required></ion-input>
-    </ion-item>
+<ion-content class="ion-padding">
+  <h2>Selecciona una foto</h2>
 
-    <ion-item>
-      <ion-label position="floating">Clave</ion-label>
-      <ion-input type="password" [(ngModel)]="clave" name="clave" required></ion-input>
-    </ion-item>
+  <!-- Input para seleccionar la imagen -->
+  <input type="file" (change)="onFileSelected($event)" accept="image/*" />
 
-    <ion-item>
-      <ion-label position="floating">Correo</ion-label>
-      <ion-input type="email" [(ngModel)]="correo" name="correo" required></ion-input>
-    </ion-item>
+  <!-- Botón para subir la imagen -->
+  <ion-button expand="block" (click)="uploadPhoto()">Subir Foto</ion-button>
 
-    <ion-item>
-      <ion-label position="floating">Tipo</ion-label>
-      <ion-input type="text" [(ngModel)]="tipo" name="tipo" required></ion-input>
-    </ion-item>
-
-    <ion-button expand="full" type="submit">Probar API</ion-button>
-  </form>
+  <!-- Mensajes de estado o error pueden ir aquí -->
 </ion-content>

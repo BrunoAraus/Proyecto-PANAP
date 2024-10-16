@@ -2,6 +2,10 @@
     <div id="contenido">
         <h1 class="TituloPrincipal">¡Bienvenido!</h1>
         <h1 class="usuarioNombre">~{{ usuario?.nombre }} {{ usuario?.apellido }}~</h1>
+        <div *ngFor="let negocio of negocios">
+            <h1>{{ negocio.N_NOMBRE }}</h1>
+            <img *ngIf="negocio.FOTO" [src]="negocio.FOTO" alt="{{ negocio.N_NOMBRE }} Logo">
+          </div>          
             <p id="SubTitulo">En PanaP podrás reservar el Pan y encontrar nuevos negocios.</p>
             <div id="unionContenido">
                 <img src="assets/image/home.gif">

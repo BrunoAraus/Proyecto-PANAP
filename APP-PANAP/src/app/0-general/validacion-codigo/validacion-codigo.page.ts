@@ -14,7 +14,7 @@ export class ValidacionCodigoPage {
   codigoIngresado: string = '';
   codigoEsperado: string = 'wGgQx';
   mensajeError: string = '';
-  correo: string = 'goalalala@aslfda.com';
+  correo: string = '';
   correoCensurado: string = '';
 
   apiUrl: string = 'https://panapp.duckdns.org/rest/API_PRUEBA.php'; 
