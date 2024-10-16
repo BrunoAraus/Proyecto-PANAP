@@ -59,7 +59,7 @@ export class IniciarSesionPage {
                 const negocioPendiente = negociosData.find((negocio: any) => negocio.ID_USUARIO === usuarioData.id && negocio.ESTADO === 'PENDIENTE');
                 if (negocioPendiente) {
                   console.log('Negocio con ID coincidente está en estado PENDIENTE');
-                  this.navCtrl.navigateRoot('/home');
+                  this.navCtrl.navigateRoot('/confirmacion-negocio');
                 } else {
                   console.log('Negocio no tiene estado PENDIENTE');
                   this.navCtrl.navigateRoot('/tabs-negocio/home-negocio');

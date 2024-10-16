@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { NavController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-pruebas-api',
@@ -7,33 +9,51 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   styleUrls: ['./pruebas-api.page.scss'],
 })
 export class PruebasApiPage {
-  apiUrl = 'https://panapp.duckdns.org/rest/API_PRUEBA.php';
+  selectedFile: File | null = null;
+  usuario: any;
+  apiUrl = 'https://panapp.duckdns.org/rest/FOTO.php'; 
 
-  usuario: string = '';
-  clave: string = '';
-  correo: string = '';
-  tipo: string = '';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private navCtrl: NavController) { }
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      this.selectedFile = file;
+    }
+  }
 
-  probarAPI() {
-    const body = {
-      usuario: this.usuario,
-      clave: this.clave,
-      correo: this.correo,
-      tipo: this.tipo,
-    };
+  uploadPhoto() {
+    if (this.selectedFile) {
+      const usuarioData = localStorage.getItem('usuarioData');
+      if (usuarioData) {
+        this.usuario = JSON.parse(usuarioData); 
+      }
+      const formData = new FormData();
 
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': ''
-    });
+      formData.append('accion', 'subirFoto');
+      formData.append('id_usuario', this.usuario.id);
+      formData.append('foto', this.selectedFile);
 
-    this.http.post(this.apiUrl, body, { headers: headers })
-      .subscribe(response => {
-        console.log('Respuesta de la API:', response);
-      }, error => {
-        console.error('Error al consumir la API:', error);
+      const headers = new HttpHeaders({
+        'Authorization': ''
       });
+
+      this.http.post(this.apiUrl, formData, { headers: headers }).subscribe(
+        (response: any) => {
+          if (response.success) {
+            alert('Foto subida correctamente');
+            this.navCtrl.navigateBack('/confirmacion-negocio');
+          } else {
+            alert('Error al subir la foto: ' + response.message);
+          }
+        },
+        (error) => {
+          console.error('Error en la solicitud:', error);
+          alert('Error al conectarse con el servidor.');
+        }
+      );
+    } else {
+      alert('Por favor selecciona una imagen primero.');
+    }
   }
 }

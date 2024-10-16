@@ -16,9 +16,8 @@ export class HomeClientePage implements OnInit, OnDestroy {
   constructor(private http: HttpClient, private navCtrl: NavController) {}
 
   ngOnInit() {
+    this.reconectar();
     this.cargarDatos();
-
-  
     this.intervalId = setInterval(() => {
       this.reconectar();
     }, 60000); 
