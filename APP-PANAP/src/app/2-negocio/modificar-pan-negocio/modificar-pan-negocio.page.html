@@ -1,23 +1,23 @@
 <ion-content [fullscreen]="true" class="contenido">
-    <div class="contenedor-central">
-      <div class="fecha-hora">
-        <p id="Hora">Fecha y hora de hoy</p>
-        <h2 id="fecha">12-11-2024 | 13:25</h2>
-      </div>
-  
+  <div class="contenedor-central">
+    <div class="fecha-hora">
+      <p id="Hora">Fecha y hora de hoy</p>
+      <h2 id="fecha">12-11-2024 | 13:25</h2>
+    </div>
+    <form (ngSubmit)="modificar()" #stockForm="ngForm">
       <div class="disponibilidad">
         <h3 class="titulo">Disponibilidad del Pan</h3>
         <p class="subtexto">*Puedes editarlo de vez en cuando*</p>
       </div>
 
-      <ion-radio-group class="ordenSeleccion">
+      <ion-radio-group class="ordenSeleccion" [(ngModel)]="negocio.disponibilidad" name="disponibilidad">
         <div class="ordenCasillas1">
           <h1 class="textoInterno">Disponible</h1>
           <ion-radio value="Disponible" class="ordenCasilla1"></ion-radio>
         </div>
         <div class="ordenCasillas1">
           <h1 class="textoInterno">Poco</h1>
-          <ion-radio value="Queda-poco<" class="ordenCasilla1"></ion-radio>
+          <ion-radio value="Queda-poco" class="ordenCasilla1"></ion-radio>
         </div>
         <div class="ordenCasillas1">
           <h1 class="textoInterno">Agotado</h1>
@@ -26,12 +26,12 @@
       </ion-radio-group>
 
       <div class="ordenBoton">
-        <ion-button expand="block" class="boton-actualizar" id="boton-actualizar">
+        <ion-button expand="block" class="boton-actualizar" type="submit" id="boton-actualizar">
           <h2 class="textBoton">
-          Actualizar
+            Actualizar
           </h2>
         </ion-button>
       </div>
-    </div>
-
+    </form>
+  </div>
 </ion-content>

@@ -50,7 +50,7 @@ export class InformacionNegocioPage {
 
     if (correo && clave) {
       const body = {
-        accion: 'login',
+        accion: 'iniciarnegocio',
         correo: correo,
         clave: clave
       };
