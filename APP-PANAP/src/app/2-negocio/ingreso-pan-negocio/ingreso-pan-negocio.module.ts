@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { IngresoPanNegocioPageRoutingModule } from './ingreso-pan-negocio-routing.module';
 
 import { IngresoPanNegocioPage } from './ingreso-pan-negocio.page';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    IngresoPanNegocioPageRoutingModule
+    IngresoPanNegocioPageRoutingModule,
+    HttpClientModule
   ],
   declarations: [IngresoPanNegocioPage]
 })

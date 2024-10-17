@@ -7,13 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { ModificarPanNegocioPageRoutingModule } from './modificar-pan-negocio-routing.module';
 
 import { ModificarPanNegocioPage } from './modificar-pan-negocio.page';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ModificarPanNegocioPageRoutingModule
+    ModificarPanNegocioPageRoutingModule,
+    HttpClientModule,
+    FormsModule
   ],
   declarations: [ModificarPanNegocioPage]
 })
