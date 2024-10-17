@@ -8,31 +8,30 @@
 
       <ion-label class="etiqueta">Nombre del negocio (<span class="obligatorio">*</span>)</ion-label>
       <ion-item lines="none" class="campo1">
-        <ion-input [(ngModel)]="negocio.nombre" name="nombre" type="text" placeholder="Ejemplo: Juan" class="input" required></ion-input>
+        <ion-input [(ngModel)]="negocio.nombre" name="nombre" type="text" placeholder="Ejemplo: Bazar el Pepe" class="input" required></ion-input>
       </ion-item>
 
       <ion-label class="etiqueta">Número del negocio (<span class="obligatorio">*</span>)</ion-label>
       <ion-item lines="none" class="campo1">
-        <ion-input [(ngModel)]="negocio.numero" name="numero" type="text" placeholder="Ejemplo: 123456" class="input" required></ion-input>
+        <ion-input [(ngModel)]="negocio.numero" name="numero" type="text" placeholder="Ejemplo: #123" class="input" required></ion-input>
       </ion-item>
 
       <ion-label class="etiqueta2">Métodos de pago en tienda</ion-label>
       <ion-label class="etiqueta3">Marca cuales son tus métodos de pago en tienda</ion-label>
 
-      <ion-item lines="none">
-        <ion-label>Efectivo</ion-label>
-        <ion-checkbox [(ngModel)]="negocio.efectivo" name="efectivo"></ion-checkbox>
-      </ion-item>
+      <div class="divisionSeleccion">
+        <ion-item lines="none" class="seleccionMultiple">
+          <ion-checkbox [(ngModel)]="negocio.efectivo" name="efectivo">Efectivo</ion-checkbox>
+        </ion-item>
 
-      <ion-item lines="none">
-        <ion-label>Tarjeta</ion-label>
-        <ion-checkbox [(ngModel)]="negocio.tarjeta" name="tarjeta"></ion-checkbox>
-      </ion-item>
+        <ion-item lines="none" class="seleccionMultiple">
+          <ion-checkbox [(ngModel)]="negocio.tarjeta" name="tarjeta">Tarjeta</ion-checkbox>
+        </ion-item>
 
-      <ion-item lines="none">
-        <ion-label>Transferencia</ion-label>
-        <ion-checkbox [(ngModel)]="negocio.transferencia" name="transferencia"></ion-checkbox>
-      </ion-item>
+        <ion-item lines="none" class="seleccionMultiple">
+          <ion-checkbox [(ngModel)]="negocio.transferencia" name="transferencia">Transferencia</ion-checkbox>
+        </ion-item>
+      </div>
 
       <ion-button expand="block" type="submit" class="boton-acceder">
         <span class="textoBoton">Continuar</span>
@@ -40,8 +39,8 @@
 
     </form>
 
-    <p style="color: red;" *ngIf="errorMensaje" class="error">
+    <div *ngIf="errorMensaje" class="error-alert" id="alertaError">
       {{ errorMensaje }}
-    </p>
+    </div>
   </div>
 </ion-content>

@@ -7,7 +7,7 @@
 .contenedorRegistro{
     position: absolute;
     width: 100%;
-    height: 100%;
+    height: 600px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -18,9 +18,10 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 18%;
+    height: 20%;
     width: 100%;
     padding: 10px;
+    margin: 10px 5px 70px 5px;
 }
 
 #subTitulo{
@@ -58,14 +59,13 @@
 }
 
 form{
-    position: fixed;
-    top: 15%;
-    width: 80%;
-    height: auto;
+    width: 100%;
+    height: 80%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-top: 20px;
+    align-items: center;
+    margin-top: 60px;
 }
 
 .boton-acceder{
@@ -75,18 +75,14 @@ form{
     --background-hover:  rgb(255, 145, 0) !important;
     --background-activated:  rgb(255, 145, 0) !important;
     --background-focused:  rgb(255, 145, 0) !important;
-  
     --color: rgb(255, 255, 255);
-  
     --border-radius: 15px;
-  
     --box-shadow: 0 5px 15px 1px rgba(0, 0, 0, 0.144);
-  
     --ripple-color: rgb(255, 255, 255);
-    margin: 30px 0px 0px 0px;
+    margin: 0px 0px 50px 0px;
+    padding: 10px 5px 80px 5px;
     text-transform: capitalize;
-    position: fixed;
-    top: 84%;
+    position: relative;
 }
 
 ion-item{
@@ -94,7 +90,36 @@ ion-item{
     --color: black;
 }
 
+.seleccionMultiple{
+    width: 65%;
+}
+
+.divisionSeleccion{
+    width: 100%;
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin: 0px 5px 40px 5px;
+}
+
+ion-checkbox {
+    --size: 32px;
+    --checkbox-background-checked: rgb(255, 145, 0);
+    --checkbox-background: rgb(150, 150, 150);
+    --checkmark-color: rgb(255, 255, 255);
+    }
+
+    ion-checkbox::part(container) {
+    border-radius: 6px;
+    border: transparent;
+    }
+
 .campo1{
+    width: 70%;
+    min-height: 60px;
     padding: 0px 5px 15px 5px;
 }
 
@@ -123,4 +148,49 @@ ion-icon{
     width: 50px;
     height: 50px;
     background-color: black;
+}
+
+.error-alert {
+    text-align: center;
+    display: none;
+    position: fixed;
+    top: 1%;
+    left: 15%;
+    right: 15%;
+    background-color: #f44336;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 5px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 14px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.error-alert.show {
+    display: block;
+    animation: fade-in 0.5s ease-out, fade-out 0.5s ease-out 2.5s;
+}
+
+/* Animación de entrada de la alerta */
+@keyframes fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animación de salida de la alerta */
+@keyframes fade-out {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
 }
