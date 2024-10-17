@@ -70,10 +70,24 @@ export class InformacionNegocioPage {
               this.usuario = usuarioData;
             } else {
               console.log('Error en la reconexión:', response.message);
+              const alerta = document.getElementById("alertaError");
+              if (alerta) {
+                alerta.classList.add("show");
+                setTimeout(() => {
+                  alerta.classList.remove("show");
+                }, 3000);
+              }
             }
           },
           (error) => {
             console.error('Error al intentar reconectar:', error);
+            const alerta = document.getElementById("alertaError");
+            if (alerta) {
+              alerta.classList.add("show");
+              setTimeout(() => {
+                alerta.classList.remove("show");
+              }, 3000);
+            }
           }
         );
     } else {
@@ -106,15 +120,36 @@ export class InformacionNegocioPage {
               this.navCtrl.navigateBack('/pruebas-api'); 
             } else {
               this.errorMensaje = 'Error al registrar el negocio: ' + response.message;
+              const alerta = document.getElementById("alertaError");
+              if (alerta) {
+                alerta.classList.add("show");
+                setTimeout(() => {
+                  alerta.classList.remove("show");
+                }, 3000);
+              }
             }
           },
           (error) => {
             console.error('Error al registrar el negocio:', error);
             this.errorMensaje = 'Ocurrió un error al registrar el negocio.';
+            const alerta = document.getElementById("alertaError");
+            if (alerta) {
+              alerta.classList.add("show");
+              setTimeout(() => {
+                alerta.classList.remove("show");
+              }, 3000);
+            }
           }
         );
     } else {
       this.errorMensaje = 'Usuario no autenticado.';
+      const alerta = document.getElementById("alertaError");
+            if (alerta) {
+              alerta.classList.add("show");
+              setTimeout(() => {
+                alerta.classList.remove("show");
+              }, 3000);
+            }
     }
   }
 }
