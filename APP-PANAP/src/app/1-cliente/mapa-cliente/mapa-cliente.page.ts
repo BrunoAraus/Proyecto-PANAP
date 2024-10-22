@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { NavController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
+import { DetalleNegocioPage } from 'src/app/detalle-negocio/detalle-negocio.page';
+
 declare var google: any;
 
 @Component({
@@ -20,8 +23,12 @@ export class MapaClientePage implements OnInit {
   directionsRenderer: any;
   activeRouteMarker: any = null;
 
-  constructor(private http: HttpClient, private navCtrl: NavController) {}
-
+  constructor(
+    private http: HttpClient, 
+    private navCtrl: NavController, 
+    private modalCtrl: ModalController
+  ) {}
+  
   ngOnInit() {
     this.getCurrentLocation().then(() => {
       if (this.currentLocation) {
@@ -30,10 +37,11 @@ export class MapaClientePage implements OnInit {
         console.error('No se puede obtener la ubicación');
       }
     });
+    this.reconectar();
     this.cargarDatos();
-
     this.intervalId = setInterval(() => {
       this.reconectar();
+      this.cargarDatos();
     }, 60000);
   }
 
@@ -122,11 +130,6 @@ export class MapaClientePage implements OnInit {
     this.map = new google.maps.Map(mapContainer, {
       center: this.currentLocation || { lat: 0, lng: 0 },
       zoom: 15,
-      disableDefaultUI: true,
-      draggable: false,
-      scrollwheel: false,
-      disableDoubleClickZoom: true,
-      gestureHandling: 'none',
       styles: [
         {
           featureType: 'all',
@@ -155,7 +158,7 @@ export class MapaClientePage implements OnInit {
     });
     this.directionsService = new google.maps.DirectionsService();
     this.directionsRenderer = new google.maps.DirectionsRenderer();
-    this.directionsRenderer.setMap(this.map); 
+    this.directionsRenderer.setMap(this.map);
 
     google.maps.event.addListenerOnce(this.map, 'idle', () => {
       console.log('Mapa cargado completamente');
@@ -187,7 +190,7 @@ export class MapaClientePage implements OnInit {
       map: this.map,
       icon: {
         path: google.maps.SymbolPath.CIRCLE,
-        scale: 10, 
+        scale: 10,
         fillColor: isFixed ? 'blue' : 'red',
         fillOpacity: 0.8,
         strokeColor: 'white',
@@ -195,16 +198,16 @@ export class MapaClientePage implements OnInit {
         labelOrigin: new google.maps.Point(0, 2)
       },
       label: {
-        text: title, 
-        color: 'black', 
-        fontSize: '90%', 
-        fontWeight: 'bold', 
+        text: title,
+        color: 'black',
+        fontSize: '90%',
+        fontWeight: 'bold',
       }
     });
 
     if (negocio) {
       google.maps.event.addListener(marker, 'click', () => {
-        this.toggleRoute(marker, location);
+        this.openModal(negocio);
       });
     }
 
@@ -212,6 +215,20 @@ export class MapaClientePage implements OnInit {
       this.markers.push(marker);
     }
   }
+
+  async openModal(negocio: any) {
+    const modal = await this.modalCtrl.create({
+      component: DetalleNegocioPage,
+      componentProps: {
+        negocio: negocio,
+        toggleRoute: this.toggleRoute.bind(this), 
+        currentLocation: this.currentLocation
+      },
+      presentingElement: await this.modalCtrl.getTop() || undefined
+    });
+    return await modal.present();
+  }
+  
 
   toggleRoute(marker: any, destino: { lat: number; lng: number }) {
     if (this.activeRouteMarker === marker) {

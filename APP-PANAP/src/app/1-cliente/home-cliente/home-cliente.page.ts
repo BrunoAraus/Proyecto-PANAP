@@ -1,91 +1,91 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { NavController } from '@ionic/angular';
+  import { Component, OnInit, OnDestroy } from '@angular/core';
+  import { HttpClient, HttpHeaders } from '@angular/common/http';
+  import { NavController } from '@ionic/angular';
 
-@Component({
-  selector: 'app-home-cliente',
-  templateUrl: './home-cliente.page.html',
-  styleUrls: ['./home-cliente.page.scss'],
-})
-export class HomeClientePage implements OnInit, OnDestroy {
-  usuario: any;
-  negocios: any[] = [];
-  apiUrl = 'https://panapp.duckdns.org/rest/API_PRUEBA.php';
-  intervalId: any;
+  @Component({
+    selector: 'app-home-cliente',
+    templateUrl: './home-cliente.page.html',
+    styleUrls: ['./home-cliente.page.scss'],
+  })
+  export class HomeClientePage implements OnInit, OnDestroy {
+    usuario: any;
+    negocios: any[] = [];
+    apiUrl = 'https://panapp.duckdns.org/rest/API_PRUEBA.php';
+    intervalId: any;
 
-  constructor(private http: HttpClient, private navCtrl: NavController) {}
+    constructor(private http: HttpClient, private navCtrl: NavController) {}
 
-  ngOnInit() {
-    this.reconectar();
-    this.cargarDatos();
-    this.intervalId = setInterval(() => {
+    ngOnInit() {
       this.reconectar();
-    }, 60000); 
-  }
-
-  ngOnDestroy() {
-    
-    if (this.intervalId) {
-      clearInterval(this.intervalId);
-    }
-  }
-
-  cargarDatos() {
-    const usuarioData = localStorage.getItem('usuarioData');
-    const negociosData = localStorage.getItem('negociosData');
-
-    if (usuarioData) {
-      this.usuario = JSON.parse(usuarioData); 
+      this.cargarDatos();
+      this.intervalId = setInterval(() => {
+        this.reconectar();
+      }, 60000); 
     }
 
-    if (negociosData) {
-      this.negocios = JSON.parse(negociosData);
+    ngOnDestroy() {
+      
+      if (this.intervalId) {
+        clearInterval(this.intervalId);
+      }
     }
-  }
 
-  reconectar() {
-    const correo = localStorage.getItem('userEmail');
-    const clave = localStorage.getItem('userPassword');
+    cargarDatos() {
+      const usuarioData = localStorage.getItem('usuarioData');
+      const negociosData = localStorage.getItem('negociosData');
 
-    if (correo && clave) {
-      const body = {
-        accion: 'login',
-        correo: correo,
-        clave: clave
-      };
+      if (usuarioData) {
+        this.usuario = JSON.parse(usuarioData); 
+      }
 
-      const headers = new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': ''
-      });
+      if (negociosData) {
+        this.negocios = JSON.parse(negociosData);
+      }
+    }
 
-     
-      this.http.post(this.apiUrl, body, { headers: headers })
-        .subscribe(
-          (response: any) => {
-            if (response.success) {
-              console.log('Reconexión exitosa:', response.message);
+    reconectar() {
+      const correo = localStorage.getItem('userEmail');
+      const clave = localStorage.getItem('userPassword');
+
+      if (correo && clave) {
+        const body = {
+          accion: 'login',
+          correo: correo,
+          clave: clave
+        };
+
+        const headers = new HttpHeaders({
+          'Content-Type': 'application/json',
+          'Authorization': ''
+        });
+
+      
+        this.http.post(this.apiUrl, body, { headers: headers })
+          .subscribe(
+            (response: any) => {
+              if (response.success) {
+                console.log('Reconexión exitosa:', response.message);
+
+                
+                const usuarioData = response.user;
+                const negociosData = response.negocios;
+
+                localStorage.setItem('usuarioData', JSON.stringify(usuarioData));
+                localStorage.setItem('negociosData', JSON.stringify(negociosData));
 
               
-              const usuarioData = response.user;
-              const negociosData = response.negocios;
-
-              localStorage.setItem('usuarioData', JSON.stringify(usuarioData));
-              localStorage.setItem('negociosData', JSON.stringify(negociosData));
-
-            
-              this.usuario = usuarioData;
-              this.negocios = negociosData;
-            } else {
-              console.log('Error en la reconexión:', response.message);
+                this.usuario = usuarioData;
+                this.negocios = negociosData;
+              } else {
+                console.log('Error en la reconexión:', response.message);
+              }
+            },
+            (error) => {
+              console.error('Error al intentar reconectar:', error);
             }
-          },
-          (error) => {
-            console.error('Error al intentar reconectar:', error);
-          }
-        );
-    } else {
-      console.error('No hay credenciales guardadas para reconectar.');
+          );
+      } else {
+        console.error('No hay credenciales guardadas para reconectar.');
+      }
     }
   }
-}

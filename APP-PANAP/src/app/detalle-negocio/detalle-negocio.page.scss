@@ -1,0 +1,14 @@
+/* global.scss o detalle-negocio.page.scss */
+.custom-modal {
+    max-width: 90%; /* Ajusta el ancho según tus necesidades */
+    max-height: 70%; /* Ajusta la altura según tus necesidades */
+    margin: auto; /* Centra el modal */
+    position: fixed; /* Asegúrate de que esté en posición fija */
+    top: 15%; /* Distancia desde la parte superior de la pantalla */
+    left: 50%; /* Centra el modal horizontalmente */
+    transform: translate(-50%, 0); /* Ajusta el centro del modal */
+    border-radius: 10px; /* Bordes redondeados opcionales */
+    overflow: hidden; /* Para manejar el desbordamiento */
+    z-index: 1000; /* Asegúrate de que esté encima de otros elementos */
+  }
+  
