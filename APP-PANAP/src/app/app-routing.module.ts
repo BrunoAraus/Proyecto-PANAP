@@ -243,7 +243,11 @@ const routes: Routes = [
         loadChildren: () => import('./4-admin/cerrar-sesion-adm/cerrar-sesion-adm.module').then( m => m.CerrarSesionAdmPageModule)
       },
     ]
+  },  {
+    path: 'detalle-negocio',
+    loadChildren: () => import('./detalle-negocio/detalle-negocio.module').then( m => m.DetalleNegocioPageModule)
   },
+
 
 ];
 

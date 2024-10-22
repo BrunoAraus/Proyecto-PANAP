@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button (click)="cerrarModal()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <p><strong>{{ negocio.N_NOMBRE }}</strong></p>
+  <p><strong>Fecha de Stock:</strong> {{ negocio.FECHA_STOCK }}</p>
+  <p><strong>Número:</strong> {{ negocio.N_NUMERO }}</p>
+  <p><strong>Disponibilidad pan:</strong> {{ negocio.DISPONIBILIDAD }}</p>
+  <p><strong>Stock Inicial:</strong> {{ negocio.STOCK_INICIAL }}</p>
+  <p><strong>Valor por Kilo:</strong> ${{ negocio.VALOR_KILO }}</p>
+  <div>
+    <img *ngIf="negocio.FOTO" [src]="negocio.FOTO" alt="{{ negocio.N_NOMBRE }}" />
+  </div>
+  
+  
+  
+  <h3>Métodos de Pago</h3>
+  <p *ngIf="negocio.EFECTIVO">Efectivo: Disponible</p>
+  <p *ngIf="negocio.TARJETA">Tarjeta: Disponible</p>
+  <p *ngIf="negocio.TRANSFERENCIA">Transferencia: Disponible</p>
+
+  <ion-button (click)="iniciarRuta()">¿Cómo Llegar?</ion-button>
+</ion-content>
