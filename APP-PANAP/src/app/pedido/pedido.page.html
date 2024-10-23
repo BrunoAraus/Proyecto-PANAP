@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Registrar Reserva</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cerrarModal()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label position="floating">Valor de Pan</ion-label>
+    <ion-input [(ngModel)]="r_valor" required></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Nombre</ion-label>
+    <ion-input [(ngModel)]="nombre_r" required></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Apellido</ion-label>
+    <ion-input [(ngModel)]="apellido_r" required></ion-input>
+  </ion-item>
+
+  <ion-footer>
+    <ion-button expand="full" (click)="enviarDatos()">Enviar Datos</ion-button>
+  </ion-footer>
+</ion-content>

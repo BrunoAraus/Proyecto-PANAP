@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { PedidoClientePageRoutingModule } from './pedido-cliente-routing.module';
 
 import { PedidoClientePage } from './pedido-cliente.page';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    PedidoClientePageRoutingModule
+    PedidoClientePageRoutingModule,
+    HttpClientModule,
   ],
   declarations: [PedidoClientePage]
 })

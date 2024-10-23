@@ -247,6 +247,10 @@ const routes: Routes = [
     path: 'detalle-negocio',
     loadChildren: () => import('./detalle-negocio/detalle-negocio.module').then( m => m.DetalleNegocioPageModule)
   },
+  {
+    path: 'pedido',
+    loadChildren: () => import('./pedido/pedido.module').then( m => m.PedidoPageModule)
+  },
 
 
 ];
