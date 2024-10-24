@@ -12,10 +12,17 @@ export class PedidoPage{
   r_valor: string ='';
   nombre_r: string ='';
   apellido_r: string ='';
+  usuario: any;
 
   apiUrl = 'https://panapp.duckdns.org/rest/API_PRUEBA.php';
 
-  constructor(private http: HttpClient, private modalCtrl: ModalController) {}
+  constructor(private http: HttpClient, private modalCtrl: ModalController) {
+    const usuarioData = localStorage.getItem('usuarioData');
+    if (usuarioData) {
+      this.usuario = JSON.parse(usuarioData); 
+    }
+  
+  } 
 
   enviarDatos() {
     const body = {
@@ -24,7 +31,8 @@ export class PedidoPage{
       R_CODIGO: 'JkSoSP',
       R_VALOR: this.r_valor,
       NOMBRE_R: this.nombre_r,
-      APELLIDO_R: this.apellido_r
+      APELLIDO_R: this.apellido_r,
+      ID_USUARIO: this.usuario.id
     };
 
     const headers = new HttpHeaders({

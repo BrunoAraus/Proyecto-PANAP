@@ -1,4 +1,6 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-reservas-negocio',
@@ -6,10 +8,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./reservas-negocio.page.scss'],
 })
 export class ReservasNegocioPage implements OnInit {
-
-  constructor() { }
+  constructor(private http: HttpClient, private navCtrl: NavController) {}
 
   ngOnInit() {
   }
-
 }

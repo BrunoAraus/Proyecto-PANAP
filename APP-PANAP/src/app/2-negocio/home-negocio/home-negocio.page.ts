@@ -11,6 +11,7 @@ export class HomeNegocioPage implements OnInit {
   errorMensaje: string = '';
   usuario: any;
   negocios: any[] = [];
+  reservas: any[] = [];
 
   apiUrl = 'https://panapp.duckdns.org/rest/API_PRUEBA.php';
   intervalId: any;
@@ -34,6 +35,7 @@ export class HomeNegocioPage implements OnInit {
   cargarDatos() {
     const usuarioData = localStorage.getItem('usuarioData');
     const negociosData = localStorage.getItem('negociosData');
+    const reservasData = localStorage.getItem('reservasData');
 
     if (usuarioData) {
       this.usuario = JSON.parse(usuarioData); 
@@ -42,7 +44,11 @@ export class HomeNegocioPage implements OnInit {
     if (negociosData) {
       this.negocios = JSON.parse(negociosData);
     }
+    if (reservasData) {
+      this.reservas = JSON.parse(reservasData);
+    }
   }
+
   reconectar() {
     const correo = localStorage.getItem('userEmail');
     const clave = localStorage.getItem('userPassword');
@@ -66,10 +72,13 @@ export class HomeNegocioPage implements OnInit {
               console.log('Reconexión exitosa:', response.message);
               const usuarioData = response.user;
               const negociosData = response.negocios;
+              const reservasData = response.reservas;
               localStorage.setItem('usuarioData', JSON.stringify(usuarioData));
               localStorage.setItem('negociosData', JSON.stringify(negociosData));
+              localStorage.setItem('reservasData', JSON.stringify(reservasData));
               this.usuario = usuarioData;
               this.negocios = negociosData;
+              this.reservas = reservasData;
             } else {
 
               console.log('Error en la reconexión:', response.message);

@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { ReservasNegocioPageRoutingModule } from './reservas-negocio-routing.module';
 
 import { ReservasNegocioPage } from './reservas-negocio.page';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ReservasNegocioPageRoutingModule
+    ReservasNegocioPageRoutingModule,
+    HttpClientModule
   ],
   declarations: [ReservasNegocioPage]
 })
