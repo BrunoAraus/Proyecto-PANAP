@@ -1,0 +1,1 @@
+Los archivos Burnup-chat, Burndown-Chart y Sprint planning (Sprint backlog), son archivos cambiantes que van dependiendo del estado de avance del proyecto
