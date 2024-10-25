@@ -1,12 +1,26 @@
 <ion-content [fullscreen]="true">
-  <h1>Contenido de reservas del día</h1>
-  <div *ngFor="let reserva of reservas">
-    <h1>{{ reserva.NOMBRE_R }}</h1>
-    <h1>{{ reserva.APELLIDO_R }}</h1>
-    <h1>{{ reserva.ID_RESERVAS }}</h1>
-    <h1>{{ reserva.R_CODIGO }}</h1>
-  </div>  
-  <div *ngFor="let historico of historicos">
-    <h1>{{ historico.H_FECHA }}</h1>
-  </div>  
+  <h1 class="titulo">Reservas del Día</h1>
+
+
+  <ion-grid class="tabla-reservas">
+    <ion-row class="encabezado">
+      <ion-col>Nombre Completo</ion-col>
+      <ion-col>Valor Pan</ion-col>
+      <ion-col>Codigo</ion-col>
+      <ion-col>Estado</ion-col>
+      <ion-col>Acciones</ion-col>
+    </ion-row>
+
+
+    <ion-row class="fila-datos" *ngFor="let reserva of reservas">
+      <ion-col>{{ reserva.NOMBRE_R }} {{ reserva.APELLIDO_R }}</ion-col>
+      <ion-col>${{ reserva.R_VALOR }}</ion-col>
+      <ion-col>{{ reserva.R_CODIGO }}</ion-col>
+      <ion-col>{{ reserva.ESTADO }}</ion-col>
+      <ion-col>
+        <ion-button color="primary" (click)="cambiarEstadoReserva(reserva.ID_USUARIO)">Completar</ion-button>
+        <ion-button color="danger" (click)="cancelarReserva(reserva.ID_USUARIO, reserva.ID_RESERVAS)">Cancelar</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

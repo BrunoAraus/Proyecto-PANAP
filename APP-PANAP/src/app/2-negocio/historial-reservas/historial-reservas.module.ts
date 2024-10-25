@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { HistorialReservasPageRoutingModule } from './historial-reservas-routing.module';
 
 import { HistorialReservasPage } from './historial-reservas.page';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    HistorialReservasPageRoutingModule
+    HistorialReservasPageRoutingModule,
+    HttpClientModule
   ],
   declarations: [HistorialReservasPage]
 })
