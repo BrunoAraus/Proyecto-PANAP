@@ -1,24 +1,21 @@
 <ion-content [fullscreen]="true">
     <div id="contenido">
         <h1 class="TituloPrincipal">¡Bienvenido!</h1>
-        <h1 class="usuarioNombre">~{{ usuario?.nombre }} {{ usuario?.apellido }}~</h1>
-        <div *ngFor="let negocio of negocios">
-            <h1>{{ negocio.N_NOMBRE }}</h1>
-            <img *ngIf="negocio.FOTO" [src]="negocio.FOTO" alt="{{ negocio.N_NOMBRE }} Logo">
-          </div>          
-            <p id="SubTitulo">En PanaP podrás reservar el Pan y encontrar nuevos negocios.</p>
-            <div id="unionContenido">
-                <img src="assets/image/home.gif">
-                <div id="unionTexto">
-                    <p class="Informacion">Utiliza la geolocalización para encontrar Pan disponible.</p>
-                    <p class="Informacion">Reserva en el negocio más cerca y haz retiro del pan.</p>
-                    <p class="Informacion">Los cobros se realizan en el negocio, nunca procesaremos nosotros un pago.</p>       
-                </div>
+        <h1 class="usuarioNombre">{{ usuario?.nombre }} {{ usuario?.apellido }}</h1>       
+        <p id="SubTitulo">En PanaP podrás reservar el Pan y encontrar nuevos negocios.</p>
+        
+        <div id="unionContenido">
+            <img src="assets/image/home.gif">
+            <div id="unionTexto">
+                <p class="Informacion">Utiliza la geolocalización para encontrar Pan disponible.</p>
+                <p class="Informacion">Reserva en el negocio más cerca y haz retiro del pan.</p>
+                <p class="Informacion">Los cobros se realizan en el negocio, nunca procesaremos nosotros un pago.</p>       
             </div>
+        </div>
 
-            <div id="navegacion">
-                <h2 class="indicadorFooter">Navega con este Menú</h2>
-                <ion-icon name="arrow-down" class="icono"></ion-icon>
-            </div>
+        <div id="navegacion">
+            <h2 class="indicadorFooter">Navega con este Menú</h2>
+            <ion-icon name="arrow-down" class="icono"></ion-icon>
+        </div>
     </div>
 </ion-content>

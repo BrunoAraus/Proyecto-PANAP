@@ -1,13 +1,9 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Registrar Reserva</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="cerrarModal()">Cerrar</ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
+<ion-content [fullscreen]="true">
+  <ion-title>Registrar Reserva</ion-title>
+  <ion-buttons>
+    <ion-button (click)="cerrarModal()" style="color: black;">Cerrar</ion-button>
+  </ion-buttons>
 
-<ion-content>
   <ion-item>
     <ion-label position="floating">Valor de Pan</ion-label>
     <ion-input [(ngModel)]="r_valor" required></ion-input>

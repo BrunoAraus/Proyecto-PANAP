@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'tabs-negocio/home-negocio',
+    redirectTo: 'tabs-cliente/home-cliente',
     pathMatch: 'full'
   },
   {
@@ -127,6 +127,14 @@ const routes: Routes = [
     path: 'contacto',
     loadChildren: () => import('./2-negocio/contacto/contacto.module').then( m => m.ContactoPageModule)
   },
+  {
+    path: 'pedido',
+    loadChildren: () => import('./1-cliente/pedido/pedido.module').then( m => m.PedidoPageModule)
+  },
+  {
+    path: 'detalle-negocio',
+    loadChildren: () => import('./1-cliente/detalle-negocio/detalle-negocio.module').then( m => m.DetalleNegocioPageModule)
+  },
   
   {
     path: 'tabs-cliente',
@@ -163,6 +171,14 @@ const routes: Routes = [
       {
         path: 'preguntas-frecuentes',
         loadChildren: () => import('./1-cliente/preguntas-frecuentes/preguntas-frecuentes.module').then( m => m.PreguntasFrecuentesPageModule)
+      },
+      {
+        path: 'pedido',
+        loadChildren: () => import('./1-cliente/pedido/pedido.module').then( m => m.PedidoPageModule)
+      },
+      {
+        path: 'detalle-negocio',
+        loadChildren: () => import('./1-cliente/detalle-negocio/detalle-negocio.module').then( m => m.DetalleNegocioPageModule)
       },      
     ]
   },
@@ -243,13 +259,6 @@ const routes: Routes = [
         loadChildren: () => import('./4-admin/cerrar-sesion-adm/cerrar-sesion-adm.module').then( m => m.CerrarSesionAdmPageModule)
       },
     ]
-  },  {
-    path: 'detalle-negocio',
-    loadChildren: () => import('./detalle-negocio/detalle-negocio.module').then( m => m.DetalleNegocioPageModule)
-  },
-  {
-    path: 'pedido',
-    loadChildren: () => import('./pedido/pedido.module').then( m => m.PedidoPageModule)
   },
 
 

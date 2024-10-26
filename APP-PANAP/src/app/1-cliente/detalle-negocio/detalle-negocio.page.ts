@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, PopoverController } from '@ionic/angular';
 
 @Component({
   selector: 'app-detalle-negocio',
@@ -9,10 +9,18 @@ import { ModalController } from '@ionic/angular';
 export class DetalleNegocioPage {
   @Input() negocio: any;
   @Input() toggleRoute?: (marker: any, destino: { lat: number; lng: number }) => void;
-  constructor(private modalCtrl: ModalController) {}
+
+  constructor(
+    private modalCtrl: ModalController,
+    private popoverController: PopoverController
+  ) {}
 
   cerrarModal() {
     this.modalCtrl.dismiss();
+  }
+
+  cerrarPopover() {
+    this.popoverController.dismiss();
   }
 
   iniciarRuta() {
@@ -21,5 +29,6 @@ export class DetalleNegocioPage {
       this.toggleRoute(this.negocio, destino);
     }
     this.cerrarModal();
+    this.cerrarPopover();
   }
 }

@@ -1,0 +1,38 @@
+<ion-content [fullscreen]="true">
+  <ion-icon name="close" (click)="cerrarPopover()" class="iconoCerrar"></ion-icon>
+  
+    <div class="ordenTituloPrincipal">
+      <div class="icono">
+        <ion-icon name="storefront-outline" class="iconoNegocio"></ion-icon>
+      </div>
+      <div class="texto">
+        <h1 class="tituloNegocio">{{ negocio.N_NOMBRE }}</h1>    
+      </div>
+    </div>
+
+    <div class="ordenImagen">
+      <img *ngIf="negocio.FOTO" [src]="negocio.FOTO" alt="{{ negocio.N_NOMBRE }}" class="imagenNegocio"/>
+    </div>
+
+    <div class="datosNegocio">
+      <h1 class="subTitulo">Detalles del Negocio</h1>
+      <p>Estado: {{ negocio.DISPO_PAN }}</p>
+      <p>Stock Inicial: {{ negocio.STOCK_INICIAL }}</p>
+      <p>Valor por Kilo: {{ negocio.VALOR_KILO }}</p>
+      <p>Hora actualización: {{ negocio.FECHA_STOCK }}</p>
+    </div>
+
+    <div class="formatoPago">
+      <h1>Métodos de Pago</h1>
+      <div class="pagosDisponibles">
+        <p *ngIf="negocio.EFECTIVO">Efectivo: Disponible</p>
+        <p *ngIf="negocio.TARJETA">Tarjeta: Disponible</p>
+        <p *ngIf="negocio.TRANSFERENCIA">Transferencia: Disponible</p>
+      </div>
+    </div>
+
+    <div class="posicionBtn">
+      <ion-button (click)="iniciarRuta()" class="btnDireccion">¿Cómo llegar?</ion-button>
+    </div>
+
+</ion-content>

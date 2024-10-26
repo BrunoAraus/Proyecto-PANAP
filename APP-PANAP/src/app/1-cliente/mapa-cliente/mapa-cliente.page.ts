@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { NavController } from '@ionic/angular';
-import { ModalController } from '@ionic/angular';
-import { DetalleNegocioPage } from 'src/app/detalle-negocio/detalle-negocio.page';
+import { NavController, ModalController, AnimationController } from '@ionic/angular';
+import { DetalleNegocioPage } from 'src/app/1-cliente/detalle-negocio/detalle-negocio.page';
+import { PopoverController } from '@ionic/angular';
 
 declare var google: any;
 
@@ -26,7 +26,9 @@ export class MapaClientePage implements OnInit {
   constructor(
     private http: HttpClient, 
     private navCtrl: NavController, 
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private animationCtrl: AnimationController,
+    private popoverController: PopoverController,
   ) {}
   
   ngOnInit() {
@@ -207,7 +209,7 @@ export class MapaClientePage implements OnInit {
 
     if (negocio) {
       google.maps.event.addListener(marker, 'click', () => {
-        this.openModal(negocio);
+        this.presentPopover(negocio);
       });
     }
 
@@ -216,20 +218,25 @@ export class MapaClientePage implements OnInit {
     }
   }
 
-  async openModal(negocio: any) {
-    const modal = await this.modalCtrl.create({
-      component: DetalleNegocioPage,
+  async presentPopover(negocio: any) {
+    const popover = await this.popoverController.create({
+      component: DetalleNegocioPage,  // Tu página o componente del popover
       componentProps: {
         negocio: negocio,
         toggleRoute: this.toggleRoute.bind(this), 
         currentLocation: this.currentLocation
       },
-      presentingElement: await this.modalCtrl.getTop() || undefined
+      translucent: true,   // Hace que el fondo del popover sea translúcido
+      cssClass: 'custom-popover-css'  // Clase personalizada para aplicar estilo si es necesario
     });
-    return await modal.present();
+  
+    await popover.present();
+  
+    // Puedes manejar el cierre del popover y obtener datos cuando el popover se cierra
+    const { data } = await popover.onWillDismiss();
+    console.log('Popover cerrado con datos:', data);
   }
   
-
   toggleRoute(marker: any, destino: { lat: number; lng: number }) {
     if (this.activeRouteMarker === marker) {
       this.directionsRenderer.set('directions', null);

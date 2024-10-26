@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { NavController } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
-import { PedidoPage } from 'src/app/pedido/pedido.page';
+import { PedidoPage } from 'src/app/1-cliente/pedido/pedido.page';
 declare var google: any;
 
 @Component({
