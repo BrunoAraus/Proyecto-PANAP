@@ -259,7 +259,15 @@ const routes: Routes = [
         loadChildren: () => import('./4-admin/cerrar-sesion-adm/cerrar-sesion-adm.module').then( m => m.CerrarSesionAdmPageModule)
       },
     ]
+  },  {
+    path: 'validar-correo',
+    loadChildren: () => import('./0-general/validar-correo/validar-correo.module').then( m => m.ValidarCorreoPageModule)
   },
+  {
+    path: 'validar-codigo-contra',
+    loadChildren: () => import('./0-general/validar-codigo-contra/validar-codigo-contra.module').then( m => m.ValidarCodigoContraPageModule)
+  },
+
 
 
 ];
