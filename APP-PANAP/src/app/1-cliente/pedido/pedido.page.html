@@ -1,25 +1,30 @@
 <ion-content [fullscreen]="true">
-  <ion-title>Registrar Reserva</ion-title>
-  <ion-buttons>
-    <ion-button (click)="cerrarModal()" style="color: black;">Cerrar</ion-button>
-  </ion-buttons>
+  <ion-icon name="close" (click)="cerrarPopover()" class="iconoCerrar"></ion-icon>
 
-  <ion-item>
-    <ion-label position="floating">Valor de Pan</ion-label>
-    <ion-input [(ngModel)]="r_valor" required></ion-input>
-  </ion-item>
+  <div class="ordenContenido">
 
-  <ion-item>
-    <ion-label position="floating">Nombre</ion-label>
-    <ion-input [(ngModel)]="nombre_r" required></ion-input>
-  </ion-item>
+    <div class="ordenTituloPrincipal">
+      <div class="icono">
+        <ion-icon name="bag-add-outline" class="iconoNegocio"></ion-icon>
+      </div>
+      <div class="texto">
+        <h1 class="tituloNegocio">Realizar pedido</h1>    
+      </div>
+    </div>  
+  
+    <ion-label class="textoPedido">¿Cuanto va a pedir?</ion-label>
+  
+    <ion-item class="ordenPedidoPan" lines="none">
+      <div class="ordenInput">
+        <h1 class="signoPeso">$</h1>
+        <ion-input [(ngModel)]="r_valor" required class="espacioPedido" placeholder="0"></ion-input>
+      </div>
+    </ion-item>
 
-  <ion-item>
-    <ion-label position="floating">Apellido</ion-label>
-    <ion-input [(ngModel)]="apellido_r" required></ion-input>
-  </ion-item>
+    <div class="posicionBtn">
+      <ion-button (click)="enviarDatos()" class="btnPedido">Realizar pedido</ion-button>
+    </div>
 
-  <ion-footer>
-    <ion-button expand="full" (click)="enviarDatos()">Enviar Datos</ion-button>
-  </ion-footer>
+  </div>
+
 </ion-content>

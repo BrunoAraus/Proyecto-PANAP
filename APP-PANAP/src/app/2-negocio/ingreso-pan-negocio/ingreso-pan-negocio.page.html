@@ -5,57 +5,57 @@
       <h2>{{ negocio.fecha_stock }}</h2>
     </div>
     <form (ngSubmit)="anadirstock()" #stockForm="ngForm">
-      <div id="ordenCampos">
+      <div id="ordenCampos" lines="none">
         
-        <div class="campoIndividual">
+        <div class="campoIndividual" lines="none">
           <ion-label class="textoInput">Cantidad de Pan inicial (Kg)</ion-label>
           <ion-item class="campo-item" lines="none">
             <p class="simbologia">Kg:</p>
             <ion-input
+              lines="none"
               class="input-texto"
               [(ngModel)]="negocio.stock_inicial"
               [ngModelOptions]="{standalone: true}"
               name="stock_inicial"
               id="cantidad-pan"
-              type="number"
               required
             ></ion-input>
           </ion-item>
         </div>
 
-        <div class="campoIndividual">
+        <div class="campoIndividual" lines="none">
           <ion-label class="textoInput">Valor del Pan por Kilo</ion-label>
           <ion-item class="campo-item" lines="none">
             <p class="simbologia">$</p>
             <ion-input
+              lines="none"
               [(ngModel)]="negocio.valor_kilo"
               [ngModelOptions]="{standalone: true}"
               name="valor_kilo"
               class="input-texto"
               id="valor-pan"
-              type="number"
               required
             ></ion-input>
           </ion-item>
         </div>
 
-        <div class="campoIndividual">
+        <div class="campoIndividual" lines="none">
           <ion-label class="textoInput">Confirmar Valor</ion-label>
           <ion-item class="campo-item" lines="none">
             <p class="simbologia">$</p>
             <ion-input
+              lines="none"
               [(ngModel)]="negocio.valor_kilo_confirm"
               [ngModelOptions]="{standalone: true}"
               name="valor_kilo_confirm"
               class="input-texto"
               id="confirmar-valor"
-              type="number"
               required
             ></ion-input>
           </ion-item>
         </div>
 
-        <ion-button type="submit" [disabled]="!stockForm.valid">
+        <ion-button type="submit" [disabled]="!stockForm.valid" class="botonGeneral">
           <p class="botones">Confirmar</p>
         </ion-button>
       </div>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { NavController } from '@ionic/angular';
+import { NavController, PopoverController } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 import { PedidoPage } from 'src/app/1-cliente/pedido/pedido.page';
 declare var google: any;
@@ -25,7 +25,8 @@ export class PedidoClientePage implements OnInit {
   constructor(
     private http: HttpClient, 
     private navCtrl: NavController, 
-    private modalCtrl: ModalController 
+    private modalCtrl: ModalController,
+    private popoverController: PopoverController 
   ) {}
   
   ngOnInit() {
@@ -183,14 +184,21 @@ export class PedidoClientePage implements OnInit {
     });
   }
 
-  async abrirDetalleNegocioModal(negocio: any) {
-    const modal = await this.modalCtrl.create({
-      component: PedidoPage,
-      componentProps: { 
-        idNegocio: negocio.ID_NEGOCIO 
-      }
+  async presentPopover(negocio: any) {
+    const popover = await this.popoverController.create({
+      component: PedidoPage,  // Tu página o componente del popover
+      componentProps: {
+        idNegocio: negocio.ID_NEGOCIO
+      },
+      translucent: true,   // Hace que el fondo del popover sea translúcido
+      cssClass: 'custom-popover-css2'  // Clase personalizada para aplicar estilo si es necesario
     });
-    return await modal.present();
+  
+    await popover.present();
+  
+    // Puedes manejar el cierre del popover y obtener datos cuando el popover se cierra
+    const { data } = await popover.onWillDismiss();
+    console.log('Popover cerrado: ', data);
   }
 
   addMarker(location: { lat: number; lng: number }, title: string, isFixed: boolean = false, negocio?: any) {
@@ -216,7 +224,7 @@ export class PedidoClientePage implements OnInit {
 
     if (negocio) {
       google.maps.event.addListener(marker, 'click', () => {
-        this.abrirDetalleNegocioModal(negocio);
+        this.presentPopover(negocio);
       });
     }
 

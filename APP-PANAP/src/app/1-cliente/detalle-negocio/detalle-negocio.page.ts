@@ -11,13 +11,8 @@ export class DetalleNegocioPage {
   @Input() toggleRoute?: (marker: any, destino: { lat: number; lng: number }) => void;
 
   constructor(
-    private modalCtrl: ModalController,
-    private popoverController: PopoverController
+    private popoverController: PopoverController,
   ) {}
-
-  cerrarModal() {
-    this.modalCtrl.dismiss();
-  }
 
   cerrarPopover() {
     this.popoverController.dismiss();
@@ -28,7 +23,6 @@ export class DetalleNegocioPage {
     if (this.toggleRoute) {
       this.toggleRoute(this.negocio, destino);
     }
-    this.cerrarModal();
     this.cerrarPopover();
   }
 }

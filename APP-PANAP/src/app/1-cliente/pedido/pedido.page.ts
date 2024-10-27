@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ModalController } from '@ionic/angular';
+import { PopoverController } from '@ionic/angular';
 
 @Component({
   selector: 'app-pedido',
@@ -16,13 +16,19 @@ export class PedidoPage{
 
   apiUrl = 'https://panapp.duckdns.org/rest/API_PRUEBA.php';
 
-  constructor(private http: HttpClient, private modalCtrl: ModalController) {
+  constructor(
+    private http: HttpClient, 
+    private popoverController: PopoverController
+  ) {
     const usuarioData = localStorage.getItem('usuarioData');
     if (usuarioData) {
       this.usuario = JSON.parse(usuarioData); 
     }
+  }
   
-  } 
+  cerrarPopover() {
+    this.popoverController.dismiss();
+  }
 
   enviarDatos() {
     const body = {
@@ -43,15 +49,11 @@ export class PedidoPage{
     this.http.post(this.apiUrl, body, { headers: headers }).subscribe(
       response => {
         console.log('Datos enviados exitosamente:', response);
-        this.modalCtrl.dismiss();
+        this.popoverController.dismiss();
       },
       error => {
         console.error('Error al enviar los datos:', error);
       }
     );
-  }
-
-  cerrarModal() {
-    this.modalCtrl.dismiss();
   }
 }
