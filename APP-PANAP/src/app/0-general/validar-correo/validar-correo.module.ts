@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { ValidarCorreoPageRoutingModule } from './validar-correo-routing.module';
 
 import { ValidarCorreoPage } from './validar-correo.page';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ValidarCorreoPageRoutingModule
+    ValidarCorreoPageRoutingModule,
+    HttpClientModule
   ],
   declarations: [ValidarCorreoPage]
 })

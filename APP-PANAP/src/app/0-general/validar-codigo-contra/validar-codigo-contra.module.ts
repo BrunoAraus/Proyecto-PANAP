@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { ValidarCodigoContraPageRoutingModule } from './validar-codigo-contra-routing.module';
 
 import { ValidarCodigoContraPage } from './validar-codigo-contra.page';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ValidarCodigoContraPageRoutingModule
+    ValidarCodigoContraPageRoutingModule,
+    HttpClientModule
   ],
   declarations: [ValidarCodigoContraPage]
 })

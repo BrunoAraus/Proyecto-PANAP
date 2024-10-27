@@ -1,13 +1,18 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>validar-correo</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">validar-correo</ion-title>
-    </ion-toolbar>
-  </ion-header>
-</ion-content>
+<ion-content>
+  <div class="titulovalidacion">
+    <div class="contenedor-validacion">
+      <ion-label class="etiqueta">Ingrese su correo para recuperar la cuenta</ion-label>
+      <ion-item lines="none">
+        <ion-input [(ngModel)]="correo" placeholder="Correo de cuenta"></ion-input>
+      </ion-item>
+  
+      <div class="botonValidacion">
+        <ion-button expand="block" (click)="validarCodigo()">Continuar</ion-button>
+      </div>
+    </div>
+    <div class="footer">
+      <p id="textoFooter">Creado por Yuzzo inc. © Copyright</p>
+    </div>
+  </div>
+  </ion-content>
+  

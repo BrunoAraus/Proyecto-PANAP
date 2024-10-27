@@ -1,2 +1,42 @@
-
-    
+<ion-content [fullscreen]="true" class="contenido">
+    <div class="contenedor-central">
+      <form (ngSubmit)="cambiar()" #stockForm="ngForm">
+        <div id="ordenCampos">  
+          <div class="campoIndividual">
+            <ion-label class="textoInput">Nueva Contraseña</ion-label>
+            <ion-item class="campo-item" lines="none">
+              <p class="simbologia"></p>
+              <ion-input
+                [(ngModel)]="contra"
+                [ngModelOptions]="{standalone: true}"
+                name="contrasena"
+                class="input-texto"
+                id="valor-pan"
+                required
+              ></ion-input>
+            </ion-item>
+          </div>
+  
+          <div class="campoIndividual">
+            <ion-label class="textoInput">Confirmar Contraseña</ion-label>
+            <ion-item class="campo-item" lines="none">
+              <p class="simbologia"></p>
+              <ion-input
+                [(ngModel)]="contra2"
+                [ngModelOptions]="{standalone: true}"
+                name="contrasenaconfirm"
+                class="input-texto"
+                id="confirmar-valor"
+                required
+              ></ion-input>
+            </ion-item>
+          </div>
+  
+          <ion-button type="submit" [disabled]="!stockForm.valid">
+            <p class="botones">Cambiar Contraseña</p>
+          </ion-button>
+        </div>
+      </form>
+    </div>
+  </ion-content>
+  
