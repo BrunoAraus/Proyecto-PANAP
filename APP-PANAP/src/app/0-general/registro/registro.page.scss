@@ -183,6 +183,11 @@ ion-item{
     display: block;
     animation: fade-in 0.5s ease-out, fade-out 0.5s ease-out 2.5s;
 }
+ion-icon{
+    width: 25px;
+    height: 25px;
+    color: black;
+  }
 
 /* Animación de entrada de la alerta */
 @keyframes fade-in {

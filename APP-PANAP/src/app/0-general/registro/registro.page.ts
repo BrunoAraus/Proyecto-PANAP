@@ -16,6 +16,7 @@ export class RegistroPage {
   clave: string = '';
   correo: string = '';
   tipo: string = 'Cliente';
+  mostrarContrasena: boolean = false;
 
 
   errorMensaje: string = '';
@@ -66,5 +67,17 @@ export class RegistroPage {
             }
           }
       );
+  }
+  censurarContrasena(contrasena: string): string {
+    if (contrasena.length <= 2) {
+      return '*'.repeat(contrasena.length);
+    }
+    const firstChar = contrasena[0];
+    const lastChar = contrasena[contrasena.length - 1];
+    const hiddenPart = '*'.repeat(contrasena.length - 2);
+    return `${firstChar}${hiddenPart}${lastChar}`;
+  }
+  alternarMostrarContrasena() {
+    this.mostrarContrasena = !this.mostrarContrasena;
   }
 }

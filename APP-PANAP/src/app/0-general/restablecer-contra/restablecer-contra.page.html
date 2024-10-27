@@ -2,41 +2,60 @@
     <div class="contenedor-central">
       <form (ngSubmit)="cambiar()" #stockForm="ngForm">
         <div id="ordenCampos">  
+          <div class="mensajeRestablecer">
+            <h3>Ingresa tu nueva contraseña y presiona "<u>Cambiar Contraseña</u>" para realizar los cambios</h3>
+          </div>
           <div class="campoIndividual">
             <ion-label class="textoInput">Nueva Contraseña</ion-label>
             <ion-item class="campo-item" lines="none">
               <p class="simbologia"></p>
               <ion-input
-                [(ngModel)]="contra"
-                [ngModelOptions]="{standalone: true}"
-                name="contrasena"
-                class="input-texto"
-                id="valor-pan"
-                required
+              [(ngModel)]="contra"
+              [type]="mostrarContrasena ? 'text' : 'password'"
+              [ngModelOptions]="{ standalone: true }"
+              name="contrasena"
+              class="input-texto"
+              id="valor-pan"
+              required
+              [placeholder]="censurarContrasena(contra)"
               ></ion-input>
+              <ion-icon
+              slot="end"
+              [name]="mostrarContrasena ? 'eye-off-outline' : 'eye-outline'"
+              (click)="alternarMostrarContrasena()"
+            ></ion-icon>
             </ion-item>
           </div>
-  
           <div class="campoIndividual">
             <ion-label class="textoInput">Confirmar Contraseña</ion-label>
             <ion-item class="campo-item" lines="none">
               <p class="simbologia"></p>
               <ion-input
-                [(ngModel)]="contra2"
-                [ngModelOptions]="{standalone: true}"
-                name="contrasenaconfirm"
-                class="input-texto"
-                id="confirmar-valor"
-                required
+              [(ngModel)]="contra2"
+              [type]="mostrarContrasena ? 'text' : 'password'"
+              [ngModelOptions]="{ standalone: true }"
+              name="contrasenaconfirm"
+              class="input-texto"
+              id="confirmar-valor"
+              required
+              [placeholder]="censurarContrasena(contra2)"
               ></ion-input>
+              <ion-icon
+              slot="end"
+              [name]="mostrarContrasena ? 'eye-off-outline' : 'eye-outline'"
+              (click)="alternarMostrarContrasena()"
+            ></ion-icon>
             </ion-item>
           </div>
-  
-          <ion-button type="submit" [disabled]="!stockForm.valid">
-            <p class="botones">Cambiar Contraseña</p>
-          </ion-button>
+  <div class="restablecer">          
+    <ion-button type="submit" [disabled]="!stockForm.valid">
+    <p class="botones">Cambiar Contraseña</p>
+  </ion-button></div>
         </div>
       </form>
+      <div class="footer">
+        <p id="textoFooter">Creado por Yuzzo inc. © Copyright</p>
+      </div>
     </div>
   </ion-content>
   

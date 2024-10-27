@@ -13,6 +13,7 @@ export class IniciarSesionPage {
   correo: string = ''; 
   clave: string = '';  
   errorMensaje: string = ''; 
+  mostrarContrasena: boolean = false;
 
   constructor(private http: HttpClient, private navCtrl: NavController) {}
 
@@ -78,5 +79,17 @@ export class IniciarSesionPage {
           this.errorMensaje = 'Ocurrió un error inesperado. Inténtalo más tarde.';
         }
       );
+  }
+  censurarContrasena(contrasena: string): string {
+    if (contrasena.length <= 2) {
+      return '*'.repeat(contrasena.length);
+    }
+    const firstChar = contrasena[0];
+    const lastChar = contrasena[contrasena.length - 1];
+    const hiddenPart = '*'.repeat(contrasena.length - 2);
+    return `${firstChar}${hiddenPart}${lastChar}`;
+  }
+  alternarMostrarContrasena() {
+    this.mostrarContrasena = !this.mostrarContrasena;
   }
 }

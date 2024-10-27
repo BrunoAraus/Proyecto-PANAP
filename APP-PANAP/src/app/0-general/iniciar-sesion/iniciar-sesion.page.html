@@ -13,8 +13,9 @@
       <ion-label position="stacked" class="etiqueta">Contraseña (<span class="obligatorio">*</span>)</ion-label>
       <ion-item lines="none" class="campo2">
         <div id="unionClave">
-          <ion-input [(ngModel)]="clave" name="clave" type="password" placeholder="Contraseña..." class="input"></ion-input>
-          <ion-icon name="eye-off-outline" class="icono-password"></ion-icon>
+          <ion-input [(ngModel)]="clave" [type]="mostrarContrasena ? 'text' : 'password'" name="clave" type="password" placeholder="Contraseña..." class="input"></ion-input>
+          <ion-icon slot="end" [name]="mostrarContrasena ? 'eye-off-outline' : 'eye-outline'" (click)="alternarMostrarContrasena()"
+        ></ion-icon>
         </div>
       </ion-item>
 

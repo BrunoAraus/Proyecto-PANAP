@@ -14,6 +14,7 @@ export class ValidarCorreoPage implements OnInit {
   ngOnInit() { 
   }
   
+  
   constructor(private navCtrl: NavController, private http: HttpClient) {
   }
   

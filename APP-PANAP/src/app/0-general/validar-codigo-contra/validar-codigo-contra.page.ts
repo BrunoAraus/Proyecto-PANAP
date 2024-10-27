@@ -12,7 +12,7 @@ import emailjs from 'emailjs-com';
 export class ValidarCodigoContraPage implements OnInit {
 
   codigoIngresado: string = '';
-  codigoEsperado: string = '';
+  codigoEsperado: string = 'wGgQx';
   mensajeError: string = '';
   correo: string = '';
   correoCensurado: string = '';

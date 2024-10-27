@@ -11,10 +11,12 @@ export class RestablecerContraPage {
   errorMensaje: string = '';
   contra: string = '';
   contra2: string = '';
+  mostrarContrasena: boolean = false;
   apiUrl = 'https://panapp.duckdns.org/rest/API_PRUEBA.php';
 
   constructor(private http: HttpClient, private navCtrl: NavController) {}
 
+  
   cambiar() {
       const body = {
         accion: 'CLAVE',
@@ -50,5 +52,17 @@ export class RestablecerContraPage {
       this.contra === this.contra2 &&
       this.contra !== ''
     );
+  }
+  censurarContrasena(contrasena: string): string {
+    if (contrasena.length <= 2) {
+      return '*'.repeat(contrasena.length);
+    }
+    const firstChar = contrasena[0];
+    const lastChar = contrasena[contrasena.length - 1];
+    const hiddenPart = '*'.repeat(contrasena.length - 2);
+    return `${firstChar}${hiddenPart}${lastChar}`;
+  }
+  alternarMostrarContrasena() {
+    this.mostrarContrasena = !this.mostrarContrasena;
   }
 }
