@@ -139,10 +139,10 @@ export class IngresoPanNegocioPage implements OnInit, OnDestroy {
         fecha_stock: this.negocio.fecha_stock,
         stock_inicial: this.negocio.stock_inicial,
         valor_kilo: this.negocio.valor_kilo,
-        latitud: this.lat,
-        longitud: this.lng,
+        latitud: this.lat.toString(),
+        longitud: this.lng.toString(),
         id_usuario: this.usuario.id,
-      };
+      };      
 
       const headers = new HttpHeaders({
         'Content-Type': 'application/json',

@@ -174,8 +174,8 @@ export class MapaClientePage implements OnInit {
   agregarMarcadoresNegocios() {
     console.log('Agregando marcadores para los negocios:', this.negocios);
     this.negocios.forEach(negocio => {
-      const latitud = negocio.LATITUD;
-      const longitud = negocio.LONGITUD;
+      const latitud = parseFloat(negocio.LATITUD);
+      const longitud = parseFloat(negocio.LONGITUD);
 
       if (latitud && longitud) {
         console.log(`Agregando marcador para: ${negocio.N_NOMBRE} en (${latitud}, ${longitud})`);

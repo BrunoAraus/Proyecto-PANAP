@@ -19,10 +19,15 @@ export class DetalleNegocioPage {
   }
 
   iniciarRuta() {
-    const destino = { lat: this.negocio.LATITUD, lng: this.negocio.LONGITUD };
+    const latitud = parseFloat(this.negocio.LATITUD);
+    const longitud = parseFloat(this.negocio.LONGITUD);
+    
+    const destino = { lat: latitud, lng: longitud };
+    
     if (this.toggleRoute) {
       this.toggleRoute(this.negocio, destino);
     }
+    
     this.cerrarPopover();
   }
-}
+}  

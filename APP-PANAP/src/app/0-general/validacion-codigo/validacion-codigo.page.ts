@@ -14,27 +14,30 @@ export class ValidacionCodigoPage {
   codigoIngresado: string = '';
   codigoEsperado: string = 'wGgQx';
   mensajeError: string = '';
-  correo: string = '';
+  correo: any = '';
   correoCensurado: string = '';
 
   apiUrl: string = 'https://panapp.duckdns.org/rest/API_PRUEBA.php'; 
 
   ngOnInit() { 
+    this.correo = localStorage.getItem('userEmail');
+    this.correoCensurado = this.censurarEmail(this.correo);
+    this.enviarCorreo()
+  }
+  
+  constructor(private navCtrl: NavController, private http: HttpClient) {
+    this.correoCensurado = this.censurarEmail(this.correo);
   }
 
-  censurarEmail(correo: string): string {
-    const [localPart, domainPart] = correo.split('@');
+  censurarEmail(correo1: string): string {
+    const [localPart, domainPart] = correo1.split('@');
   
-    if (localPart.length < 3) return correo;
+    if (localPart.length < 3) return correo1;
   
     const visiblePart = localPart.slice(0, 3);
     const hiddenPart = '*'.repeat(localPart.length - 3); 
   
     return `${visiblePart}${hiddenPart}@${domainPart}`;
-  }
-  
-  constructor(private navCtrl: NavController, private http: HttpClient) {
-    this.correoCensurado = this.censurarEmail(this.correo);
   }
   
 
@@ -49,7 +52,7 @@ export class ValidacionCodigoPage {
   validarUsuario() {
     const body = {
       accion: 'validacion',
-      correo: localStorage.getItem('userEmail'),  
+      correo: this.correo,
       clave: localStorage.getItem('userPassword')      
     };
 
@@ -62,7 +65,6 @@ export class ValidacionCodigoPage {
         (response: any) => {
           if (response.success) {
             this.enviarCorreo();
-            correo: localStorage.getItem('userEmail'); 
             this.navCtrl.navigateRoot('/iniciar-sesion');
           } else {
             this.mensajeError = response.message || 'Error en la validación del usuario.';
@@ -86,7 +88,7 @@ export class ValidacionCodigoPage {
     const templateParams = {
       name: usuario ? usuario.nombre : 'Usuario', 
       code: this.codigoEsperado,
-      to_email: localStorage.getItem('userEmail')
+      to_email: this.correo
     };
   
     emailjs.send('service_b24ho2k', 'template_vrbmm0s', templateParams, '0c3MYYTcXyRx_KHVG')

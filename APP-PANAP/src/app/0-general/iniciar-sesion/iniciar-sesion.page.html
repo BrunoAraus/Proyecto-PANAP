@@ -1,10 +1,10 @@
 <ion-content fullscrean="true">
   <div class="contenedor-login">
     <div class="titulares">
-      <h1 class="titulo">Iniciar sesión</h1>
+      <h1 class="titulo">Iniciar sesión FINAL</h1>
       <h2 id="subTitulo">Rellene los campos (<span class="obligatorio">*</span>)</h2>
     </div>
-    <form (ngSubmit)="iniciarSesion()"> <!-- Vincular el formulario a la función de login -->
+    <form (ngSubmit)="iniciarSesion()"> 
       <ion-label position="stacked" class="etiqueta">Correo (<span class="obligatorio">*</span>)</ion-label>
       <ion-item lines="none" class="campo1">
         <ion-input [(ngModel)]="correo" name="correo" type="email" placeholder="ejemplo@gmail.com" class="input"></ion-input>

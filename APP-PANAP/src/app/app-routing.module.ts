@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'tabs-cliente/home-cliente',
+    redirectTo: 'home',
     pathMatch: 'full'
   },
   {
@@ -259,7 +259,8 @@ const routes: Routes = [
         loadChildren: () => import('./4-admin/cerrar-sesion-adm/cerrar-sesion-adm.module').then( m => m.CerrarSesionAdmPageModule)
       },
     ]
-  },  {
+  },
+  {
     path: 'validar-correo',
     loadChildren: () => import('./0-general/validar-correo/validar-correo.module').then( m => m.ValidarCorreoPageModule)
   },

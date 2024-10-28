@@ -36,8 +36,8 @@ export class PedidoPage{
       ID_NEGOCIO: this.idNegocio,
       R_CODIGO: 'JkSoSP',
       R_VALOR: this.r_valor,
-      NOMBRE_R: this.nombre_r,
-      APELLIDO_R: this.apellido_r,
+      NOMBRE_R: this.usuario.nombre,
+      APELLIDO_R: this.usuario.apellido,
       ID_USUARIO: this.usuario.id
     };
 
