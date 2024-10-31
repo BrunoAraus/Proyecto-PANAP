@@ -7,11 +7,10 @@
 <ion-content class="ion-padding">
   <h2>Selecciona una foto</h2>
 
-  <!-- Input para seleccionar la imagen -->
+
   <input type="file" (change)="onFileSelected($event)" accept="image/*" />
 
-  <!-- Botón para subir la imagen -->
+
   <ion-button expand="block" (click)="uploadPhoto()">Subir Foto</ion-button>
 
-  <!-- Mensajes de estado o error pueden ir aquí -->
 </ion-content>
