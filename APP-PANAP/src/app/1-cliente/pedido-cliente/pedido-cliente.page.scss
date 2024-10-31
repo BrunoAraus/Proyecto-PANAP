@@ -14,25 +14,29 @@
 }
 
 #titulo{
-    font-size: 28px;
+    font-size: 25px;
     font-weight: bold;
     color: black;
-    margin: 30px 5px 10px 5px;
+    margin: 15px 5px 0px 5px;
 }
 
 #subTitulo{
     color: black;
     font-size: 20px;
-    margin: 5px 10px 0px 5px;
+    margin: 0px 10px 10px 5px;
     padding: 0px 15px 0px 15px;
+    font-style: italic;
 }
 
 #mapaPedido{
-    margin: 20px 5px 40px 5px;
-    width: 80%;
-    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 95%;
+    height: 800px !important;
+    margin: 5px 0px 20px 0px;
     border-radius: 20px;
-    box-shadow: 1px 3px 10px black;
+    box-shadow: 1px 0px 15px rgba(0, 0, 0, 0.603);
 }
 
 #hud {
