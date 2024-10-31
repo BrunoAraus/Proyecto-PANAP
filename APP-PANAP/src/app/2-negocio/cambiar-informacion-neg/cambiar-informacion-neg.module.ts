@@ -7,13 +7,14 @@ import { IonicModule } from '@ionic/angular';
 import { CambiarInformacionNegPageRoutingModule } from './cambiar-informacion-neg-routing.module';
 
 import { CambiarInformacionNegPage } from './cambiar-informacion-neg.page';
-
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    CambiarInformacionNegPageRoutingModule
+    CambiarInformacionNegPageRoutingModule,
+    HttpClientModule
   ],
   declarations: [CambiarInformacionNegPage]
 })

@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { CambiarInformacionCliPageRoutingModule } from './cambiar-informacion-cli-routing.module';
 
 import { CambiarInformacionCliPage } from './cambiar-informacion-cli.page';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    CambiarInformacionCliPageRoutingModule
+    CambiarInformacionCliPageRoutingModule,
+    HttpClientModule
   ],
   declarations: [CambiarInformacionCliPage]
 })

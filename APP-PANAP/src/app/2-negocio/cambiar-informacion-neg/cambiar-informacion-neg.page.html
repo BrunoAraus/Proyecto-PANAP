@@ -1,13 +1,42 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>cambiar-informacion-neg</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content [fullscreen]="true" class="contenido">
+  <div class="contenedor-central">
+    <form (ngSubmit)="cambiar()" #stockForm="ngForm">
+      <div id="ordenCampos" lines="none">
+        <div class="campoIndividual" lines="none">
+          <ion-label class="textoInput">Cambiar Nombre</ion-label>
+          <ion-item class="campo-item" lines="none">
+            <ion-input
+              lines="none"
+              class="input-texto"
+              [(ngModel)]="nombre"
+              [ngModelOptions]="{standalone: true}"
+              name="nombre"
+              placeholder="{{usuario.nombre}}"
+              id="cantidad-pan"
+              required
+            ></ion-input>
+          </ion-item>
+        </div>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">cambiar-informacion-neg</ion-title>
-    </ion-toolbar>
-  </ion-header>
+        <div class="campoIndividual" lines="none">
+          <ion-label class="textoInput">Cambiar Apellido</ion-label>
+          <ion-item class="campo-item" lines="none">
+            <ion-input
+              lines="none"
+              [(ngModel)]="apellido"
+              [ngModelOptions]="{standalone: true}"
+              name="apellido"
+              placeholder="{{usuario.apellido}}"
+              class="input-texto"
+              id="valor-pan"
+              required
+            ></ion-input>
+          </ion-item>
+        </div>
+        <ion-button type="submit" [disabled]="!stockForm.valid" class="botonGeneral">
+          <p class="botones">Confirmar</p>
+        </ion-button>
+      </div>
+    </form>
+  </div>
 </ion-content>
