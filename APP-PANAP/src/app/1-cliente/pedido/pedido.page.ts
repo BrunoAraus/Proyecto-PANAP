@@ -30,6 +30,23 @@ export class PedidoPage{
     this.popoverController.dismiss();
   }
 
+  formatearNumero(event: any) {
+    let valor = event.target.value.replace(/\D/g, ''); // Remueve caracteres no numéricos
+  
+    // Limita el valor a cinco dígitos (sin contar el punto)
+    if (valor.length > 6) {
+      valor = valor.substring(0, 6);
+    }
+  
+    // Aplica el punto de miles si el número es mayor o igual a 1000
+    if (parseInt(valor, 10) >= 1000) {
+      valor = valor.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    }
+  
+    this.r_valor = valor;
+  }
+  
+  
   enviarDatos() {
     const body = {
       accion: 'registrarDatosNegocio',

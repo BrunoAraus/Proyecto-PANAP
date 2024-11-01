@@ -44,6 +44,7 @@ export class PedidoClientePage implements OnInit {
       this.cargarDatos();
     }, 60000);
   }
+  
 
   cargarDatos() {
     const usuarioData = localStorage.getItem('usuarioData');
@@ -253,5 +254,6 @@ addMarker(location: { lat: number; lng: number }, title: string, isFixed: boolea
       this.markers.push(marker);
   }
 }
+
 
 }

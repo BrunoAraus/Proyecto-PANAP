@@ -17,7 +17,7 @@
     <ion-item class="ordenPedidoPan" lines="none">
       <div class="ordenInput">
         <h1 class="signoPeso">$</h1>
-        <ion-input [(ngModel)]="r_valor" required class="espacioPedido" placeholder="0"></ion-input>
+        <ion-input [(ngModel)]="r_valor" (ionInput)="formatearNumero($event)"  maxlength="6"  required class="espacioPedido" placeholder="0"></ion-input>
       </div>
     </ion-item>
 
