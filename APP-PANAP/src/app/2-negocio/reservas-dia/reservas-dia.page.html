@@ -1,26 +1,34 @@
 <ion-content [fullscreen]="true">
-  <h1 class="titulo">Reservas del Día</h1>
+  <ion-icon name="chevron-back" class="iconoVolver"></ion-icon>
+  <div class="contenido">
+    <h1 class="titulo">Reservas del Día</h1>
+  
+    <div class="filtradorPan">
+    <!-- ACÁ FALTA EL FILTRO -->
 
+    </div>
 
-  <ion-grid class="tabla-reservas">
-    <ion-row class="encabezado">
-      <ion-col>Nombre Completo</ion-col>
-      <ion-col>Valor Pan</ion-col>
-      <ion-col>Codigo</ion-col>
-      <ion-col>Estado</ion-col>
-      <ion-col>Acciones</ion-col>
-    </ion-row>
+    <div class="contenidoTabla">
+      <ion-row class="encabezado">
+        <ion-col class="titulares">Nombre</ion-col>
+        <ion-col class="titulares">Valor Pan</ion-col>
+        <ion-col class="titulares">Codigo</ion-col>
+        <ion-col class="titulares">Contenido</ion-col>
+        <ion-col class="titulares">Acciones</ion-col>
+      </ion-row>
 
-
-    <ion-row class="fila-datos" *ngFor="let reserva of reservas">
-      <ion-col>{{ reserva.NOMBRE_R }} {{ reserva.APELLIDO_R }}</ion-col>
-      <ion-col>${{ reserva.R_VALOR }}</ion-col>
-      <ion-col>{{ reserva.R_CODIGO }}</ion-col>
-      <ion-col>{{ reserva.ESTADO }}</ion-col>
-      <ion-col>
-        <ion-button color="primary" (click)="cambiarEstadoReserva(reserva.ID_USUARIO)">Completar</ion-button>
-        <ion-button color="danger" (click)="cancelarReserva(reserva.ID_USUARIO, reserva.ID_RESERVAS)">Cancelar</ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+      <ion-grid class="tabla-reservas">
+        <ion-row class="fila-datos" *ngFor="let reserva of reservas">
+          <ion-col class="contenidoCeldas">{{ reserva.NOMBRE_R }} {{ reserva.APELLIDO_R }}</ion-col>
+          <ion-col class="contenidoCeldas3">${{ reserva.R_VALOR }}</ion-col>
+          <ion-col class="contenidoCeldas">{{ reserva.R_CODIGO }}</ion-col>
+          <ion-col class="contenidoCeldas4">{{ reserva.ESTADO }}</ion-col>
+          <ion-col class="contenidoCeldas2">
+            <ion-icon name="close-circle-outline" (click)="cancelarReserva(reserva.ID_USUARIO, reserva.ID_RESERVAS)" class="acciones1"></ion-icon>
+            <ion-icon name="checkmark-circle-outline" (click)="cambiarEstadoReserva(reserva.ID_USUARIO)" class="acciones2"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-grid>   
+    </div>
+  </div>
 </ion-content>

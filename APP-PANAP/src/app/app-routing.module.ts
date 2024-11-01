@@ -135,6 +135,18 @@ const routes: Routes = [
     path: 'detalle-negocio',
     loadChildren: () => import('./1-cliente/detalle-negocio/detalle-negocio.module').then( m => m.DetalleNegocioPageModule)
   },
+  {
+    path: 'validar-correo',
+    loadChildren: () => import('./0-general/validar-correo/validar-correo.module').then( m => m.ValidarCorreoPageModule)
+  },
+  {
+    path: 'validar-codigo-contra',
+    loadChildren: () => import('./0-general/validar-codigo-contra/validar-codigo-contra.module').then( m => m.ValidarCodigoContraPageModule)
+  },
+  {
+    path: 'informacion-negocio-foto',
+    loadChildren: () => import('./2-negocio/informacion-negocio-foto/informacion-negocio-foto.module').then( m => m.InformacionNegocioFotoPageModule)
+  },
   
   {
     path: 'tabs-cliente',
@@ -260,16 +272,6 @@ const routes: Routes = [
       },
     ]
   },
-  {
-    path: 'validar-correo',
-    loadChildren: () => import('./0-general/validar-correo/validar-correo.module').then( m => m.ValidarCorreoPageModule)
-  },
-  {
-    path: 'validar-codigo-contra',
-    loadChildren: () => import('./0-general/validar-codigo-contra/validar-codigo-contra.module').then( m => m.ValidarCodigoContraPageModule)
-  },
-
-
 
 ];
 

@@ -1,56 +1,82 @@
-*{
-    padding: 0;
-    margin: 0;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    color: black;
-}
-
-h1{
-    text-align: center;
-    color: black;
+* {
+  padding: 0;
+  margin: 0;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  color: black;
 }
 
 .titulo {
-    text-align: center;
-    font-size: 1.8rem;
-    color: #333;
-    margin-top: 16px;
-    font-weight: bold;
+  text-align: center;
+  font-size: 25px;
+  color: black;
+  margin-top: 20px;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.iconoVolver {
+  position: fixed;
+  z-index: 9998;
+  left: 1.5%;
+  top: 1%;
+  width: 45px;
+  height: 45px;
+}
+
+.contenido {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.titulares {
+  font-size: 15px;
+  color: #fff;
+  text-align: center;
+  padding: 0px 10px 0px 10px;
+}
+
+.encabezado {
+  background-color: rgb(65, 33, 206);
+  color: #fff;
+  padding: 8px 0;
+  display: flex;
+  align-items: center;
+  border-radius: 15px 15px 0px 0px;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.contenidoTabla{
+  width: 90%;
+  height: 700px;
+  overflow-y: auto;
+  margin: 25px 0px 30px 0px;
+  border-radius: 0px 0px 15px 15px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.contenidoTabla::-webkit-scrollbar {
+  display: none;
+}
+
+.tablaHitorico{
+  margin: 0px 0px 0px 0px;
+  width: 100%;
+  overflow-y: auto;
+}
+
+.fila-datos {
+  background-color: #fff;
+  text-align: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #ddd;
+  
+  &:nth-child(even) {
+    background-color: #f1f1f1;
   }
-  
-  .tabla-historico {
-    margin: 16px;
-    border-radius: 8px;
-    overflow: hidden;
-    background-color: #f8f9fa;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .encabezado {
-    background-color: #007bff;
-    color: #fff;
-    font-weight: bold;
-    text-align: center;
-    padding: 8px 0;
-  }
-  
-  .fila-datos {
-    background-color: #fff;
-    text-align: center;
-    padding: 12px 0;
-    border-bottom: 1px solid #ddd;
-  
-    &:nth-child(even) {
-      background-color: #f1f1f1;
-    }
-  }
-  
-  .fila-datos ion-col {
-    padding: 8px;
-  }
-  
-  ion-col {
-    font-size: 1rem;
-    color: #333;
-  }
-  
+}

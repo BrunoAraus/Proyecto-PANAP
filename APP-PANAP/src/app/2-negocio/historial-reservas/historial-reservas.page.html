@@ -1,22 +1,25 @@
 <ion-content [fullscreen]="true">
-  <h1 class="titulo">Historial de Reservas</h1>
+  <div class="contenido">
+    <ion-icon name="chevron-back" class="iconoVolver"></ion-icon>
 
-  <!-- Tabla estilizada -->
-  <ion-grid class="tabla-historico">
-    <!-- Encabezado de la tabla -->
-    <ion-row class="encabezado">
-      <ion-col>Fecha Reserva</ion-col>
-      <ion-col>Código</ion-col>
-      <ion-col>Valor Reserva</ion-col>
-      <ion-col>ID Usuario</ion-col>
-    </ion-row>
-
-    <!-- Filas de datos -->
-    <ion-row class="fila-datos" *ngFor="let historico of historicos">
-      <ion-col>{{ historico.H_FECHA }}</ion-col>
-      <ion-col>{{ historico.R_CODIGO }}</ion-col>
-      <ion-col>{{ historico.R_VALOR }}</ion-col>
-      <ion-col>{{ historico.ID_USUARIO }}</ion-col>
-    </ion-row>
-  </ion-grid>
+    <h1 class="titulo">Historial de Reservas</h1>
+    <div class="contenidoTabla">
+      <ion-row class="encabezado">
+          <ion-col class="titulares">Hora entrega</ion-col>
+          <ion-col class="titulares">Código</ion-col>
+          <ion-col class="titulares">Valor Reserva</ion-col>
+          <ion-col class="titulares">Usuario</ion-col>
+        </ion-row>
+      
+      <ion-grid class="tablaHitorico">
+        <!-- Filas de datos -->
+        <ion-row class="fila-datos" *ngFor="let historico of historicos">
+          <ion-col>{{ historico.H_FECHA }}</ion-col>
+          <ion-col>{{ historico.R_CODIGO }}</ion-col>
+          <ion-col>${{ historico.R_VALOR }}</ion-col>
+          <ion-col>{{ historico.ID_USUARIO }}</ion-col>
+        </ion-row>
+      </ion-grid>   
+    </div>
+  </div>
 </ion-content>

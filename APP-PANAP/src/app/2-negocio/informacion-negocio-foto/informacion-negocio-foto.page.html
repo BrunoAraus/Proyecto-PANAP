@@ -1,0 +1,9 @@
+<ion-content [fullscreen]="true">
+  
+  <h2>Subir fotografía</h2>
+
+  <input type="file" (change)="onFileSelected($event)" accept="image/*" />
+
+  <ion-button expand="block" (click)="uploadPhoto()">Subir Foto</ion-button>
+  
+</ion-content>
