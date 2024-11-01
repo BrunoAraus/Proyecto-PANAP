@@ -104,6 +104,26 @@ export class PedidoClientePage implements OnInit {
     }
   }
 
+  
+
+async presentPopover(negocio: any) {
+  const popover = await this.popoverController.create({
+    component: PedidoPage,
+    componentProps: {
+      idNegocio: negocio.ID_NEGOCIO
+    },
+    translucent: true, 
+    cssClass: 'custom-popover-css2'
+  });
+
+  await popover.present();
+
+
+  const { data } = await popover.onWillDismiss();
+  console.log('Popover cerrado: ', data);
+}
+
+
   getCurrentLocation(): Promise<void> {
     return new Promise((resolve, reject) => {
       if (navigator.geolocation) {
@@ -130,6 +150,8 @@ export class PedidoClientePage implements OnInit {
     this.map = new google.maps.Map(mapContainer, {
       center: this.currentLocation || { lat: 0, lng: 0 },
       zoom: 15,
+      disableDefaultUI: true,
+      draggable: true, 
       styles: [
         {
           featureType: 'all',
@@ -171,65 +193,65 @@ export class PedidoClientePage implements OnInit {
 
   agregarMarcadoresNegocios() {
     console.log('Agregando marcadores para los negocios:', this.negocios);
+    const now = new Date();
+
     this.negocios.forEach(negocio => {
-      const latitud = parseFloat(negocio.LATITUD);
-      const longitud = parseFloat(negocio.LONGITUD);
+        const latitud = parseFloat(negocio.LATITUD);
+        const longitud = parseFloat(negocio.LONGITUD);
+        const fechaStock = new Date(negocio.FECHA_STOCK); 
 
-      if (latitud && longitud) {
-        console.log(`Agregando marcador para: ${negocio.N_NOMBRE} en (${latitud}, ${longitud})`);
-        this.addMarker({ lat: latitud, lng: longitud }, `Negocio: ${negocio.N_NOMBRE}`, false, negocio);
-      } else {
-        console.warn(`Datos de ubicación faltantes para: ${negocio.N_NOMBRE}`);
-      }
+        if (latitud && longitud) {
+            console.log(`Agregando marcador para: ${negocio.N_NOMBRE} en (${latitud}, ${longitud})`);
+
+            const diffInMs = now.getTime() - fechaStock.getTime();
+            const diffInHours = diffInMs / (1000 * 60 * 60);
+
+            let markerIcon;
+            if (diffInHours >= 6) {
+                markerIcon = 'assets/image/PAN_GRIS_FINAL.png';
+            } else if (diffInHours >= 4) {
+                markerIcon = 'assets/image/PAN_ROJO_FINAL.png';
+            } else if (diffInHours >= 2) {
+                markerIcon = 'assets/image/PAN_AMARILLO_FINAL.png';
+            } else {
+                markerIcon = 'assets/image/PAN_VERDE_FINAL.png';
+            }
+
+            this.addMarker({ lat: latitud, lng: longitud }, `Negocio: ${negocio.N_NOMBRE}`, false, negocio, markerIcon);
+        } else {
+            console.warn(`Datos de ubicación faltantes para: ${negocio.N_NOMBRE}`);
+        }
     });
-  }
-
-  async presentPopover(negocio: any) {
-    const popover = await this.popoverController.create({
-      component: PedidoPage,  // Tu página o componente del popover
-      componentProps: {
-        idNegocio: negocio.ID_NEGOCIO
-      },
-      translucent: true,   // Hace que el fondo del popover sea translúcido
-      cssClass: 'custom-popover-css2'  // Clase personalizada para aplicar estilo si es necesario
-    });
-  
-    await popover.present();
-  
-    // Puedes manejar el cierre del popover y obtener datos cuando el popover se cierra
-    const { data } = await popover.onWillDismiss();
-    console.log('Popover cerrado: ', data);
-  }
-
-  addMarker(location: { lat: number; lng: number }, title: string, isFixed: boolean = false, negocio?: any) {
-    const marker = new google.maps.Marker({
+}
+addMarker(location: { lat: number; lng: number }, title: string, isFixed: boolean = false, negocio?: any, iconUrl?: string) {
+  const marker = new google.maps.Marker({
       position: location,
       map: this.map,
       icon: {
-        path: google.maps.SymbolPath.CIRCLE,
-        scale: 10,
-        fillColor: isFixed ? 'blue' : 'red',
-        fillOpacity: 0.8,
-        strokeColor: 'white',
-        strokeWeight: 2,
-        labelOrigin: new google.maps.Point(0, 2)
+        url: iconUrl || 'assets/image/ICON.png', 
+          scaledSize: new google.maps.Size(25, 25), 
+          labelOrigin: new google.maps.Point(13, 33),
+          fillOpacity: 0.8,
+          strokeColor: 'white',
+          strokeWeight: 2,
       },
       label: {
-        text: title,
-        color: 'black',
-        fontSize: '90%',
-        fontWeight: 'bold',
+          text: title,
+          color: 'black',
+          fontSize: '90%',
+          fontWeight: 'bold',
       }
-    });
+  });
 
-    if (negocio) {
+  if (negocio) {
       google.maps.event.addListener(marker, 'click', () => {
-        this.presentPopover(negocio);
+          this.presentPopover(negocio);
       });
-    }
-
-    if (!isFixed) {
-      this.markers.push(marker);
-    }
   }
+
+  if (!isFixed) {
+      this.markers.push(marker);
+  }
+}
+
 }
