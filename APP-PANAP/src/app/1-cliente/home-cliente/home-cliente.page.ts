@@ -10,6 +10,7 @@
   export class HomeClientePage implements OnInit, OnDestroy {
     usuario: any;
     negocios: any[] = [];
+    reserva: any;
     apiUrl = 'https://panapp.duckdns.org/rest/API_PRUEBA.php';
     intervalId: any;
 
@@ -33,6 +34,7 @@
     cargarDatos() {
       const usuarioData = localStorage.getItem('usuarioData');
       const negociosData = localStorage.getItem('negociosData');
+      const reservasData = localStorage.getItem('reservasData');
 
       if (usuarioData) {
         this.usuario = JSON.parse(usuarioData); 
@@ -40,6 +42,9 @@
 
       if (negociosData) {
         this.negocios = JSON.parse(negociosData);
+      }
+      if (reservasData) {
+        this.reserva = JSON.parse(reservasData);
       }
     }
 
@@ -69,13 +74,16 @@
                 
                 const usuarioData = response.user;
                 const negociosData = response.negocios;
+                const reservasData = response.reservas;
 
                 localStorage.setItem('usuarioData', JSON.stringify(usuarioData));
                 localStorage.setItem('negociosData', JSON.stringify(negociosData));
+                localStorage.setItem('reservasData', JSON.stringify(reservasData));
 
               
                 this.usuario = usuarioData;
                 this.negocios = negociosData;
+                this.reserva = reservasData;
               } else {
                 console.log('Error en la reconexión:', response.message);
               }

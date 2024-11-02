@@ -21,6 +21,8 @@ export class PedidoClientePage implements OnInit {
   directionsService: any;
   directionsRenderer: any;
   activeRouteMarker: any = null;
+  reserva: any;
+  nombreNegocio: string | undefined;
 
   constructor(
     private http: HttpClient, 
@@ -28,7 +30,7 @@ export class PedidoClientePage implements OnInit {
     private modalCtrl: ModalController,
     private popoverController: PopoverController 
   ) {}
-  
+
   ngOnInit() {
     this.getCurrentLocation().then(() => {
       if (this.currentLocation) {
@@ -39,25 +41,41 @@ export class PedidoClientePage implements OnInit {
     });
     this.reconectar();
     this.cargarDatos();
+    if (!this.reserva || this.reserva.length === 0) {
+      this.buscarNombreNegocio();
+    }
     this.intervalId = setInterval(() => {
       this.reconectar();
       this.cargarDatos();
     }, 60000);
   }
+
+  buscarNombreNegocio() {
+    if (this.reserva && this.reserva.length > 0) {
+      const negocio = this.negocios.find(n => n.ID_NEGOCIO === this.reserva[0].ID_NEGOCIO);
+      this.nombreNegocio = negocio ? negocio.NOMBRE : 'Negocio no encontrado';
+    } else {
+      this.nombreNegocio = 'No hay reserva para mostrar';
+    }
+  }
+  
+    
   
 
   cargarDatos() {
     const usuarioData = localStorage.getItem('usuarioData');
     const negociosData = localStorage.getItem('negociosData');
+    const reservasData = localStorage.getItem('reservasData');
 
     if (usuarioData) {
-      this.usuario = JSON.parse(usuarioData);
+      this.usuario = JSON.parse(usuarioData); 
     }
 
     if (negociosData) {
       this.negocios = JSON.parse(negociosData);
-      console.log('Datos de negocios cargados:', this.negocios);
-      this.agregarMarcadoresNegocios();
+    }
+    if (reservasData) {
+      this.reserva = JSON.parse(reservasData);
     }
   }
 
@@ -77,21 +95,26 @@ export class PedidoClientePage implements OnInit {
         'Authorization': ''
       });
 
+    
       this.http.post(this.apiUrl, body, { headers: headers })
         .subscribe(
           (response: any) => {
             if (response.success) {
               console.log('Reconexión exitosa:', response.message);
 
+              
               const usuarioData = response.user;
               const negociosData = response.negocios;
+              const reservasData = response.reservas;
 
               localStorage.setItem('usuarioData', JSON.stringify(usuarioData));
               localStorage.setItem('negociosData', JSON.stringify(negociosData));
+              localStorage.setItem('reservasData', JSON.stringify(reservasData));
 
+            
               this.usuario = usuarioData;
               this.negocios = negociosData;
-              this.agregarMarcadoresNegocios();
+              this.reserva = reservasData;
             } else {
               console.log('Error en la reconexión:', response.message);
             }

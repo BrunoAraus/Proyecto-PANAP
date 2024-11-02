@@ -1,8 +1,26 @@
 <ion-content [fullscreen]="true">
-    <div id="contenido">
-        <h1 id="titulo">Realizar pedido</h1>
-        <h2 id="subTitulo">Selecciona un negocio</h2>
-        <div id="hud">El punto café eres tú</div>
-        <div id="mapaPedido"></div>    
-    </div>
+  <div id="contenido">
+
+    <ng-container *ngIf="!reserva || reserva.length === 0; else mostrarReserva">
+      <h1 id="titulo">Realizar pedido</h1>
+      <h2 id="subTitulo">Selecciona un negocio</h2>
+      <div id="hud">El punto café eres tú</div>
+      <div id="mapaPedido"></div>
+    </ng-container>
+    <ng-template #mostrarReserva>
+      <h1>Hiciste tu reserva</h1>
+      <div id="informacionReserva">
+        <p><strong>Negocio:</strong> {{ nombreNegocio }}</p>
+        <p><strong>Código de reserva:</strong> {{ reserva[0].R_CODIGO }}</p>
+        <p><strong>Valor de reserva:</strong> ${{ reserva[0].R_VALOR }}</p>
+        <p><strong>Nombre:</strong> {{ reserva[0].NOMBRE_R }} {{ reserva[0].APELLIDO_R }}</p>
+        <p><strong>Estado:</strong> {{ reserva[0].ESTADO }}</p>
+        <p><strong>Fecha:</strong> {{ reserva[0].FECHA }}</p>
+        <p><strong>Marraqueta:</strong> {{ reserva[0].MARRAQUETA }}</p>
+        <p><strong>Hallulla:</strong> {{ reserva[0].HALLULLA }}</p>
+        <p><strong>Mixto:</strong> {{ reserva[0].MIXTO }}</p>
+        <p><strong>Tipo:</strong> {{ reserva[0].TIPO }}</p>
+      </div>
+    </ng-template>
+  </div>
 </ion-content>
