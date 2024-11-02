@@ -22,7 +22,6 @@ export class PedidoClientePage implements OnInit {
   directionsRenderer: any;
   activeRouteMarker: any = null;
   reserva: any;
-  nombreNegocio: string | undefined;
 
   constructor(
     private http: HttpClient, 
@@ -41,23 +40,13 @@ export class PedidoClientePage implements OnInit {
     });
     this.reconectar();
     this.cargarDatos();
-    if (!this.reserva || this.reserva.length === 0) {
-      this.buscarNombreNegocio();
-    }
     this.intervalId = setInterval(() => {
       this.reconectar();
       this.cargarDatos();
     }, 60000);
   }
 
-  buscarNombreNegocio() {
-    if (this.reserva && this.reserva.length > 0) {
-      const negocio = this.negocios.find(n => n.ID_NEGOCIO === this.reserva[0].ID_NEGOCIO);
-      this.nombreNegocio = negocio ? negocio.NOMBRE : 'Negocio no encontrado';
-    } else {
-      this.nombreNegocio = 'No hay reserva para mostrar';
-    }
-  }
+
   
     
   
@@ -277,6 +266,4 @@ addMarker(location: { lat: number; lng: number }, title: string, isFixed: boolea
       this.markers.push(marker);
   }
 }
-
-
 }

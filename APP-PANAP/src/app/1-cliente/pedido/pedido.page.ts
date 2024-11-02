@@ -15,8 +15,9 @@ export class PedidoPage {
   usuario: any;
   hallulla: string = '';
   marraqueta: string = '';
-  mixto: string = '';
-  tipo: String='';
+  tipo: string = '';
+
+  formularioActual: 'cantidad' | 'moneda' = 'cantidad';
 
   apiUrl = 'https://panapp.duckdns.org/rest/API_PRUEBA.php';
 
@@ -30,6 +31,10 @@ export class PedidoPage {
     }
   }
 
+  seleccionarFormulario(tipo: 'cantidad' | 'moneda') {
+    this.formularioActual = tipo;
+  }
+
   cerrarPopover() {
     this.popoverController.dismiss();
   }
@@ -37,11 +42,9 @@ export class PedidoPage {
   formatearNumero(event: any) {
     let valor = event.target.value.replace(/\D/g, '');
 
-
     if (valor.length > 6) {
       valor = valor.substring(0, 6);
     }
-
 
     if (parseInt(valor, 10) >= 1000) {
       valor = valor.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
@@ -49,7 +52,6 @@ export class PedidoPage {
 
     this.r_valor = valor;
   }
-
 
   private generarCodigoAleatorio(longitud: number = 6): string {
     const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -61,20 +63,19 @@ export class PedidoPage {
     return codigo;
   }
 
-  enviarDatos() {
-    const codigoAleatorio = this.generarCodigoAleatorio(); 
+  enviarFormularioCantidad() {
+    const codigoAleatorio = this.generarCodigoAleatorio();
 
     const body = {
       accion: 'registrarDatosNegocio',
       ID_NEGOCIO: this.idNegocio,
       R_CODIGO: codigoAleatorio,
-      R_VALOR: this.r_valor,
+      R_VALOR: '0',
       NOMBRE_R: this.usuario.nombre,
       APELLIDO_R: this.usuario.apellido,
       ID_USUARIO: this.usuario.id,
-      HALLULLA: this.hallulla,
-      MARRAQUETA: this.marraqueta,
-      MIXTO: this.mixto,
+      HALLULLA: 'NULL',
+      MARRAQUETA: 'NULL',
       TIPO_PAN: this.tipo
     };
 
@@ -85,11 +86,43 @@ export class PedidoPage {
 
     this.http.post(this.apiUrl, body, { headers: headers }).subscribe(
       response => {
-        console.log('Datos enviados exitosamente:', response);
+        console.log('Datos de cantidad enviados exitosamente:', response);
         this.popoverController.dismiss();
       },
       error => {
-        console.error('Error al enviar los datos:', error);
+        console.error('Error al enviar los datos de cantidad:', error);
+      }
+    );
+  }
+
+  enviarFormularioMoneda() {
+    const codigoAleatorio = this.generarCodigoAleatorio();
+
+    const body = {
+      accion: 'registrarDatosNegocio',
+      ID_NEGOCIO: this.idNegocio,
+      R_CODIGO: codigoAleatorio,
+      R_VALOR: '0',
+      NOMBRE_R: this.usuario.nombre,
+      APELLIDO_R: this.usuario.apellido,
+      ID_USUARIO: this.usuario.id,
+      HALLULLA: this.hallulla,
+      MARRAQUETA: this.marraqueta,
+      TIPO_PAN: 'NO'
+    };
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': ''
+    });
+
+    this.http.post(this.apiUrl, body, { headers: headers }).subscribe(
+      response => {
+        console.log('Datos de moneda enviados exitosamente:', response);
+        this.popoverController.dismiss();
+      },
+      error => {
+        console.error('Error al enviar los datos de moneda:', error);
       }
     );
   }

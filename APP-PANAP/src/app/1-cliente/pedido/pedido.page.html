@@ -2,83 +2,64 @@
   <ion-icon name="close" (click)="cerrarPopover()" class="iconoCerrar"></ion-icon>
 
   <div class="ordenContenido">
-
-    <div class="ordenTituloPrincipal">
-      <div class="icono">
-        <ion-icon name="bag-add-outline" class="iconoNegocio"></ion-icon>
-      </div>
-      <div class="texto">
-        <h1 class="tituloNegocio">Realizar pedido</h1>    
-      </div>
-    </div>  
-  
-    <ion-label class="textoPedido">¿Cuanto va a pedir?</ion-label>
-  
-    <ion-item class="ordenPedidoPan" lines="none">
-      <div class="ordenInput">
-        <h1 class="signoPeso">$</h1>
-        <ion-input [(ngModel)]="r_valor" (ionInput)="formatearNumero($event)"  maxlength="6"  required class="espacioPedido" placeholder="0"></ion-input>
-      </div>
-    </ion-item>
-
-    <div class="campoIndividual" lines="none">
-      <ion-label class="textoInput">Hallulla</ion-label>
-      <ion-item class="campo-item" lines="none">
-        <ion-input
-          lines="none"
-          maxlength="1"
-          [(ngModel)]="hallulla"
-          [ngModelOptions]="{standalone: true}"
-          name="hallulla"
-          required
-        ></ion-input>
+    <div class="botonesToggle">
+      <ion-button (click)="seleccionarFormulario('cantidad')" [color]="formularioActual === 'cantidad' ? 'primary' : 'medium'">Cantidad</ion-button>
+      <ion-button (click)="seleccionarFormulario('moneda')" [color]="formularioActual === 'moneda' ? 'primary' : 'medium'">Moneda</ion-button>
+    </div>
+    <form *ngIf="formularioActual === 'cantidad'" (ngSubmit)="enviarFormularioCantidad()">
+      <ion-item class="ordenPedidoPan" lines="none">
+        <div class="ordenInput">
+          <h1 class="signoPeso">$</h1>
+          <ion-input name="r_valor" [(ngModel)]="r_valor" (ionInput)="formatearNumero($event)" maxlength="6" required class="espacioPedido" placeholder="0"></ion-input>
+        </div>
       </ion-item>
-    </div>
-    <div class="campoIndividual" lines="none">
-      <ion-label class="textoInput">Marraqueta</ion-label>
-      <ion-item class="campo-item" lines="none">
-        <ion-input
-          lines="none"
-          maxlength="1"
-          [(ngModel)]="marraqueta"
-          [ngModelOptions]="{standalone: true}"
-          name="marraqueta"
-          required
-        ></ion-input>
-      </ion-item>
-    </div>
-    <div class="campoIndividual" lines="none">
-      <ion-label class="textoInput">Mixto</ion-label>
-      <ion-item class="campo-item" lines="none">
-        <ion-input
-          lines="none"
-          maxlength="1"
-          [(ngModel)]="mixto"
-          [ngModelOptions]="{standalone: true}"
-          name="mixto"
-          required
-        ></ion-input>
-      </ion-item>
-    </div>
-    <ion-radio-group class="ordenSeleccion" [(ngModel)]="tipo" name="tipo">
-      <div class="ordenCasillas1">
-        <h1 class="textoInterno">Hallulla</h1>
-        <ion-radio value="Hallulla" class="ordenCasilla1">o</ion-radio>
-      </div>
-      <div class="ordenCasillas1">
-        <h1 class="textoInterno">Marraqueta</h1>
-        <ion-radio value="Marraqueta" class="ordenCasilla1">o</ion-radio>
-      </div>
-      <div class="ordenCasillas1">
-        <h1 class="textoInterno">Mixto</h1>
-        <ion-radio value="Mixto" class="ordenCasilla1">o</ion-radio>
-      </div>
-    </ion-radio-group>
+      <ion-radio-group class="ordenSeleccion" [(ngModel)]="tipo" name="tipo">
+        <div class="ordenCasillas1">
+          <h1 class="textoInterno">Hallulla</h1>
+          <ion-radio value="Hallulla" class="ordenCasilla1">o</ion-radio>
+        </div>
+        <div class="ordenCasillas1">
+          <h1 class="textoInterno">Marraqueta</h1>
+          <ion-radio value="Marraqueta" class="ordenCasilla1">o</ion-radio>
+        </div>
+        <div class="ordenCasillas1">
+          <h1 class="textoInterno">Mixto</h1>
+          <ion-radio value="Mixto" class="ordenCasilla1">o</ion-radio>
+        </div>
+      </ion-radio-group>
 
-    <div class="posicionBtn">
-      <ion-button (click)="enviarDatos()" class="btnPedido">Realizar pedido</ion-button>
-    </div>
-
+      <div class="posicionBtn">
+        <ion-button type="submit" class="btnPedido">Realizar pedido</ion-button>
+      </div>
+    </form>
+    <form *ngIf="formularioActual === 'moneda'" (ngSubmit)="enviarFormularioMoneda()">
+      <div class="campoIndividual" lines="none">
+        <ion-label class="textoInput">Hallulla</ion-label>
+        <ion-item class="campo-item" lines="none">
+          <ion-input
+            name="hallulla"
+            maxlength="1"
+            [(ngModel)]="hallulla"
+            [ngModelOptions]="{standalone: true}"
+            required
+          ></ion-input>
+        </ion-item>
+      </div>
+      <div class="campoIndividual" lines="none">
+        <ion-label class="textoInput">Marraqueta</ion-label>
+        <ion-item class="campo-item" lines="none">
+          <ion-input
+            name="marraqueta"
+            maxlength="1"
+            [(ngModel)]="marraqueta"
+            [ngModelOptions]="{standalone: true}"
+            required
+          ></ion-input>
+        </ion-item>
+      </div>
+      <div class="posicionBtn">
+        <ion-button type="submit" class="btnPedido">Realizar pedido</ion-button>
+      </div>
+    </form>
   </div>
-
 </ion-content>
