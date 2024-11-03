@@ -10,9 +10,12 @@
       <ion-item class="ordenPedidoPan" lines="none">
         <div class="ordenInput">
           <h1 class="signoPeso">$</h1>
-          <ion-input name="r_valor" [(ngModel)]="r_valor" (ionInput)="formatearNumero($event)" maxlength="6" required class="espacioPedido" placeholder="0"></ion-input>
+          <ion-input name="r_valor" [(ngModel)]="r_valor" Type="text" (ionInput)="formatearNumero($event)" maxlength="5" required class="espacioPedido" placeholder="0"></ion-input>
         </div>
       </ion-item>
+      <ion-label *ngIf="errorMensaje" color="danger" class="mensajeError">
+        {{ errorMensaje }}
+      </ion-label>
       <ion-radio-group class="ordenSeleccion" [(ngModel)]="tipo" name="tipo">
         <div class="ordenCasillas1">
           <h1 class="textoInterno">Hallulla</h1>
@@ -30,7 +33,9 @@
 
       <div class="posicionBtn">
         <ion-button type="submit" class="btnPedido">Realizar pedido</ion-button>
+        
       </div>
+      
     </form>
     <form *ngIf="formularioActual === 'moneda'" (ngSubmit)="enviarFormularioMoneda()">
       <div class="campoIndividual" lines="none">

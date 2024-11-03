@@ -16,6 +16,7 @@ export class PedidoPage {
   hallulla: string = '';
   marraqueta: string = '';
   tipo: string = '';
+  errorMensaje: string = '';
 
   formularioActual: 'cantidad' | 'moneda' = 'cantidad';
 
@@ -40,18 +41,19 @@ export class PedidoPage {
   }
 
   formatearNumero(event: any) {
-    let valor = event.target.value.replace(/\D/g, '');
-
-    if (valor.length > 6) {
-      valor = valor.substring(0, 6);
+    let valor = event.target.value;
+    
+    // Verifica si el valor contiene solo números
+    if (/^\d*$/.test(valor)) {
+      // Si solo hay números, limita a cinco dígitos
+      this.errorMensaje = ''; // Limpia el mensaje de error
+      this.r_valor = valor.substring(0, 5); // Limita a cinco dígitos
+    } else {
+      // Si contiene caracteres no numéricos, muestra un mensaje de error
+      this.errorMensaje = 'Por favor, ingresa solo números';
     }
-
-    if (parseInt(valor, 10) >= 1000) {
-      valor = valor.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-    }
-
-    this.r_valor = valor;
   }
+  
 
   private generarCodigoAleatorio(longitud: number = 6): string {
     const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
