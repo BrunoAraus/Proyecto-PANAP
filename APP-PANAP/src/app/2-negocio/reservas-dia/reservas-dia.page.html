@@ -20,16 +20,11 @@
       <ion-grid class="tabla-reservas">
         <ion-row class="fila-datos" *ngFor="let reserva of reservas">
           <ion-col class="contenidoCeldas">{{ reserva.NOMBRE_R }} {{ reserva.APELLIDO_R }}</ion-col>
-          <ion-col class="contenidoCeldas3">${{ reserva.R_VALOR }}</ion-col>
           <ion-col class="contenidoCeldas">{{ reserva.R_CODIGO }}</ion-col>
           <ion-col class="contenidoCeldas4">{{ reserva.ESTADO }}</ion-col>
-          <ion-col class="contenidoCeldas5">{{ reserva.MARRAQUETA }}</ion-col>
-          <ion-col class="contenidoCeldas6">{{ reserva.HALLULLA }}</ion-col>
-          <ion-col class="contenidoCeldas7">{{ reserva.MIXTO }}</ion-col>
           <ion-col class="contenidoCeldas7">{{ reserva.TIPO }}</ion-col>
-          <ion-col class="contenidoCeldas2">
-            <ion-icon name="close-circle-outline" (click)="cancelarReserva(reserva.ID_USUARIO, reserva.ID_RESERVAS)" class="acciones1"></ion-icon>
-            <ion-icon name="checkmark-circle-outline" (click)="cambiarEstadoReserva(reserva.ID_USUARIO)" class="acciones2"></ion-icon>
+          <ion-col class="contenidoCeldas2">            
+            <ion-icon name="information-circle-outline" (click)="presentPopover(reserva)" class="acciones3"></ion-icon>
           </ion-col>
         </ion-row>
       </ion-grid>   

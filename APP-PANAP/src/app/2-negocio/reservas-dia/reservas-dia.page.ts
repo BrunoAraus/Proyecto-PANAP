@@ -27,21 +27,23 @@ export class ReservasDiaPage implements OnInit {
     this.cargarDatos();
   }
 
-  async presentPopover(negocio: any) {
+  async presentPopover(reserva: any) {
     const popover = await this.popoverController.create({
       component: DetallesPage,
       componentProps: {
-        idNegocio: negocio.ID_NEGOCIO
+        id_reserva: reserva.ID_RESERVAS,
+        detallesReserva: reserva
       },
-      translucent: true, 
+      translucent: true,
       cssClass: 'custom-popover-css3'
     });
   
     await popover.present();
   
-  
     const { data } = await popover.onWillDismiss();
     console.log('Popover cerrado: ', data);
+    this.reconectar();
+    this.cargarDatos();
   }
 
   reconectar() {
@@ -103,65 +105,6 @@ export class ReservasDiaPage implements OnInit {
     if (reservasData) {
       this.reservas = JSON.parse(reservasData);
     }
-  }
-
-  cambiarEstadoReserva(idUsuario: string) {
-    const body = {
-      accion: 'ESTADO',
-      ID_USUARIO: idUsuario,
-      ESTADO: 'ACEPTADO'
-    };
-
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': ''
-    });
-
-    this.http.post(this.apiUrl, body, { headers: headers })
-      .subscribe(
-        (response: any) => {
-          if (response.success) {
-            console.log('Estado cambiado a ACEPTADO para el usuario:', idUsuario);
-            const reserva = this.reservas.find(r => r.ID_USUARIO === idUsuario);
-            if (reserva) {
-              reserva.ESTADO = 'ACEPTADO';
-            }
-          } else {
-            console.error('Error al cambiar el estado:', response.message);
-          }
-        },
-        (error) => {
-          console.error('Error en la solicitud:', error);
-        }
-      );
-  }
-
-  cancelarReserva(idUsuario: string, idReservas: string) {
-    const body = {
-      accion: 'CANCELAR',
-      ID_USUARIO: idUsuario,
-      ID_RESERVAS: idReservas
-    };
-
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': ''
-    });
-
-    this.http.post(this.apiUrl, body, { headers: headers })
-      .subscribe(
-        (response: any) => {
-          if (response.success) {
-            console.log('Reserva cancelada para el usuario:', idUsuario);
-            this.reservas = this.reservas.filter(r => r.ID_RESERVAS !== idReservas);
-          } else {
-            console.error('Error al cancelar la reserva:', response.message);
-          }
-        },
-        (error) => {
-          console.error('Error en la solicitud de cancelación:', error);
-        }
-      );
   }
   
 }

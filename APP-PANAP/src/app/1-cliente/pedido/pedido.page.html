@@ -4,14 +4,14 @@
     <ion-icon name="close" (click)="cerrarPopover()" class="iconoCerrar"></ion-icon>
 
     <div class="botonesToggle">
-      <ion-button (click)="seleccionarFormulario('cantidad')"
-        [color]="formularioActual === 'cantidad' ? 'success' : 'medium'" class="diseñoBotones">Moneda</ion-button>
+    <ion-button (click)="seleccionarFormulario('cantidad')"
+      [color]="formularioActual === 'cantidad' ? 'success' : 'medium'" class="diseñoBotones">Moneda</ion-button>
       <ion-button (click)="seleccionarFormulario('moneda')"
         [color]="formularioActual === 'moneda' ? 'success' : 'medium'" class="diseñoBotones">Cantidad</ion-button>
     </div>
 
     <div class="ordenContenido1">
-      <form *ngIf="formularioActual === 'moneda'" (ngSubmit)="enviarFormularioMoneda()">
+      <form *ngIf="formularioActual === 'cantidad'" (ngSubmit)="enviarFormularioMoneda()">
         
         <h1 class="cantidadPedido">¿Cuanto vas a pedir?</h1>
         <ion-item class="ordenPedidoPan" lines="none">
@@ -48,7 +48,7 @@
     </div>
 
     <div class="ordenContenido2">
-      <form *ngIf="formularioActual === 'cantidad'" (ngSubmit)="enviarFormularioCantidad()">
+      <form *ngIf="formularioActual === 'moneda'" (ngSubmit)="enviarFormularioCantidad()">
         <h1 class="colocarCantidades">Ingresa la cantidad de pan que quieras reservar</h1>
         <div class="campoIndividual" lines="none">
           <ion-label class="textoInput">Hallulla</ion-label>
