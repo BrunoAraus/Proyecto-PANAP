@@ -78,7 +78,8 @@ export class PedidoPage {
       ID_USUARIO: this.usuario.id,
       HALLULLA: 'NULL',
       MARRAQUETA: 'NULL',
-      TIPO_PAN: this.tipo
+      TIPO_PAN: this.tipo,
+      TIPO: "CANTIDAD"
     };
 
     const headers = new HttpHeaders({
@@ -110,7 +111,8 @@ export class PedidoPage {
       ID_USUARIO: this.usuario.id,
       HALLULLA: this.hallulla,
       MARRAQUETA: this.marraqueta,
-      TIPO_PAN: 'NO'
+      TIPO_PAN: 'NO',
+      TIPO: "MONEDA"
     };
 
     const headers = new HttpHeaders({
