@@ -72,8 +72,8 @@ body,ion-content::part(background) {
   }
 
   .custom-popover-css2 {
-    --width: 65%;   /* Ancho del popover, puedes ajustarlo según sea necesario */
-    --height: auto; /* Altura máxima del popover */
+    --width: 75%;   /* Ancho del popover, puedes ajustarlo según sea necesario */
+    --height: 45%; /* Altura máxima del popover */
     --backdrop-opacity: 0.1; /* Ajusta la opacidad del fondo */
     --background-color: #fff;
   }
