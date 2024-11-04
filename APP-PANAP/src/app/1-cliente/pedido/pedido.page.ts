@@ -76,9 +76,9 @@ export class PedidoPage {
       NOMBRE_R: this.usuario.nombre,
       APELLIDO_R: this.usuario.apellido,
       ID_USUARIO: this.usuario.id,
-      HALLULLA: 'NULL',
-      MARRAQUETA: 'NULL',
-      TIPO_PAN: this.tipo,
+      HALLULLA: this.hallulla,
+      MARRAQUETA: this.marraqueta,
+      TIPO_PAN: 'NO',
       TIPO: "CANTIDAD"
     };
 
@@ -105,13 +105,13 @@ export class PedidoPage {
       accion: 'registrarDatosNegocio',
       ID_NEGOCIO: this.idNegocio,
       R_CODIGO: codigoAleatorio,
-      R_VALOR: '0',
+      R_VALOR: this.r_valor,
       NOMBRE_R: this.usuario.nombre,
       APELLIDO_R: this.usuario.apellido,
       ID_USUARIO: this.usuario.id,
-      HALLULLA: this.hallulla,
-      MARRAQUETA: this.marraqueta,
-      TIPO_PAN: 'NO',
+      HALLULLA: "0",
+      MARRAQUETA: "0",
+      TIPO_PAN: this.tipo,
       TIPO: "MONEDA"
     };
 
