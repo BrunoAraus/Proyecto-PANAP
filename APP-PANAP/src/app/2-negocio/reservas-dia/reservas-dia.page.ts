@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { NavController, PopoverController } from '@ionic/angular';
+import { DetallesPage } from '../detalles/detalles.page';
 
 @Component({
   selector: 'app-reservas-dia',
@@ -16,11 +17,31 @@ export class ReservasDiaPage implements OnInit {
   apiUrl = 'https://panapp.duckdns.org/rest/API_PRUEBA.php';
   intervalId: any;
 
-  constructor(private http: HttpClient, private navCtrl: NavController) {}
+  constructor(
+    private http: HttpClient, 
+    private navCtrl: NavController,
+    private popoverController: PopoverController) {}
 
   ngOnInit() {
     this.reconectar();
     this.cargarDatos();
+  }
+
+  async presentPopover(negocio: any) {
+    const popover = await this.popoverController.create({
+      component: DetallesPage,
+      componentProps: {
+        idNegocio: negocio.ID_NEGOCIO
+      },
+      translucent: true, 
+      cssClass: 'custom-popover-css3'
+    });
+  
+    await popover.present();
+  
+  
+    const { data } = await popover.onWillDismiss();
+    console.log('Popover cerrado: ', data);
   }
 
   reconectar() {
@@ -142,4 +163,5 @@ export class ReservasDiaPage implements OnInit {
         }
       );
   }
+  
 }

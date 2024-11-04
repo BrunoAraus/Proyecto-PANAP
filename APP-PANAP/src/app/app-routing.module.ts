@@ -147,6 +147,10 @@ const routes: Routes = [
     path: 'informacion-negocio-foto',
     loadChildren: () => import('./2-negocio/informacion-negocio-foto/informacion-negocio-foto.module').then( m => m.InformacionNegocioFotoPageModule)
   },
+  {
+    path: 'detalles',
+    loadChildren: () => import('./2-negocio/detalles/detalles.module').then( m => m.DetallesPageModule)
+  },
   
   {
     path: 'tabs-cliente',
@@ -243,6 +247,10 @@ const routes: Routes = [
         path: 'contacto',
         loadChildren: () => import('./2-negocio/contacto/contacto.module').then( m => m.ContactoPageModule)
       },
+      {
+        path: 'detalles',
+        loadChildren: () => import('./2-negocio/detalles/detalles.module').then( m => m.DetallesPageModule)
+      },
     ]
   },
 
@@ -272,6 +280,7 @@ const routes: Routes = [
       },
     ]
   },
+
 
 ];
 
