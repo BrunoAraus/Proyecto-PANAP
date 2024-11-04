@@ -1,70 +1,80 @@
 <ion-content [fullscreen]="true">
-  <ion-icon name="close" (click)="cerrarPopover()" class="iconoCerrar"></ion-icon>
+  <div class="contenedorGeneral">
 
-  <div class="ordenContenido">
+    <ion-icon name="close" (click)="cerrarPopover()" class="iconoCerrar"></ion-icon>
+
     <div class="botonesToggle">
-      <ion-button (click)="seleccionarFormulario('cantidad')" [color]="formularioActual === 'cantidad' ? 'primary' : 'medium'">Cantidad</ion-button>
-      <ion-button (click)="seleccionarFormulario('moneda')" [color]="formularioActual === 'moneda' ? 'primary' : 'medium'">Moneda</ion-button>
+      <ion-button (click)="seleccionarFormulario('cantidad')"
+        [color]="formularioActual === 'cantidad' ? 'success' : 'medium'" class="diseñoBotones">Moneda</ion-button>
+      <ion-button (click)="seleccionarFormulario('moneda')"
+        [color]="formularioActual === 'moneda' ? 'success' : 'medium'" class="diseñoBotones">Cantidad</ion-button>
     </div>
-    <form *ngIf="formularioActual === 'cantidad'" (ngSubmit)="enviarFormularioCantidad()">
-      <ion-item class="ordenPedidoPan" lines="none">
-        <div class="ordenInput">
-          <h1 class="signoPeso">$</h1>
-          <ion-input name="r_valor" [(ngModel)]="r_valor" Type="text" (ionInput)="formatearNumero($event)" maxlength="5" required class="espacioPedido" placeholder="0"></ion-input>
-        </div>
-      </ion-item>
-      <ion-label *ngIf="errorMensaje" color="danger" class="mensajeError">
-        {{ errorMensaje }}
-      </ion-label>
-      <ion-radio-group class="ordenSeleccion" [(ngModel)]="tipo" name="tipo">
-        <div class="ordenCasillas1">
-          <h1 class="textoInterno">Hallulla</h1>
-          <ion-radio value="Hallulla" class="ordenCasilla1">o</ion-radio>
-        </div>
-        <div class="ordenCasillas1">
-          <h1 class="textoInterno">Marraqueta</h1>
-          <ion-radio value="Marraqueta" class="ordenCasilla1">o</ion-radio>
-        </div>
-        <div class="ordenCasillas1">
-          <h1 class="textoInterno">Mixto</h1>
-          <ion-radio value="Mixto" class="ordenCasilla1">o</ion-radio>
-        </div>
-      </ion-radio-group>
 
-      <div class="posicionBtn">
-        <ion-button type="submit" class="btnPedido">Realizar pedido</ion-button>
+    <div class="ordenContenido1">
+      <form *ngIf="formularioActual === 'cantidad'" (ngSubmit)="enviarFormularioCantidad()">
         
-      </div>
-      
-    </form>
-    <form *ngIf="formularioActual === 'moneda'" (ngSubmit)="enviarFormularioMoneda()">
-      <div class="campoIndividual" lines="none">
-        <ion-label class="textoInput">Hallulla</ion-label>
-        <ion-item class="campo-item" lines="none">
-          <ion-input
-            name="hallulla"
-            maxlength="1"
-            [(ngModel)]="hallulla"
-            [ngModelOptions]="{standalone: true}"
-            required
-          ></ion-input>
+        <h1 class="cantidadPedido">¿Cuanto vas a pedir?</h1>
+        <ion-item class="ordenPedidoPan" lines="none">
+          <div class="ordenInput">
+            <h1 class="signoPeso">$</h1>
+            <ion-input name="r_valor" [(ngModel)]="r_valor" Type="text" (ionInput)="formatearNumero($event)"
+              maxlength="5" required class="espacioPedido" placeholder="0"></ion-input>
+          </div>
         </ion-item>
-      </div>
-      <div class="campoIndividual" lines="none">
-        <ion-label class="textoInput">Marraqueta</ion-label>
-        <ion-item class="campo-item" lines="none">
-          <ion-input
-            name="marraqueta"
-            maxlength="1"
-            [(ngModel)]="marraqueta"
-            [ngModelOptions]="{standalone: true}"
-            required
-          ></ion-input>
-        </ion-item>
-      </div>
-      <div class="posicionBtn">
-        <ion-button type="submit" class="btnPedido">Realizar pedido</ion-button>
-      </div>
-    </form>
+        
+        <ion-label *ngIf="errorMensaje" class="mensajeError">
+          {{ errorMensaje }}
+        </ion-label>
+        <ion-radio-group class="ordenSeleccion" [(ngModel)]="tipo" name="tipo">
+          <h1 class="textoTipos">Elige formato</h1>
+          <div class="ordenCasillas1">
+            <h1 class="textoInterno">Hallulla</h1>
+            <ion-radio value="Hallulla" class="ordenCasilla1"></ion-radio>
+          </div>
+          <div class="ordenCasillas1">
+            <h1 class="textoInterno">Marraqueta</h1>
+            <ion-radio value="Marraqueta" class="ordenCasilla1"></ion-radio>
+          </div>
+          <div class="ordenCasillas1">
+            <h1 class="textoInterno">Surtido</h1>
+            <ion-radio value="Mixto" class="ordenCasilla1"></ion-radio>
+          </div>
+        </ion-radio-group>
+
+        <div class="posicionBtn">
+          <ion-button type="submit" class="btnPedido">Realizar pedido</ion-button>
+        </div>
+      </form>
+    </div>
+
+    <div class="ordenContenido2">
+      <form *ngIf="formularioActual === 'moneda'" (ngSubmit)="enviarFormularioMoneda()">
+        <h1 class="colocarCantidades">Ingresa la cantidad de pan que quieras reservar</h1>
+        <div class="campoIndividual" lines="none">
+          <ion-label class="textoInput">Hallulla</ion-label>
+          <ion-item class="campo-item" lines="none">
+            <ion-input name="hallulla" maxlength="1" [(ngModel)]="hallulla" [ngModelOptions]="{standalone: true}"
+              required></ion-input>
+          </ion-item>
+        </div>
+
+        <div class="campoIndividual" lines="none">
+          <ion-label class="textoInput">Marraqueta</ion-label>
+          <ion-item class="campo-item" lines="none">
+            <ion-input name="marraqueta" maxlength="1" [(ngModel)]="marraqueta" [ngModelOptions]="{standalone: true}"
+              required></ion-input>
+          </ion-item>
+        </div>
+
+        <ion-label *ngIf="errorMensaje" color="danger" class="mensajeError">
+          {{ errorMensaje }}
+        </ion-label>
+
+        <div class="posicionBtn1">
+          <ion-button type="submit" class="btnPedido">Realizar pedido</ion-button>
+        </div>
+      </form>
+    </div>
+
   </div>
 </ion-content>

@@ -1,12 +1,13 @@
 <ion-content [fullscreen]="true">
   <div id="contenido">
 
-    <ng-container *ngIf="!reserva || reserva.length === 0; else mostrarReserva">
+    <ng-container *ngIf="!reserva || reserva.length === 0; else mostrarReserva" class="pedidoPendiente">
       <h1 id="titulo">Realizar pedido</h1>
       <h2 id="subTitulo">Selecciona un negocio</h2>
       <div id="hud">El punto café eres tú</div>
       <div id="mapaPedido"></div>
     </ng-container>
+
     <ng-template #mostrarReserva>
       <h1>Hiciste tu reserva</h1>
       <div id="informacionReserva">
@@ -18,5 +19,6 @@
         <p><strong>Fecha:</strong> {{ reserva[0].FECHA }}</p>
       </div>
     </ng-template>
+    
   </div>
 </ion-content>
