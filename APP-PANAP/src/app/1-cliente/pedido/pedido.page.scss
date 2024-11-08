@@ -35,6 +35,12 @@ ion-content {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+ion-content::-webkit-scrollbar {
+  display: none;
 }
 
 .contenedorGeneral {
@@ -44,6 +50,12 @@ ion-content {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+ion-content::-webkit-scrollbar {
+  display: none;
 }
 
 .ordenContenido1 {
@@ -53,6 +65,12 @@ ion-content {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.ordenContenido1::-webkit-scrollbar {
+  display: none;
 }
 
 .ordenContenido1 form {
@@ -142,7 +160,7 @@ ion-item {
   align-items: center;
   text-align: center;
   justify-content: center;
-  margin: 0px 5px 5px 5px;
+  margin: 0px 5px 30px 5px;
   padding: 0px 10px 0px 10px;
 }
 
@@ -223,6 +241,12 @@ ion-radio.radio-checked::part(mark) {
   justify-content: center;
   gap: 10px;
   background-color: #fff;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.ordenContenido2::-webkit-scrollbar {
+  display: none;
 }
 
 .ordenContenido2 form {

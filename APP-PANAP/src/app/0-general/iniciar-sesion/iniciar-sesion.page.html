@@ -4,23 +4,26 @@
       <h1 class="titulo">Iniciar sesión</h1>
       <h2 id="subTitulo">Rellene los campos (<span class="obligatorio">*</span>)</h2>
     </div>
-    <form (ngSubmit)="iniciarSesion()"> 
+    <form (ngSubmit)="iniciarSesion()">
       <ion-label position="stacked" class="etiqueta">Correo (<span class="obligatorio">*</span>)</ion-label>
       <ion-item lines="none" class="campo1">
-        <ion-input [(ngModel)]="correo" name="correo" type="email" placeholder="ejemplo@gmail.com" class="input"></ion-input>
+        <ion-input [(ngModel)]="correo" name="correo" type="email" placeholder="ejemplo@gmail.com"
+          class="input"></ion-input>
       </ion-item>
 
       <ion-label position="stacked" class="etiqueta">Contraseña (<span class="obligatorio">*</span>)</ion-label>
       <ion-item lines="none" class="campo2">
         <div id="unionClave">
-          <ion-input [(ngModel)]="clave" [type]="mostrarContrasena ? 'text' : 'password'" name="clave" type="password" placeholder="Contraseña..." class="input"></ion-input>
-          <ion-icon slot="end" [name]="mostrarContrasena ? 'eye-off-outline' : 'eye-outline'" (click)="alternarMostrarContrasena()"
-        ></ion-icon>
+          <ion-input [(ngModel)]="clave" [type]="mostrarContrasena ? 'text' : 'password'" name="clave" type="password"
+            placeholder="Contraseña..." class="input"></ion-input>
+          <ion-icon slot="end" [name]="mostrarContrasena ? 'eye-off-outline' : 'eye-outline'"
+            (click)="alternarMostrarContrasena()"></ion-icon>
         </div>
       </ion-item>
 
       <div class="restablecer">
-        <span>¿Olvidaste tu contraseña?</span><a href="/validar-correo" class="enlace-restablecer"><span>Restablecer</span></a>
+        <span>¿Olvidaste tu contraseña?</span><a href="/validar-correo"
+          class="enlace-restablecer"><span>Restablecer</span></a>
       </div>
 
       <ion-button expand="block" type="submit" class="boton-acceder">
@@ -33,4 +36,3 @@
     </div>
   </div>
 </ion-content>
-

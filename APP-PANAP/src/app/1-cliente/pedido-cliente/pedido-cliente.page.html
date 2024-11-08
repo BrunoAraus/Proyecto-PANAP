@@ -9,14 +9,17 @@
     </ng-container>
 
     <ng-template #mostrarReserva>
-      <h1>Hiciste tu reserva</h1>
-      <div id="informacionReserva">
-        <p><strong>Negocio:</strong> {{ reserva[0].N_NOMBRE }}</p>
-        <p><strong>Código de reserva:</strong> {{ reserva[0].R_CODIGO }}</p>
-        <p><strong>Valor de reserva:</strong> ${{ reserva[0].R_VALOR }}</p>
-        <p><strong>Nombre:</strong> {{ reserva[0].NOMBRE_R }} {{ reserva[0].APELLIDO_R }}</p>
-        <p><strong>Estado:</strong> {{ reserva[0].ESTADO }}</p>
-        <p><strong>Fecha:</strong> {{ reserva[0].FECHA }}</p>
+      <h1 class="titularReserva">¡Hiciste tu reserva!</h1>
+      <div class="contenidoReserva">
+        <h2 class="textoTienda">-{{ reserva[0].N_NOMBRE }}-</h2>
+        <h2 class="textoReserva">Código de reserva<h3 class="textoInterno">{{ reserva[0].R_CODIGO }}</h3></h2>
+        <h2 class="textoReserva">Valor de reserva<h3 class="textoInterno">${{ reserva[0].R_VALOR }}</h3></h2>
+        <h2 class="textoReserva">Nombre<h3 class="textoInterno">{{ reserva[0].NOMBRE_R }} {{ reserva[0].APELLIDO_R }}</h3></h2>
+        <h2 class="textoReserva">Estado<h3 class="textoInterno">{{ reserva[0].ESTADO }}</h3></h2>
+        <h2 class="textoReserva">Fecha<h3 class="textoInterno">{{ reserva[0].FECHA }}</h3></h2>
+      </div>
+      <div class="textosImportantes">
+        <h1 class="textoImportante"><span class="destacar">Importante: </span>No podrás realizar otro pedido durante el día hasta que vayas a retirarlo al negocio o cuando se cancele automaticamente.</h1>
       </div>
     </ng-template>
     
