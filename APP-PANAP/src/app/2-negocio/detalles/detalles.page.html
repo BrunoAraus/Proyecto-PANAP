@@ -1,24 +1,36 @@
 <ion-content [fullscreen]="true">
-    <h1>Detalles de la Reserva</h1>
-    <div>
-        <p>ID de Reserva: {{ detallesReserva?.ID_RESERVAS }}</p>
-        <p>Nombre: {{ detallesReserva?.NOMBRE_R }} {{ detallesReserva?.APELLIDO_R }}</p>
-        <p>Codigo de la reserva: {{ detallesReserva?.R_CODIGO }}</p>   
-        <p>Estado de la reserva: {{ detallesReserva?.ESTADO }}</p>
-        <p>Fecha de la reserva: {{ detallesReserva?.FECHA }}</p>
-    </div>
-    <ng-container *ngIf="!detallesReserva || detallesReserva.TIPO === 'MONEDA'; else mostrarReserva" class="reserva">
-        <div>
-            <p>Tipo Pan: {{ detallesReserva?.TIPO_PAN }}</p>
-            <p>Valor de Reserva: ${{ detallesReserva?.R_VALOR }}</p>
-        </div>
-    </ng-container>
-    <ng-template #mostrarReserva>
-      <div>
-        <p>Cantidad de Hallullas: {{ detallesReserva?.HALLULLA }}</p>
-        <p>Cantidad de Marraqueta: {{ detallesReserva?.MARRAQUETA }}</p>
+  <div class="contenedor">
+    <ion-icon name="close" (click)="cerrarPopover()" class="iconoCerrar"></ion-icon>
+    <h1 class="titularReserva">Detalles de la Reserva</h1>
+      <div class="contenidoReserva">
+
+        <h2 class="textoReserva">Reserva N°<h3 class="textoInterno">{{ detallesReserva?.ID_RESERVAS }}</h3></h2>
+        <h2 class="textoReserva">Nombre<h3 class="textoInterno">{{ detallesReserva?.NOMBRE_R }} {{ detallesReserva?.APELLIDO_R }}</h3></h2>
+        <h2 class="textoReserva">Código de la reserva<h3 class="textoInterno">{{ detallesReserva?.R_CODIGO }}</h3></h2>
+        <h2 class="textoReserva">Estado de la reserva<h3 class="textoInterno">{{ detallesReserva?.ESTADO }}</h3></h2>
+        <h2 class="textoReserva">Fecha de la reserva<h3 class="textoInterno">{{ detallesReserva?.FECHA }}</h3></h2>
+        
+        <ng-container *ngIf="!detallesReserva || detallesReserva.TIPO === 'MONEDA'; else mostrarReserva" class="reserva">
+            <div>
+              <h2 class="textoReserva">Formato pedido<h3 class="textoInterno">{{ detallesReserva?.TIPO_PAN }}</h3></h2>
+              <h2 class="textoReserva">Valor de Reserva<h3 class="textoInterno">${{ detallesReserva?.R_VALOR }}</h3></h2>
+            </div>
+        </ng-container>
+        
+        <ng-template #mostrarReserva>
+          <div>
+            <h2 class="textoReserva">Cantidad de Hallullas<h3 class="textoInterno">{{ detallesReserva?.HALLULLA }}</h3></h2>
+            <h2 class="textoReserva">Cantidad de Marraqueta<h3 class="textoInterno">{{ detallesReserva?.MARRAQUETA }}</h3></h2>
+          </div>
+        </ng-template>
+
       </div>
-    </ng-template>
-    <ion-icon name="close-circle-outline" (click)="cancelarReserva(detallesReserva?.ID_USUARIO, detallesReserva?.ID_RESERVAS)" class="acciones1"></ion-icon>
-    <ion-icon name="checkmark-circle-outline" (click)="cambiarEstadoReserva(detallesReserva?.ID_USUARIO)" class="acciones2"></ion-icon>
+
+    <h1 class="accion">¿Entregar?</h1>
+
+    <div class="ordenBotones">
+      <ion-icon name="close-circle-outline" (click)="cancelarReserva(detallesReserva?.ID_USUARIO, detallesReserva?.ID_RESERVAS)" class="acciones1"></ion-icon>
+      <ion-icon name="checkmark-circle-outline" (click)="cambiarEstadoReserva(detallesReserva?.ID_USUARIO)" class="acciones2"></ion-icon>
+    </div>
+  </div>
 </ion-content>

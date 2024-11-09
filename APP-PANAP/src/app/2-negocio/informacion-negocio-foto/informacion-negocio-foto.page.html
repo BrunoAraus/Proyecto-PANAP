@@ -1,9 +1,12 @@
 <ion-content [fullscreen]="true">
+  <div class="contenedor">
+
+    <h2 class="titularFoto">¡Sube una fotografía de tu negocio!</h2>
   
-  <h2>Subir fotografía</h2>
+    <input type="file" (change)="onFileSelected($event)" accept="image/*" />
+  
+    <ion-button expand="block" (click)="uploadPhoto()" class="boton-acceder">Subir fotografía</ion-button>
 
-  <input type="file" (change)="onFileSelected($event)" accept="image/*" />
-
-  <ion-button expand="block" (click)="uploadPhoto()">Subir Foto</ion-button>
+  </div>
   
 </ion-content>

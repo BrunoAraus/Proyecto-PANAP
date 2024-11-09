@@ -1,13 +1,77 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>preguntas-frecuentes</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">preguntas-frecuentes</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="contenedor">
+    <a href="/tabs-cliente/menu-cliente">
+      <ion-icon name="close" class="iconoVolver"></ion-icon>
+    </a>
+    <h1 class="tituloPrincipal">Preguntas frecuentes</h1>
+    <ion-accordion-group (ionChange)="accordionGroupChange($event)">
+      <ion-accordion value="1">
+        <ion-item slot="header" class="custom-header">
+          <ion-label>¿PanaP es de pago?</ion-label>
+        </ion-item>
+        <div class="ion-padding" slot="content">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Temporibus in quia eaque necessitatibus aliquam minus excepturi error. Velit impedit possimus, eum esse soluta quo dignissimos earum ea delectus adipisci tenetur eaque, qui et labore dolorum eius? Commodi inventore nam vero consequatur laborum recusandae maiores. Reiciendis suscipit molestiae odio, unde illo et. Quo nostrum in voluptatibus quam vitae officiis eveniet laborum aliquid fuga alias? Maxime sint illo vitae repudiandae, quas iusto asperiores explicabo ad, quaerat nesciunt earum veniam perferendis? Quia id aliquid nihil corporis repellendus, ratione rem hic necessitatibus, incidunt dolor ipsum dicta tempore ab minus aperiam officia, reiciendis quaerat cumque dolores exercitationem? Quod perferendis consectetur asperiores soluta in doloribus sed commodi impedit, voluptas provident explicabo eveniet eos voluptates quae cum.</div>
+      </ion-accordion>
+      <ion-accordion value="2">
+        <ion-item slot="header" class="custom-header">
+          <ion-label>¿Es seguro usar PanaP?</ion-label>
+        </ion-item>
+        <div class="ion-padding" slot="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit labore corporis beatae officia a totam nemo optio modi. Delectus doloribus beatae incidunt assumenda eum illo. Repudiandae pariatur ducimus consectetur sint, reiciendis suscipit eos. Sed nisi esse in voluptatem molestiae harum non, facilis animi molestias repellendus dolore exercitationem earum expedita officiis saepe tempora blanditiis. Iure vero, sed est repellendus neque quos qui autem deserunt architecto molestias fuga. Blanditiis, vero. Adipisci, repellat! Vitae suscipit, nisi doloribus in consequatur illo quos sit perferendis. Quod libero id sint, ratione, natus ea, amet dolores fugit iusto nihil architecto nesciunt vero facere eligendi tenetur nostrum dolorum!</div>
+      </ion-accordion>
+      <ion-accordion value="3">
+        <ion-item slot="header" class="custom-header">
+          <ion-label>¿Cuál es el objetivo de PanaP?</ion-label>
+        </ion-item>
+        <div class="ion-padding" slot="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi aperiam quidem ex dignissimos ducimus excepturi numquam velit nesciunt, harum quo ipsum natus officia iste quaerat, obcaecati quod aliquam facere fugit nobis deleniti. Illum delectus ab repudiandae eligendi temporibus doloribus, eum similique porro commodi aperiam rem! Blanditiis earum vitae quasi excepturi, saepe amet quam dolorem nostrum sunt quis dolor ipsum animi doloribus cupiditate temporibus mollitia libero provident corporis laborum nihil quae explicabo. Molestiae ab quia, aliquid veritatis possimus ipsam iste quo. Dolorem corrupti molestias fugit in deserunt fuga, dolores sequi, eum blanditiis odit, nostrum possimus architecto! Nihil recusandae sunt ex molestias.</div>
+      </ion-accordion>
+      <ion-accordion value="4">
+        <ion-item slot="header" class="custom-header">
+          <ion-label>¿Quiénes desarrollaron esta aplicación?</ion-label>
+        </ion-item>
+        <div class="ion-padding" slot="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi aperiam quidem ex dignissimos ducimus excepturi numquam velit nesciunt, harum quo ipsum natus officia iste quaerat, obcaecati quod aliquam facere fugit nobis deleniti. Illum delectus ab repudiandae eligendi temporibus doloribus, eum similique porro commodi aperiam rem! Blanditiis earum vitae quasi excepturi, saepe amet quam dolorem nostrum sunt quis dolor ipsum animi doloribus cupiditate temporibus mollitia libero provident corporis laborum nihil quae explicabo. Molestiae ab quia, aliquid veritatis possimus ipsam iste quo. Dolorem corrupti molestias fugit in deserunt fuga, dolores sequi, eum blanditiis odit, nostrum possimus architecto! Nihil recusandae sunt ex molestias.</div>
+      </ion-accordion>
+      <ion-accordion value="5">
+        <ion-item slot="header" class="custom-header">
+          <ion-label>¡Quiero pedir pan!</ion-label>
+        </ion-item>
+        <div class="ion-padding" slot="content">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Temporibus in quia eaque necessitatibus aliquam minus excepturi error. Velit impedit possimus, eum esse soluta quo dignissimos earum ea delectus adipisci tenetur eaque, qui et labore dolorum eius? Commodi inventore nam vero consequatur laborum recusandae maiores. Reiciendis suscipit molestiae odio, unde illo et. Quo nostrum in voluptatibus quam vitae officiis eveniet laborum aliquid fuga alias? Maxime sint illo vitae repudiandae, quas iusto asperiores explicabo ad, quaerat nesciunt earum veniam perferendis? Quia id aliquid nihil corporis repellendus, ratione rem hic necessitatibus, incidunt dolor ipsum dicta tempore ab minus aperiam officia, reiciendis quaerat cumque dolores exercitationem? Quod perferendis consectetur asperiores soluta in doloribus sed commodi impedit, voluptas provident explicabo eveniet eos voluptates quae cum.</div>
+      </ion-accordion>
+      <ion-accordion value="6">
+        <ion-item slot="header" class="custom-header">
+          <ion-label>¿Quién puede utilizar PanaP?</ion-label>
+        </ion-item>
+        <div class="ion-padding" slot="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit labore corporis beatae officia a totam nemo optio modi. Delectus doloribus beatae incidunt assumenda eum illo. Repudiandae pariatur ducimus consectetur sint, reiciendis suscipit eos. Sed nisi esse in voluptatem molestiae harum non, facilis animi molestias repellendus dolore exercitationem earum expedita officiis saepe tempora blanditiis. Iure vero, sed est repellendus neque quos qui autem deserunt architecto molestias fuga. Blanditiis, vero. Adipisci, repellat! Vitae suscipit, nisi doloribus in consequatur illo quos sit perferendis. Quod libero id sint, ratione, natus ea, amet dolores fugit iusto nihil architecto nesciunt vero facere eligendi tenetur nostrum dolorum!</div>
+      </ion-accordion>
+      <ion-accordion value="7">
+        <ion-item slot="header" class="custom-header">
+          <ion-label>¿Es sólo para Pomaire?</ion-label>
+        </ion-item>
+        <div class="ion-padding" slot="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi aperiam quidem ex dignissimos ducimus excepturi numquam velit nesciunt, harum quo ipsum natus officia iste quaerat, obcaecati quod aliquam facere fugit nobis deleniti. Illum delectus ab repudiandae eligendi temporibus doloribus, eum similique porro commodi aperiam rem! Blanditiis earum vitae quasi excepturi, saepe amet quam dolorem nostrum sunt quis dolor ipsum animi doloribus cupiditate temporibus mollitia libero provident corporis laborum nihil quae explicabo. Molestiae ab quia, aliquid veritatis possimus ipsam iste quo. Dolorem corrupti molestias fugit in deserunt fuga, dolores sequi, eum blanditiis odit, nostrum possimus architecto! Nihil recusandae sunt ex molestias.</div>
+      </ion-accordion>
+      <ion-accordion value="8">
+        <ion-item slot="header" class="custom-header">
+          <ion-label>¿Puedo vender Pan?</ion-label>
+        </ion-item>
+        <div class="ion-padding" slot="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi aperiam quidem ex dignissimos ducimus excepturi numquam velit nesciunt, harum quo ipsum natus officia iste quaerat, obcaecati quod aliquam facere fugit nobis deleniti. Illum delectus ab repudiandae eligendi temporibus doloribus, eum similique porro commodi aperiam rem! Blanditiis earum vitae quasi excepturi, saepe amet quam dolorem nostrum sunt quis dolor ipsum animi doloribus cupiditate temporibus mollitia libero provident corporis laborum nihil quae explicabo. Molestiae ab quia, aliquid veritatis possimus ipsam iste quo. Dolorem corrupti molestias fugit in deserunt fuga, dolores sequi, eum blanditiis odit, nostrum possimus architecto! Nihil recusandae sunt ex molestias.</div>
+      </ion-accordion>
+      <ion-accordion value="9">
+        <ion-item slot="header" class="custom-header">
+          <ion-label>¿Qué pasa si no retiro el Pan?</ion-label>
+        </ion-item>
+        <div class="ion-padding" slot="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi aperiam quidem ex dignissimos ducimus excepturi numquam velit nesciunt, harum quo ipsum natus officia iste quaerat, obcaecati quod aliquam facere fugit nobis deleniti. Illum delectus ab repudiandae eligendi temporibus doloribus, eum similique porro commodi aperiam rem! Blanditiis earum vitae quasi excepturi, saepe amet quam dolorem nostrum sunt quis dolor ipsum animi doloribus cupiditate temporibus mollitia libero provident corporis laborum nihil quae explicabo. Molestiae ab quia, aliquid veritatis possimus ipsam iste quo. Dolorem corrupti molestias fugit in deserunt fuga, dolores sequi, eum blanditiis odit, nostrum possimus architecto! Nihil recusandae sunt ex molestias.</div>
+      </ion-accordion>
+      <ion-accordion value="10">
+        <ion-item slot="header" class="custom-header">
+          <ion-label>¿Cómo se retira el Pan?</ion-label>
+        </ion-item>
+        <div class="ion-padding" slot="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi aperiam quidem ex dignissimos ducimus excepturi numquam velit nesciunt, harum quo ipsum natus officia iste quaerat, obcaecati quod aliquam facere fugit nobis deleniti. Illum delectus ab repudiandae eligendi temporibus doloribus, eum similique porro commodi aperiam rem! Blanditiis earum vitae quasi excepturi, saepe amet quam dolorem nostrum sunt quis dolor ipsum animi doloribus cupiditate temporibus mollitia libero provident corporis laborum nihil quae explicabo. Molestiae ab quia, aliquid veritatis possimus ipsam iste quo. Dolorem corrupti molestias fugit in deserunt fuga, dolores sequi, eum blanditiis odit, nostrum possimus architecto! Nihil recusandae sunt ex molestias.</div>
+      </ion-accordion>
+      <ion-accordion value="11">
+        <ion-item slot="header" class="custom-header">
+          <ion-label>¿Cómo aseguro mi reserva?</ion-label>
+        </ion-item>
+        <div class="ion-padding" slot="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi aperiam quidem ex dignissimos ducimus excepturi numquam velit nesciunt, harum quo ipsum natus officia iste quaerat, obcaecati quod aliquam facere fugit nobis deleniti. Illum delectus ab repudiandae eligendi temporibus doloribus, eum similique porro commodi aperiam rem! Blanditiis earum vitae quasi excepturi, saepe amet quam dolorem nostrum sunt quis dolor ipsum animi doloribus cupiditate temporibus mollitia libero provident corporis laborum nihil quae explicabo. Molestiae ab quia, aliquid veritatis possimus ipsam iste quo. Dolorem corrupti molestias fugit in deserunt fuga, dolores sequi, eum blanditiis odit, nostrum possimus architecto! Nihil recusandae sunt ex molestias.</div>
+      </ion-accordion>
+    </ion-accordion-group>
+  </div>
+  
 </ion-content>

@@ -1,5 +1,7 @@
 <ion-content [fullscreen]="true">
-  <ion-icon name="chevron-back" class="iconoVolver"></ion-icon>
+  <a href="/tabs-negocio/reservas-negocio">
+    <ion-icon name="chevron-back" class="iconoVolver" href="/tabs-negocio/reservas-negocio"></ion-icon>
+  </a>
   <div class="contenido">
     <h1 class="titulo">Reservas del Día</h1>
   
@@ -11,9 +13,8 @@
     <div class="contenidoTabla">
       <ion-row class="encabezado">
         <ion-col class="titulares">Nombre</ion-col>
-        <ion-col class="titulares">Valor Pan</ion-col>
         <ion-col class="titulares">Codigo</ion-col>
-        <ion-col class="titulares">Contenido</ion-col>
+        <ion-col class="titulares">Estado</ion-col>
         <ion-col class="titulares">Acciones</ion-col>
       </ion-row>
 
@@ -22,9 +23,8 @@
           <ion-col class="contenidoCeldas">{{ reserva.NOMBRE_R }} {{ reserva.APELLIDO_R }}</ion-col>
           <ion-col class="contenidoCeldas">{{ reserva.R_CODIGO }}</ion-col>
           <ion-col class="contenidoCeldas4">{{ reserva.ESTADO }}</ion-col>
-          <ion-col class="contenidoCeldas7">{{ reserva.TIPO }}</ion-col>
           <ion-col class="contenidoCeldas2">            
-            <ion-icon name="information-circle-outline" (click)="presentPopover(reserva)" class="acciones3"></ion-icon>
+            <ion-icon name="ellipsis-horizontal-circle-outline" (click)="presentPopover(reserva)" class="iconoAcciones"></ion-icon>
           </ion-col>
         </ion-row>
       </ion-grid>   

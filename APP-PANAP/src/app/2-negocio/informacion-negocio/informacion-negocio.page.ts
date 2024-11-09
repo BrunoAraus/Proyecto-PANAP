@@ -117,7 +117,7 @@ export class InformacionNegocioPage {
           (response: any) => {
             if (response.success) {
               console.log('Negocio registrado correctamente:', response.message);
-              this.navCtrl.navigateBack('/pruebas-api'); 
+              this.navCtrl.navigateBack('/informacion-negocio-foto'); 
             } else {
               this.errorMensaje = 'Error al registrar el negocio: ' + response.message;
               const alerta = document.getElementById("alertaError");

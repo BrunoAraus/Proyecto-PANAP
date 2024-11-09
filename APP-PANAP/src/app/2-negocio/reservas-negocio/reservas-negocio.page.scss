@@ -20,6 +20,7 @@
     padding: 10px 5px 50px 5px;
     margin: 0px 5px 0px 5px;
     text-align: center;
+    font-style: italic;
 }
 
 ion-button {
@@ -56,5 +57,6 @@ ion-button {
 .botones{
     font-size: 20px;
     text-transform: none;
-    font-weight: lighter;
+    font-weight: bold;
+    color:  #fff !important;
   }

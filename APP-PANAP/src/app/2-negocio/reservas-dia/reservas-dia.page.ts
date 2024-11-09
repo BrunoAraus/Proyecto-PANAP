@@ -35,7 +35,7 @@ export class ReservasDiaPage implements OnInit {
         detallesReserva: reserva
       },
       translucent: true,
-      cssClass: 'custom-popover-css3'
+      cssClass: 'custom-popover-css4'
     });
   
     await popover.present();

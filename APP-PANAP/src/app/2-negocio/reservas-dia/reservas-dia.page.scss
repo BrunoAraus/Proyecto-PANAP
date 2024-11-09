@@ -16,10 +16,11 @@
 
 .contenido{
   width: 100%;
-  height: auto;
+  height: 690px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 0px 0px 20px 0px;
 }
 
 .filtradorPan{
@@ -72,12 +73,12 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    font-size: 18px !important;
+    font-size: 15px !important;
     font-style: italic;
   }
   
   .encabezado {
-    width: 100%;
+    width: 370px;
     height: 60px;
     background-color: rgb(65, 33, 206);
     display: flex;
@@ -135,10 +136,11 @@
   }
 
   .contenidoTabla{
-    width: 90%;
-    height: 625px;
+    width: 370px;
+    height: 80%;
     overflow-y: auto;
     margin: 25px 0px 30px 0px;
+    // padding: 10px;
     border-radius: 0px 0px 15px 15px;
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -148,14 +150,8 @@
     display: none;
   }
 
-  // .fila-datos {
-  //   background-color: #fff;
-  //   text-align: center;
-  //   padding: 12px 0;
-  //   border-bottom: 1px solid #ddd;
-  
-  //   &:nth-child(even) {
-  //     background-color: #f1f1f1;
-  //   }
-  // }
+  .iconoAcciones{
+    width: 25px;
+    height: 25px;
+  }
   
