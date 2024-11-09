@@ -12,12 +12,35 @@ export class IniciarSesionPage {
 
   correo: string = ''; 
   clave: string = '';  
+  errorCorreo: string = ''; 
+  errorClave: string = '';
   errorMensaje: string = ''; 
   mostrarContrasena: boolean = false;
 
   constructor(private http: HttpClient, private navCtrl: NavController) {}
 
   iniciarSesion() {
+    
+    this.errorCorreo = '';
+    this.errorClave = '';
+    this.errorMensaje = '';
+
+    // Realizar validaciones
+    if (!this.correo) {
+      this.errorCorreo = 'Debes colocar el correo.';
+    } else if (!this.validarCorreo()) {
+      this.errorCorreo = 'Correo no encontrado o inválido.';
+    }
+
+    if (!this.clave) {
+      this.errorClave = 'Debes colocar la contraseña.';
+    }
+
+    // Si hay errores en el correo o la contraseña, detiene el inicio de sesión
+    if (this.errorCorreo || this.errorClave) {
+      return;
+    }
+
     const body = {
       accion: 'login',
       correo: this.correo,
@@ -71,12 +94,12 @@ export class IniciarSesionPage {
             }
                        
           } else {
-            this.errorMensaje = response.message; 
+            this.errorCorreo = response.message; 
           }
         },
         (error) => {
           console.error('Error al consumir la API:', error);
-          this.errorMensaje = 'Ocurrió un error inesperado. Inténtalo más tarde.';
+          this.errorCorreo = 'Ocurrió un error inesperado. Inténtalo más tarde.';
         }
       );
   }
@@ -89,6 +112,15 @@ export class IniciarSesionPage {
     const hiddenPart = '*'.repeat(contrasena.length - 2);
     return `${firstChar}${hiddenPart}${lastChar}`;
   }
+  validarCorreo(): boolean {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(this.correo);
+  }
+
+  validarClave(): boolean {
+    return this.clave.length >= 6;
+  }
+
   alternarMostrarContrasena() {
     this.mostrarContrasena = !this.mostrarContrasena;
   }

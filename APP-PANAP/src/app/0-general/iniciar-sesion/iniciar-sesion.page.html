@@ -8,28 +8,39 @@
       <ion-label position="stacked" class="etiqueta">Correo (<span class="obligatorio">*</span>)</ion-label>
       <ion-item lines="none" class="campo1">
         <ion-input [(ngModel)]="correo" name="correo" type="email" placeholder="ejemplo@gmail.com"
-          class="input"></ion-input>
+          class="input" ></ion-input>
+          
       </ion-item>
+      <ion-label *ngIf="errorCorreo" class="error">{{ errorCorreo }}</ion-label>
+      
 
       <ion-label position="stacked" class="etiqueta">Contraseña (<span class="obligatorio">*</span>)</ion-label>
       <ion-item lines="none" class="campo2">
         <div id="unionClave">
           <ion-input [(ngModel)]="clave" [type]="mostrarContrasena ? 'text' : 'password'" name="clave" type="password"
-            placeholder="Contraseña..." class="input"></ion-input>
+            placeholder="Contraseña..." class="input" ></ion-input>
           <ion-icon slot="end" [name]="mostrarContrasena ? 'eye-off-outline' : 'eye-outline'"
             (click)="alternarMostrarContrasena()"></ion-icon>
         </div>
       </ion-item>
+      <ion-label *ngIf="errorClave"  class="error">{{ errorClave }} </ion-label>
 
       <div class="restablecer">
         <span>¿Olvidaste tu contraseña?</span><a href="/validar-correo"
           class="enlace-restablecer"><span>Restablecer</span></a>
       </div>
 
+
       <ion-button expand="block" type="submit" class="boton-acceder">
         <span class="btn-Acceder">Acceder</span>
       </ion-button>
+
+      <div class="registrate">
+        <span>¿No tienes cuenta?</span><a href="/registro"
+          class="enlace-registrate"><span>Registrate</span></a>
+      </div> 
     </form>
+    
 
     <div class="footer">
       <p id="textoFooter">Creado por Yuzzo inc. © Copyright</p>

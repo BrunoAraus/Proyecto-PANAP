@@ -44,7 +44,20 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0px 0px 20px 0px;
+    margin: 0px 0px 10px 0px;
+}
+
+.registrate{
+    color: black;
+    gap: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0px 20px 0px;
+}
+
+.enlace-registrate{
+    text-decoration: none;
 }
 
 .enlace-restablecer{
@@ -72,7 +85,7 @@ form{
     flex-direction: column;
     align-items: center;
     width: 80%;
-    height: 350px;
+    height: 450px;
     top: 34%;
 }
 
@@ -142,7 +155,13 @@ ion-item{
     top: 95%;
     margin: 5px 0px 5px 0px;
 }
-
+.error {
+    color: red;
+    font-style: italic;
+    font-size: 16px;
+    text-align: center;
+    margin: 3px 0px 3px 0px;
+}
 #textoFooter{
     font-size: 15px;
     color: black;
