@@ -30,11 +30,13 @@
       <ion-item lines="none" class="campo1">
         <ion-input [(ngModel)]="nombre" name="nombre" type="name" placeholder="Ejemplo: Juan" class="input"></ion-input>
       </ion-item>
+      <ion-label *ngIf="errorNombre" class="error">{{ errorNombre }}</ion-label>
 
       <ion-label class="etiqueta">Apellido (<span class="obligatorio">*</span>)</ion-label>
       <ion-item lines="none" class="campo1">
         <ion-input [(ngModel)]="apellido" name="apellido" type="lastname" placeholder="Ejemplo: Marquez" class="input"></ion-input>
       </ion-item>
+      <ion-label *ngIf="errorApellido" class="error">{{ errorApellido }}</ion-label>
 
       <hr style="background-color: rgba(0, 0, 0, 0.116); width: 100%; height: 3px; margin: 15px 5px 15px 5px;">
 
@@ -42,6 +44,7 @@
       <ion-item lines="none" class="campo1">
         <ion-input [(ngModel)]="correo" name="correo" type="email" placeholder="ejemplo@gmail.com" class="input"></ion-input>
       </ion-item>
+      <ion-label *ngIf="errorCorreo" class="error">{{ errorCorreo }}</ion-label>
 
       <ion-label class="etiqueta">Contraseña (<span class="obligatorio">*</span>)</ion-label>
       <ion-item lines="none" class="campo1">
@@ -50,6 +53,7 @@
         slot="end" [name]="mostrarContrasena ? 'eye-off-outline' : 'eye-outline'" (click)="alternarMostrarContrasena()"
       ></ion-icon>
       </ion-item>
+      <ion-label *ngIf="errorClave" class="error">{{ errorClave }}</ion-label>
 
       <ion-label class="etiqueta">Confirmar contraseña (<span class="obligatorio">*</span>)</ion-label>
       <ion-item lines="none" class="campo1">
@@ -57,6 +61,7 @@
         <ion-icon slot="end" [name]="mostrarContrasena ? 'eye-off-outline' : 'eye-outline'" (click)="alternarMostrarContrasena()"
       ></ion-icon>
       </ion-item>
+      <ion-label *ngIf="errorClaveConfirmada" class="error">{{ errorClaveConfirmada }}</ion-label>
       
       <ion-button type="submit" class="boton-acceder">
         <span class="textoBoton">Continuar</span>

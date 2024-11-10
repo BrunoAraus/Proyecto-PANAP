@@ -188,6 +188,13 @@ ion-icon{
     height: 25px;
     color: black;
   }
+.error{
+    color: red;
+    font-style: italic;
+    font-size: 16px;
+    text-align: center;
+    margin: 3px 0px 3px 0px;
+}
 
 /* Animación de entrada de la alerta */
 @keyframes fade-in {

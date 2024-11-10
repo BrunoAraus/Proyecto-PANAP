@@ -18,12 +18,36 @@ export class RegistroPage {
   tipo: string = 'Cliente';
   mostrarContrasena: boolean = false;
 
-
+  errorNombre: string = '';
+  errorApellido: string = '';
+  errorCorreo: string = '';
+  errorClave: string = '';
+  errorClaveConfirmada: string = '';
+  claveConfirmada: string = '';
   errorMensaje: string = '';
+
 
   constructor(private http: HttpClient, private navCtrl: NavController) {}
 
   probarAPI() {
+
+    this.errorNombre = '';
+    this.errorApellido = '';
+    this.errorCorreo = '';
+    this.errorClave = '';
+    this.errorClaveConfirmada = '';
+
+    this.validarNombre();
+    this.validarApellido();
+    this.validarCorreo();
+    this.validarClave();
+    this.validarClaveConfirmada();
+    
+    
+    if (this.errorNombre || this.errorApellido || this.errorCorreo || this.errorClave || this.claveConfirmada) {
+      return;
+    }
+
     const body = {
       accion: 'registro',
       nombre: this.nombre,
@@ -68,6 +92,68 @@ export class RegistroPage {
           }
       );
   }
+
+  validarNombre() {
+    if (!this.nombre) {
+      this.errorNombre = 'Debes ingresar tu nombre.';
+    }else if (!this.validarNombreFormato()) {
+      this.errorNombre = 'El nombre solo puede contener letras.';
+    }
+  } 
+  //Fomato
+  validarNombreFormato(): boolean {
+    const regex = /^[A-Za-zÁáÉéÍíÓóÚúÑñ]+$/;  // Solo permite letras y acentos
+    return regex.test(this.nombre);
+  }
+  validarApellido() {
+    if (!this.apellido) {
+      this.errorApellido = 'Debes ingresar tu apellido.';
+    }else if (!this.validarApellidoFormato()) {
+      this.errorApellido = 'El apellido solo puede contener letras.';
+    }
+  }
+  //Fomato
+  validarApellidoFormato(): boolean {
+    const regex = /^[A-Za-zÁáÉéÍíÓóÚúÑñ]+$/;  // Solo permite letras y acentos
+    return regex.test(this.apellido);
+  }
+  validarCorreo() {
+    if (!this.correo) {
+      this.errorCorreo = 'Debes ingresar un correo electrónico.';
+    } else if (!this.validarCorreoFormato()) {
+      this.errorCorreo = 'Correo no válido.';
+    }
+  }
+  //Fomato
+  validarCorreoFormato(): boolean {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(this.correo);
+  }
+
+  validarClave() {
+    if (!this.clave) {
+      this.errorClave = 'Debes ingresar una contraseña.';
+    } else if (this.clave.length < 8) {
+      this.errorClave = 'La contraseña debe tener al menos 8 caracteres.';
+    } else if (!this.validarClaveFormato()) {
+      this.errorClave = 'La contraseña debe incluir letras y números.';
+    }
+  }
+  //Fomato
+  validarClaveFormato(): boolean {
+    const regex = /^(?=.*[A-Za-z])(?=.*\d)/;
+    return regex.test(this.clave);
+  }
+
+  validarClaveConfirmada() {
+    if (this.clave && this.claveConfirmada && this.clave !== this.claveConfirmada) {
+      this.errorClaveConfirmada = 'Las contraseñas no coinciden.';
+    } else if (this.clave && !this.claveConfirmada) {
+      this.errorClaveConfirmada = 'Debes confirmar la contraseña.';
+    } else if (this.clave && this.claveConfirmada && this.clave === this.claveConfirmada) {
+      this.errorClaveConfirmada = ''; 
+    }
+}
   censurarContrasena(contrasena: string): string {
     if (contrasena.length <= 2) {
       return '*'.repeat(contrasena.length);
