@@ -11,7 +11,12 @@ export class InformacionNegocioPage {
 
   errorMensaje: string = '';
   usuario: any;
-
+  errorNombre: string = '';
+  errorNumero: string = '';
+  nombreNegocio: string = '';
+  numeroNegocio: string = '';
+  formSubmitted: boolean = false;
+  
   negocio = {
     nombre: '',
     numero: '',
@@ -94,8 +99,44 @@ export class InformacionNegocioPage {
       console.error('No hay credenciales guardadas para reconectar.');
     }
   }
+  validarNombre(): boolean {
+    const regex = /^[A-Za-zÁáÉéÍíÓóÚúÑñ\s]+$/; // Solo letras y espacios
+    return regex.test(this.negocio.nombre);
+  }
+
+  validarNumero(): boolean {
+    const regex = /^[0-9]+$/; // Solo números
+    return regex.test(this.negocio.numero);
+  }
+
 
   registrarNegocio() {
+    this.formSubmitted = true; // Cambiar a true cuando se intente enviar el formulario
+
+    if (!this.validarNombre()) {
+      if (this.negocio.nombre.trim() === '') {
+        this.errorMensaje = 'Debe de llenar el campo de nombre del negocio.';
+      } else {
+        this.errorMensaje = 'El nombre del negocio solo debe contener letras.';
+      }
+      this.mostrarError();
+      return;
+    }
+    
+    if (!this.validarNumero()) {
+      if (this.negocio.numero.trim() === '') {
+        this.errorMensaje = 'Debe de llenar el campo de número del negocio.';
+      } else {
+        this.errorMensaje = 'El número del negocio solo debe contener números.';
+      }
+      this.mostrarError();
+      return;
+    }
+    if (!this.negocio.efectivo && !this.negocio.tarjeta && !this.negocio.transferencia) {
+      this.errorMensaje = 'Debe seleccionar al menos un método de pago.';
+      this.mostrarError();
+      return;
+    }
     if (this.usuario && this.usuario.id) {
       const body = {
         accion: 'registron',
@@ -150,6 +191,15 @@ export class InformacionNegocioPage {
                 alerta.classList.remove("show");
               }, 3000);
             }
+    }
+  }
+  mostrarError() {
+    const alerta = document.getElementById("alertaError");
+    if (alerta) {
+      alerta.classList.add("show");
+      setTimeout(() => {
+        alerta.classList.remove("show");
+      }, 3000);
     }
   }
 }

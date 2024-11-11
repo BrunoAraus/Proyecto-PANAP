@@ -10,11 +10,23 @@
       <ion-item lines="none" class="campo1">
         <ion-input [(ngModel)]="negocio.nombre" name="nombre" type="text" placeholder="Ejemplo: Bazar el Pepe" class="input" required></ion-input>
       </ion-item>
+      <ion-label *ngIf="formSubmitted && negocio.nombre.trim() === ''" class="error">
+        Debe de llenar el campo de nombre del negocio.
+      </ion-label>
+      <ion-label *ngIf="formSubmitted && negocio.nombre.trim() !== '' && !validarNombre()" class="error">
+        El nombre del negocio solo debe contener letras.
+      </ion-label>
 
       <ion-label class="etiqueta">Número del negocio (<span class="obligatorio">*</span>)</ion-label>
       <ion-item lines="none" class="campo1">
         <ion-input [(ngModel)]="negocio.numero" name="numero" type="text" placeholder="Ejemplo: #123" class="input" required></ion-input>
       </ion-item>
+      <ion-label *ngIf="formSubmitted && negocio.numero.trim() === ''" class="error">
+        Debe de llenar el campo de número del negocio.
+      </ion-label>
+      <ion-label *ngIf="formSubmitted && negocio.numero.trim() !== '' && !validarNumero()" class="error">
+        El número del negocio solo debe contener números.
+      </ion-label>
 
       <ion-label class="etiqueta2">Métodos de pago en tienda</ion-label>
       <ion-label class="etiqueta3">Marca cuales son tus métodos de pago en tienda</ion-label>

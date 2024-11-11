@@ -170,6 +170,13 @@ ion-icon{
     display: block;
     animation: fade-in 0.5s ease-out, fade-out 0.5s ease-out 2.5s;
 }
+.error{
+    color: red;
+    font-style: italic;
+    font-size: 16px;
+    text-align: center;
+    margin: 3px 0px 3px 0px;
+}
 
 /* Animación de entrada de la alerta */
 @keyframes fade-in {
