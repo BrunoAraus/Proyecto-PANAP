@@ -25,6 +25,7 @@
               (click)="alternarMostrarContrasena()"
             ></ion-icon>
             </ion-item>
+            <ion-label *ngIf="contra" class="error">{{ errorContra }}</ion-label>
           </div>
           <div class="campoIndividual">
             <ion-label class="textoInput">Confirmar Contraseña</ion-label>
@@ -46,7 +47,11 @@
               (click)="alternarMostrarContrasena()"
             ></ion-icon>
             </ion-item>
+            <ion-label *ngIf="contra2" class="error">{{ errorContra2 }}</ion-label>
           </div>
+
+          <p *ngIf="errorGeneral" class="error">{{ errorGeneral }}</p>
+
   <div class="restablecer">          
     <ion-button type="submit" [disabled]="!stockForm.valid">
     <p class="botones">Cambiar Contraseña</p>

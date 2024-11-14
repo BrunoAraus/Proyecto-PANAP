@@ -14,10 +14,59 @@ export class RestablecerContraPage {
   mostrarContrasena: boolean = false;
   apiUrl = 'https://panapp.duckdns.org/rest/API_PRUEBA.php';
 
+  errorGeneral: string = '';
+  errorContra: String = '';
+  errorContra2: String = '';
+
   constructor(private http: HttpClient, private navCtrl: NavController) {}
 
+  validarCampos(): boolean {
+    let valido = true;
+
+    // Reinicia los mensajes de error
+    this.errorContra = '';
+    this.errorContra2 = '';
+    this.errorGeneral = '';
+
+    // Validar que la contraseña tenga al menos 8 caracteres
+    if (this.contra.length < 8) {
+      this.errorContra = 'La contraseña debe tener al menos 8 caracteres';
+      valido = false;
+    }
+
+    const mayusculaRegex = /[A-Z]/;
+    const numeroRegex = /[0-9]/;
+    if (!mayusculaRegex.test(this.contra)) {
+      this.errorContra = 'La contraseña debe contener al menos una letra mayúscula';
+      valido = false;
+    }
+    if (!numeroRegex.test(this.contra)) {
+      this.errorContra = 'La contraseña debe contener al menos un número';
+      valido = false;
+    }
+
+
+    // Validar que ambas contraseñas coincidan
+    if (this.contra && this.contra2 && this.contra !== this.contra2) {
+      this.errorContra2 = 'Las contraseñas no coinciden';
+      valido = false;
+    }
+
+    // Validar que ambos campos estén llenos
+    if (!this.contra.trim() || !this.contra2.trim()) {
+      this.errorGeneral = 'Debe completar ambos campos de contraseña';
+      valido = false;
+    }
+
+    return valido;
+  }
   
   cambiar() {
+        // Verificar los campos antes de continuar
+        if (!this.validarCampos()) {
+          return; // Detener la ejecución si los campos no son válidos
+        }
+
       const body = {
         accion: 'CLAVE',
         CORREO: localStorage.getItem('correo'),

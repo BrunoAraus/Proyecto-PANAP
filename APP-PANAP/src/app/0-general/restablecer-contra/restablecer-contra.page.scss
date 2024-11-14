@@ -167,6 +167,11 @@ ion-button {
     height: 25px;
     color: black;
   }
+
+  .error {
+    color: red;
+    font-size: 14px;
+  }
   @keyframes bounce {
     0% {
       transform: scale(1); /* Estado inicial */
