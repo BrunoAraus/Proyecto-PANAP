@@ -5,6 +5,7 @@
       <ion-item lines="none">
         <ion-input [(ngModel)]="correo" placeholder="Correo de cuenta"></ion-input>
       </ion-item>
+      <ion-label *ngIf="errorCorreo" class="error">{{ errorCorreo }}</ion-label>
   
       <div class="botonValidacion">
         <ion-button expand="block" (click)="validarCodigo()">Continuar</ion-button>
