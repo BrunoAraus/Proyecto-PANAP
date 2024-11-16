@@ -19,6 +19,7 @@ export class PedidoPage {
   errorMensaje: string = '';
   errorMensajeHallulla: string = '';
   errorMensajeMarraqueta: string = '';  
+  errorFormato: string = '';
 
   formularioActual: 'cantidad' | 'moneda' = 'cantidad';
 
@@ -68,6 +69,7 @@ export class PedidoPage {
   }
 
   enviarFormularioCantidad() {
+    
  // Validación para Hallulla
  if (/[^0-9]/.test(this.hallulla)) {
   this.errorMensajeHallulla = 'La cantidad de Hallulla no puede contener letras.';
@@ -86,6 +88,12 @@ if (/[^0-9]/.test(this.marraqueta)) {
   this.errorMensajeMarraqueta = ''; // Limpiar mensaje si es válido
 }
 
+if (!this.tipo) {
+  this.errorFormato = 'Por favor, elige un formato para continuar.';
+  return;
+} else {
+  this.errorFormato = ''; // Limpiar mensaje de error si se seleccionó un formato
+}
 // Detener si hay errores
 if (this.errorMensajeHallulla || this.errorMensajeMarraqueta) {
   return;
@@ -123,6 +131,13 @@ if (this.errorMensajeHallulla || this.errorMensajeMarraqueta) {
   }
 
   enviarFormularioMoneda() {
+      // Validación para el tipo de pan (formato)
+  if (!this.tipo) {
+    this.errorFormato = 'Por favor, elige un formato para continuar.';
+    return;
+  } else {
+    this.errorFormato = ''; // Limpiar mensaje de error si se seleccionó un formato
+  }
     const codigoAleatorio = this.generarCodigoAleatorio();
 
     const body = {
@@ -154,4 +169,5 @@ if (this.errorMensajeHallulla || this.errorMensajeMarraqueta) {
       }
     );
   }
+  
 }
