@@ -17,6 +17,8 @@ export class PedidoPage {
   marraqueta: string = '';
   tipo: string = '';
   errorMensaje: string = '';
+  errorMensajeHallulla: string = '';
+  errorMensajeMarraqueta: string = '';  
 
   formularioActual: 'cantidad' | 'moneda' = 'cantidad';
 
@@ -66,6 +68,28 @@ export class PedidoPage {
   }
 
   enviarFormularioCantidad() {
+ // Validación para Hallulla
+ if (/[^0-9]/.test(this.hallulla)) {
+  this.errorMensajeHallulla = 'La cantidad de Hallulla no puede contener letras.';
+} else if (parseInt(this.hallulla) <= 0 || this.hallulla === '') {
+  this.errorMensajeHallulla = 'La cantidad de Hallulla debe ser un número mayor a 0.';
+} else {
+  this.errorMensajeHallulla = ''; // Limpiar mensaje si es válido
+}
+
+// Validación para Marraqueta
+if (/[^0-9]/.test(this.marraqueta)) {
+  this.errorMensajeMarraqueta = 'La cantidad de Marraqueta no puede contener letras.';
+} else if (parseInt(this.marraqueta) <= 0 || this.marraqueta === '') {
+  this.errorMensajeMarraqueta = 'La cantidad de Marraqueta debe ser un número mayor a 0.';
+} else {
+  this.errorMensajeMarraqueta = ''; // Limpiar mensaje si es válido
+}
+
+// Detener si hay errores
+if (this.errorMensajeHallulla || this.errorMensajeMarraqueta) {
+  return;
+}
     const codigoAleatorio = this.generarCodigoAleatorio();
 
     const body = {

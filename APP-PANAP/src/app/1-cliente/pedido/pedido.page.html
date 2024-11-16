@@ -56,6 +56,9 @@
             <ion-input name="hallulla" maxlength="1" [(ngModel)]="hallulla" [ngModelOptions]="{standalone: true}"
               required></ion-input>
           </ion-item>
+          <ion-label *ngIf="errorMensajeHallulla" color="danger" class="mensajeError">
+            {{ errorMensajeHallulla }}
+          </ion-label>
         </div>
 
         <div class="campoIndividual" lines="none">
@@ -64,6 +67,9 @@
             <ion-input name="marraqueta" maxlength="1" [(ngModel)]="marraqueta" [ngModelOptions]="{standalone: true}"
               required></ion-input>
           </ion-item>
+          <ion-label *ngIf="errorMensajeMarraqueta" color="danger" class="mensajeError">
+            {{ errorMensajeMarraqueta }}
+          </ion-label>
         </div>
 
         <ion-label *ngIf="errorMensaje" color="danger" class="mensajeError">
