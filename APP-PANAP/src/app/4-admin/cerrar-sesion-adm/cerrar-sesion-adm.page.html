@@ -1,13 +1,16 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>cerrar-sesion-adm</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">cerrar-sesion-adm</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <h1>¿Cerrar sesión?</h1>
+  <div id="unionBotones">
+    <a href="/home">
+      <ion-button id="siBtn">
+          <p class="btn-cs">Sí</p>
+      </ion-button>
+    </a>
+    <a href="/tabs-admin/listado-negocios">
+      <ion-button id="noBtn">
+          <p class="btn-cs">No</p>
+      </ion-button>
+    </a>
+  </div>
 </ion-content>
+

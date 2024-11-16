@@ -1,28 +1,25 @@
 <ion-content [fullscreen]="true">
-  <a href="/tabs-negocio/reservas-negocio">
-    <ion-icon name="chevron-back" class="iconoVolver" href="/tabs-negocio/reservas-negocio"></ion-icon>
-  </a>
   <div class="contenido">
     <h1 class="titulo">Reservas del Día</h1>
 
     <div class="contenidoTabla">
       <ion-row class="encabezado">
         <ion-col class="titulares">Nombre</ion-col>
-        <ion-col class="titulares">Codigo</ion-col>
+        <ion-col class="titulares">Tipo</ion-col>
         <ion-col class="titulares">Estado</ion-col>
         <ion-col class="titulares">Acciones</ion-col>
       </ion-row>
 
-      <ion-grid class="tabla-reservas">
-        <ion-row class="fila-datos" *ngFor="let reserva of reservas">
-          <ion-col class="contenidoCeldas">{{ reserva.NOMBRE_R }} {{ reserva.APELLIDO_R }}</ion-col>
-          <ion-col class="contenidoCeldas">{{ reserva.R_CODIGO }}</ion-col>
-          <ion-col class="contenidoCeldas4">{{ reserva.ESTADO }}</ion-col>
+      <!-- <ion-grid class="tabla-reservas">
+        <ion-row class="fila-datos" *ngFor="let negocio of negocios">
+          <ion-col class="contenidoCeldas">{{ negocio.NOMBRE_R }} {{ negocio.APELLIDO_R }}</ion-col>
+          <ion-col class="contenidoCeldas">{{ negocio.R_CODIGO }}</ion-col>
+          <ion-col class="contenidoCeldas4">{{ negocio.ESTADO }}</ion-col>
           <ion-col class="contenidoCeldas2">            
             <ion-icon name="ellipsis-horizontal-circle-outline" (click)="presentPopover(reserva)" class="iconoAcciones"></ion-icon>
           </ion-col>
         </ion-row>
-      </ion-grid>   
+      </ion-grid> -->
     </div>
   </div>
 </ion-content>

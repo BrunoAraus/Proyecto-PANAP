@@ -57,7 +57,7 @@ img{
     top: 40%;
     display: flex;
     flex-direction: column;
-    margin-bottom: 40px;
+    margin-bottom: 70px;
 }
 
 .Informacion{
@@ -75,24 +75,9 @@ img{
     height: auto;
 }
 
-#navegacion{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    height: 10%;
-    position: absolute;
-    font-weight: bold;
-    font-size: 30px;
-    font-weight: bold;
-    top: 80%;
-    margin: 10px 0px 20px 0px;
-}
-
 .indicadorFooter{
-    font-size: 25px;
+    font-size: 20px;
     color: black;
-    margin-bottom: 10px;
     text-align: center;
     padding: 5px 0px 5px 0px;
 }
@@ -100,6 +85,8 @@ img{
 .icono{
     color: black;
     animation: bounce 1s infinite; /* Aplica la animación */
+    min-width: 30px;
+    min-height: 30px;
 }
 
 @keyframes bounce {

@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'tabs-admin/solicitudes',
     pathMatch: 'full'
   },
   {
@@ -84,22 +84,6 @@ const routes: Routes = [
     loadChildren: () => import('./2-negocio/menu-negocio/menu-negocio.module').then( m => m.MenuNegocioPageModule)
   },
   {
-    path: 'home-admin',
-    loadChildren: () => import('./4-admin/home-admin/home-admin.module').then( m => m.HomeAdminPageModule)
-  },
-  {
-    path: 'pendientes',
-    loadChildren: () => import('./4-admin/pendientes/pendientes.module').then( m => m.PendientesPageModule)
-  },
-  {
-    path: 'aceptados',
-    loadChildren: () => import('./4-admin/aceptados/aceptados.module').then( m => m.AceptadosPageModule)
-  },
-  {
-    path: 'rechazados',
-    loadChildren: () => import('./4-admin/rechazados/rechazados.module').then( m => m.RechazadosPageModule)
-  },
-  {
     path: 'cerrar-sesion-adm',
     loadChildren: () => import('./4-admin/cerrar-sesion-adm/cerrar-sesion-adm.module').then( m => m.CerrarSesionAdmPageModule)
   },
@@ -150,6 +134,14 @@ const routes: Routes = [
   {
     path: 'detalles',
     loadChildren: () => import('./2-negocio/detalles/detalles.module').then( m => m.DetallesPageModule)
+  },
+  {
+    path: 'solicitudes',
+    loadChildren: () => import('./4-admin/solicitudes/solicitudes.module').then( m => m.SolicitudesPageModule)
+  },
+  {
+    path: 'listado-negocios',
+    loadChildren: () => import('./4-admin/listado-negocios/listado-negocios.module').then( m => m.ListadoNegociosPageModule)
   },
   
   {
@@ -259,27 +251,24 @@ const routes: Routes = [
     loadComponent: () => import('./4-admin/tabs-admin/tabs-admin.component').then( c => c.TabsAdminComponent),
     children: [
       {
-        path: 'home-admin',
-        loadChildren: () => import('./4-admin/home-admin/home-admin.module').then( m => m.HomeAdminPageModule)
-      },
-      {
-        path: 'pendientes',
-        loadChildren: () => import('./4-admin/pendientes/pendientes.module').then( m => m.PendientesPageModule)
-      },
-      {
-        path: 'aceptados',
-        loadChildren: () => import('./4-admin/aceptados/aceptados.module').then( m => m.AceptadosPageModule)
-      },
-      {
-        path: 'rechazados',
-        loadChildren: () => import('./4-admin/rechazados/rechazados.module').then( m => m.RechazadosPageModule)
-      },
-      {
         path: 'cerrar-sesion-adm',
         loadChildren: () => import('./4-admin/cerrar-sesion-adm/cerrar-sesion-adm.module').then( m => m.CerrarSesionAdmPageModule)
       },
+      {
+        path: 'solicitudes',
+        loadChildren: () => import('./4-admin/solicitudes/solicitudes.module').then( m => m.SolicitudesPageModule)
+      },
+      {
+        path: 'listado-negocios',
+        loadChildren: () => import('./4-admin/listado-negocios/listado-negocios.module').then( m => m.ListadoNegociosPageModule)
+      },
     ]
+  },  {
+    path: 'detalles',
+    loadChildren: () => import('./4-admin/detalles/detalles.module').then( m => m.DetallesPageModule)
   },
+
+
 
 
 ];

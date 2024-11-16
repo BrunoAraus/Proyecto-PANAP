@@ -18,8 +18,10 @@ ion-tab-bar {
 }
 
 ion-icon{
-    font-size: 30px;
-    padding-bottom: 8px;
+  font-size: 30px;
+  padding-bottom: 8px;
+  min-width: 30px;
+  min-height: 30px;
 }
 
 /* Definir la animación para el movimiento hacia arriba */
