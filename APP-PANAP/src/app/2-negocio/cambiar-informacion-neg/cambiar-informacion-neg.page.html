@@ -15,6 +15,8 @@
               name="nombre" placeholder="{{usuario.nombre}}" id="nombreUsuario" required>
             </ion-input>
           </ion-item>
+          <ion-label *ngIf="nombreError === 'El nombre debe tener al menos 2 letras.'" class="error">{{ nombreError }}</ion-label>
+          <ion-label *ngIf="nombreError === 'El nombre no puede contener números.'" class="error">{{ nombreError }}</ion-label>
         </div>
 
         <div class="campoDeLlenado" lines="none">
@@ -24,6 +26,8 @@
               placeholder="{{usuario.apellido}}" id="apellidoUsuario" required>
             </ion-input>
           </ion-item>
+          <ion-label *ngIf="apellidoError === 'El apellido debe tener al menos 2 letras.'" class="error">{{ apellidoError  }}</ion-label>
+          <ion-label *ngIf="apellidoError === 'El apellido no puede contener números.'" class="error">{{ apellidoError  }}</ion-label>
         </div>
 
         <ion-button type="submit" [disabled]="!stockForm.valid" class="botonGeneral">

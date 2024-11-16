@@ -51,7 +51,8 @@
 
 form{
     width: 80%;
-    height: 70%;
+    height: 450px;
+    top: 34%;
 }
 
 .textoInput{
@@ -72,7 +73,7 @@ form{
 
 .campoDeLlenado{
     width: 100%;
-    height: 90px;
+    height: 120px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -85,7 +86,7 @@ form{
 .botonGeneral {
     width: 55%;
     min-width: 150px;
-    height: 45%;
+    height: 35%;
     min-height: 60px;
     --background:  rgb(255, 145, 0) !important;
     --background-hover:  rgb(255, 145, 0) !important;
@@ -135,3 +136,9 @@ ion-item{
     color: black;
     font-size: 25px;
 }
+
+.error {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+  }
