@@ -10,6 +10,7 @@ import { NavController } from '@ionic/angular';
 export class InformacionNegocioFotoPage {
   selectedFile: File | null = null;
   usuario: any;
+  errorFoto: string = '';
   apiUrl = 'https://panapp.duckdns.org/rest/FOTO.php';
 
   constructor(private http: HttpClient, private navCtrl: NavController) { }
@@ -17,10 +18,18 @@ export class InformacionNegocioFotoPage {
     const file = event.target.files[0];
     if (file) {
       this.selectedFile = file;
+      this.errorFoto = ''; 
     }
   }
   
+
   uploadPhoto() {
+    if (!this.selectedFile) {
+      this.errorFoto = 'Por favor selecciona una imagen de tu negocio antes de continuar.';
+      return;  // Detener la ejecución si no se seleccionó un archivo
+    }
+
+
     if (this.selectedFile) {
       const usuarioData = localStorage.getItem('usuarioData');
       if (usuarioData) {

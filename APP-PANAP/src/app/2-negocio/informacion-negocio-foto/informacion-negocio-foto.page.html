@@ -4,6 +4,8 @@
     <h2 class="titularFoto">¡Sube una fotografía de tu negocio!</h2>
   
     <input type="file" (change)="onFileSelected($event)" accept="image/*" />
+ 
+    <ion-label *ngIf="!selectedFile" class="validacion">{{ errorFoto }}</ion-label>
   
     <ion-button expand="block" (click)="uploadPhoto()" class="boton-acceder">Subir fotografía</ion-button>
 
