@@ -19,8 +19,12 @@
               name="stock_inicial"
               id="cantidad-pan"
               required
+              maxlength="2"
             ></ion-input>
           </ion-item>
+          <ion-label *ngIf="errorMensajeStock" color="danger" class="mensajeError">
+            {{ errorMensajeStock }}
+          </ion-label>
         </div>
 
         <div class="campoIndividual" lines="none">
@@ -35,8 +39,12 @@
               class="input-texto"
               id="valor-pan"
               required
+              maxlength="5"
             ></ion-input>
           </ion-item>
+          <ion-label *ngIf="errorMensajeValor" color="danger" class="mensajeError">
+            {{ errorMensajeValor }}
+          </ion-label>
         </div>
 
         <div class="campoIndividual" lines="none">
@@ -51,8 +59,12 @@
               class="input-texto"
               id="confirmar-valor"
               required
+              maxlength="5"
             ></ion-input>
           </ion-item>
+          <ion-label *ngIf="errorMensajeConfirmacion" color="danger" class="mensajeError">
+            {{ errorMensajeConfirmacion }}
+          </ion-label>
         </div>
 
         <ion-button type="submit" [disabled]="!stockForm.valid" class="botonGeneral">

@@ -19,6 +19,9 @@ export class IngresoPanNegocioPage implements OnInit, OnDestroy {
     valor_kilo: '',
     valor_kilo_confirm: '',
   };
+  errorMensajeStock: string = '';
+  errorMensajeValor: string = '';
+  errorMensajeConfirmacion: string = '';
 
   apiUrl = 'https://panapp.duckdns.org/rest/API_PRUEBA.php';
   intervalId: any;
@@ -130,8 +133,45 @@ export class IngresoPanNegocioPage implements OnInit, OnDestroy {
       console.error('No hay credenciales guardadas para reconectar.');
     }
   }
+  validarCampos() {
+    // Validación para stock inicial
+    if (/[^0-9]/.test(this.negocio.stock_inicial)) {
+      this.errorMensajeStock = 'La cantidad de pan inicial solo puede contener números.';
+    } else if (parseInt(this.negocio.stock_inicial) <= 0 || this.negocio.stock_inicial === '') {
+      this.errorMensajeStock = 'La cantidad de pan inicial debe ser un número mayor a 0.';
+    } else {
+      this.errorMensajeStock = '';
+    }
+  
+    // Validación para valor por kilo
+    if (/[^0-9]/.test(this.negocio.valor_kilo)) {
+      this.errorMensajeValor = 'El valor del pan por kilo solo puede contener números.';
+    } else if (parseInt(this.negocio.valor_kilo) <= 0 || this.negocio.valor_kilo === '') {
+      this.errorMensajeValor = 'El valor del pan por kilo debe ser un número mayor a 0.';
+    } else {
+      this.errorMensajeValor = '';
+    }
+  
+    // Validación para confirmación de valor
+    if (this.negocio.valor_kilo !== this.negocio.valor_kilo_confirm) {
+      this.errorMensajeConfirmacion = 'El valor del pan por kilo no coincide con la confirmación.';
+    } else {
+      this.errorMensajeConfirmacion = '';
+    }
+  }
 
   anadirstock() {
+    this.validarCampos();
+
+    // Verificar si hay errores antes de continuar
+    if (
+      this.errorMensajeStock ||
+      this.errorMensajeValor ||
+      this.errorMensajeConfirmacion
+    ) {
+      return;
+    }
+    
     console.log('Fecha y hora en formato TIMESTAMP:', this.negocio.fecha_stock);
     if (this.usuario && this.usuario.id) {
       const body = {
