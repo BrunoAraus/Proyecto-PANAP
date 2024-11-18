@@ -30,6 +30,9 @@
           class="enlace-restablecer"><span>Restablecer</span></a>
       </div>
 
+      <div *ngIf="cargando" class="overlay">
+        <ion-spinner name="crescent"></ion-spinner>
+      </div>
 
       <ion-button expand="block" type="submit" class="boton-acceder">
         <span class="btn-Acceder">Acceder</span>

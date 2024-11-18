@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { NavController } from '@ionic/angular';
 
@@ -7,7 +7,7 @@ import { NavController } from '@ionic/angular';
   templateUrl: './iniciar-sesion.page.html',
   styleUrls: ['./iniciar-sesion.page.scss'],
 })
-export class IniciarSesionPage {
+export class IniciarSesionPage implements OnInit {
   apiUrl = 'https://panapp.duckdns.org/rest/API_PRUEBA.php';
 
   correo: string = ''; 
@@ -16,16 +16,21 @@ export class IniciarSesionPage {
   errorClave: string = '';
   errorMensaje: string = ''; 
   mostrarContrasena: boolean = false;
+  cargando: boolean = false; // Variable para controlar el estado del spinner
 
   constructor(private http: HttpClient, private navCtrl: NavController) {}
 
+  ngOnInit() {
+  }
+
   iniciarSesion() {
-    
+    this.cargando = true; // Mostrar el spinner de carga
+
     this.errorCorreo = '';
     this.errorClave = '';
     this.errorMensaje = '';
 
-    // Realizar validaciones
+    // Validaciones
     if (!this.correo) {
       this.errorCorreo = 'Debes colocar el correo.';
     } else if (!this.validarCorreo()) {
@@ -36,8 +41,8 @@ export class IniciarSesionPage {
       this.errorClave = 'Debes colocar la contraseña.';
     }
 
-    // Si hay errores en el correo o la contraseña, detiene el inicio de sesión
     if (this.errorCorreo || this.errorClave) {
+      this.cargando = false; // Ocultar el spinner si hay errores
       return;
     }
 
@@ -56,62 +61,41 @@ export class IniciarSesionPage {
       .subscribe(
         (response: any) => {
           if (response.success) {
-            console.log('Login exitoso:', response.message);
-
             this.errorMensaje = ''; 
-
             const usuarioData = response.user; 
             const negociosData = response.negocios; 
 
-            
             localStorage.setItem('usuarioData', JSON.stringify(usuarioData));
             localStorage.setItem('negociosData', JSON.stringify(negociosData));
             localStorage.setItem('userEmail', this.correo);
             localStorage.setItem('userPassword', this.clave);
 
-            
             if (usuarioData.tipo === 'Cliente') {
-              if (usuarioData.valido === 'INVALIDO') {
-                this.navCtrl.navigateRoot('/validacion-codigo');
-              } else if (usuarioData.valido === 'VALIDO') {
-                this.navCtrl.navigateRoot('/tabs-cliente/home-cliente');
-              }
+              this.navCtrl.navigateRoot(usuarioData.valido === 'INVALIDO' ? '/validacion-codigo' : '/tabs-cliente/home-cliente');
             } else if (usuarioData.tipo === 'Negocio') {
-              if (usuarioData.valido === 'INVALIDO') {
-                this.navCtrl.navigateRoot('/validacion-codigo');
-              } else if (usuarioData.valido === 'VALIDO') {
-                const negocioPendiente = negociosData.find((negocio: any) => negocio.ID_USUARIO === usuarioData.id && negocio.ESTADO === 'PENDIENTE');
-                if (negocioPendiente) {
-                  console.log('Negocio con ID coincidente está en estado PENDIENTE');
-                  this.navCtrl.navigateRoot('/confirmacion-negocio');
-                } else {
-                  console.log('Negocio no tiene estado PENDIENTE');
-                  this.navCtrl.navigateRoot('/tabs-negocio/home-negocio');
-                }
-              }
+              const negocioPendiente = negociosData.find((negocio: any) => negocio.ID_USUARIO === usuarioData.id && negocio.ESTADO === 'PENDIENTE');
+              this.navCtrl.navigateRoot(usuarioData.valido === 'INVALIDO' ? '/validacion-codigo' : (negocioPendiente ? '/confirmacion-negocio' : '/tabs-negocio/home-negocio'));
             } else {
               console.log('Tipo de usuario no reconocido');
             }
-                       
           } else {
             this.errorCorreo = response.message; 
           }
+          this.cargando = false; // Ocultar el spinner después del éxito o error
         },
         (error) => {
           console.error('Error al consumir la API:', error);
           this.errorCorreo = 'Ocurrió un error inesperado. Inténtalo más tarde.';
+          this.cargando = false; // Ocultar el spinner en caso de error
         }
       );
   }
+
   censurarContrasena(contrasena: string): string {
-    if (contrasena.length <= 2) {
-      return '*'.repeat(contrasena.length);
-    }
-    const firstChar = contrasena[0];
-    const lastChar = contrasena[contrasena.length - 1];
-    const hiddenPart = '*'.repeat(contrasena.length - 2);
-    return `${firstChar}${hiddenPart}${lastChar}`;
+    if (contrasena.length <= 2) return '*'.repeat(contrasena.length);
+    return `${contrasena[0]}${'*'.repeat(contrasena.length - 2)}${contrasena[contrasena.length - 1]}`;
   }
+
   validarCorreo(): boolean {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return regex.test(this.correo);

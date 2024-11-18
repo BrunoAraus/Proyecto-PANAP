@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'tabs-admin/solicitudes',
+    redirectTo: 'home',
     pathMatch: 'full'
   },
   {
@@ -143,6 +143,10 @@ const routes: Routes = [
     path: 'listado-negocios',
     loadChildren: () => import('./4-admin/listado-negocios/listado-negocios.module').then( m => m.ListadoNegociosPageModule)
   },
+  {
+    path: 'detalles',
+    loadChildren: () => import('./4-admin/detalles/detalles.module').then( m => m.DetallesPageModule)
+  },
   
   {
     path: 'tabs-cliente',
@@ -262,10 +266,11 @@ const routes: Routes = [
         path: 'listado-negocios',
         loadChildren: () => import('./4-admin/listado-negocios/listado-negocios.module').then( m => m.ListadoNegociosPageModule)
       },
+      {
+        path: 'detalles',
+        loadChildren: () => import('./4-admin/detalles/detalles.module').then( m => m.DetallesPageModule)
+      },
     ]
-  },  {
-    path: 'detalles',
-    loadChildren: () => import('./4-admin/detalles/detalles.module').then( m => m.DetallesPageModule)
   },
 
 
