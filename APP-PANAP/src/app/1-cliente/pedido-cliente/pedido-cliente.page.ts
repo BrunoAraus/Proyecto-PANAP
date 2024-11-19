@@ -41,6 +41,7 @@ export class PedidoClientePage implements OnInit {
     this.reconectar();
     this.cargarDatos();
     this.intervalId = setInterval(() => {
+      this.loadMap();
       this.reconectar();
       this.cargarDatos();
     }, 60000);
@@ -81,7 +82,7 @@ export class PedidoClientePage implements OnInit {
 
       const headers = new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': ''
+        'Authorization': '  '
       });
 
     
@@ -133,6 +134,8 @@ async presentPopover(negocio: any) {
 
 
   const { data } = await popover.onWillDismiss();
+  this.reconectar();
+  this.cargarDatos();
   console.log('Popover cerrado: ', data);
 }
 

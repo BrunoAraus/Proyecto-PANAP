@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { PopoverController } from '@ionic/angular';
+import {  NavController,PopoverController } from '@ionic/angular';
 
 @Component({
   selector: 'app-pedido',
@@ -27,7 +27,8 @@ export class PedidoPage {
 
   constructor(
     private http: HttpClient,
-    private popoverController: PopoverController
+    private popoverController: PopoverController,
+    private navCtrl: NavController
   ) {
     const usuarioData = localStorage.getItem('usuarioData');
     if (usuarioData) {
@@ -123,6 +124,7 @@ if (this.errorMensajeHallulla || this.errorMensajeMarraqueta) {
       response => {
         console.log('Datos de cantidad enviados exitosamente:', response);
         this.popoverController.dismiss();
+        this.navCtrl.navigateRoot('/tabs-cliente/pedido-cliente');
       },
       error => {
         console.error('Error al enviar los datos de cantidad:', error);
@@ -163,11 +165,11 @@ if (this.errorMensajeHallulla || this.errorMensajeMarraqueta) {
       response => {
         console.log('Datos de moneda enviados exitosamente:', response);
         this.popoverController.dismiss();
+        this.navCtrl.navigateRoot('/tabs-cliente/pedido-cliente');
       },
       error => {
         console.error('Error al enviar los datos de moneda:', error);
       }
     );
   }
-  
 }
