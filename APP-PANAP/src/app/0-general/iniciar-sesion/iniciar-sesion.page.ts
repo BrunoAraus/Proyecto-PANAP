@@ -75,6 +75,8 @@ export class IniciarSesionPage implements OnInit {
             } else if (usuarioData.tipo === 'Negocio') {
               const negocioPendiente = negociosData.find((negocio: any) => negocio.ID_USUARIO === usuarioData.id && negocio.ESTADO === 'PENDIENTE');
               this.navCtrl.navigateRoot(usuarioData.valido === 'INVALIDO' ? '/validacion-codigo' : (negocioPendiente ? '/confirmacion-negocio' : '/tabs-negocio/home-negocio'));
+            } else if (usuarioData.tipo === 'Administrador') {
+              this.navCtrl.navigateRoot('/tabs-admin/listado-negocios');
             } else {
               console.log('Tipo de usuario no reconocido');
             }

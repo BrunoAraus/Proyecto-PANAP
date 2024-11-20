@@ -2,7 +2,7 @@
 
   <ion-icon name="close" (click)="cerrarPopover()" class="iconoCerrar"></ion-icon>
   
-    <!-- <div class="ordenTituloPrincipal">
+    <div class="ordenTituloPrincipal">
       <div class="icono">
         <ion-icon name="storefront-outline" class="iconoNegocio"></ion-icon>
       </div>
@@ -34,7 +34,8 @@
   <h1 class="accion">Aceptar?</h1>
 
   <div class="ordenBotones">
-    <ion-icon name="close-circle-outline" (click)="" class="acciones1"></ion-icon>
-    <ion-icon name="checkmark-circle-outline" (click)="" class="acciones2"></ion-icon>
-  </div> -->
+    <h3 (click)="cambiarEstadoReserva(negocio?.ID_NEGOCIO)">Aprovar</h3>
+   <!-- 
+    <ion-icon name="checkmark-circle-outline" (click)="" class="acciones2"></ion-icon> -->
+  </div>
 </ion-content>

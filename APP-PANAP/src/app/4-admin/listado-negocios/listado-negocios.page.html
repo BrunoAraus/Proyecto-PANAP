@@ -1,3 +1,21 @@
 <ion-content [fullscreen]="true">
-  
+  <div class="contenido">
+    <h1 class="titulo">Negocios Pendientes</h1>
+    <div class="contenidoTabla">
+      <ion-row class="encabezado">
+        <ion-col class="titulares">Nombre</ion-col>
+        <ion-col class="titulares">Estado</ion-col>
+        <ion-col class="titulares">Acción</ion-col>
+      </ion-row>
+      <ion-grid class="tabla-reservas">
+        <ion-row class="fila-datos" *ngFor="let negocio of negocios">
+          <ion-col class="contenidoCeldas">{{ negocio.N_NOMBRE }}</ion-col>
+          <ion-col class="contenidoCeldas4">{{ negocio.ESTADO }}</ion-col>
+          <ion-col (click)="presentPopover(negocio)">
+            Detalles
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
 </ion-content>
