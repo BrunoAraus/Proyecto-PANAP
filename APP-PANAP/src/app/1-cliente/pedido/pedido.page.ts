@@ -132,13 +132,27 @@ if (this.errorMensajeHallulla || this.errorMensajeMarraqueta) {
     );
   }
 
-  enviarFormularioMoneda() {
-      // Validación para el tipo de pan (formato)
+enviarFormularioMoneda() {
+  // Validación para el valor monetario
+  if (!this.r_valor || this.r_valor === '0' || this.r_valor === '') {
+    this.errorMensaje = 'Por favor, ingresa un monto válido mayor a 0';
+    return;
+  } else {
+    this.errorMensaje = '';
+  }
+
+  // Validación para el tipo de pan (formato)
   if (!this.tipo) {
     this.errorFormato = 'Por favor, elige un formato para continuar.';
     return;
   } else {
-    this.errorFormato = ''; // Limpiar mensaje de error si se seleccionó un formato
+    this.errorFormato = '';
+  }
+
+  // Solo continuar si no hay errores
+  if (!this.errorMensaje && !this.errorFormato) {
+    const codigoAleatorio = this.generarCodigoAleatorio();
+    // ... resto del código existente del método ...
   }
     const codigoAleatorio = this.generarCodigoAleatorio();
 

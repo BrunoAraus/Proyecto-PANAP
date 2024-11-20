@@ -23,6 +23,8 @@
           <ion-radio value="Agotado" class="ordenCasilla1"></ion-radio>
         </div>
       </ion-radio-group>
+      <ion-label *ngIf="errorMensaje" class="error">{{ errorMensaje }}</ion-label>
+      
       <div class="ordenBoton">
         <ion-button expand="block" class="boton-actualizar" type="submit" id="boton-actualizar">
           <h2 class="textBoton">

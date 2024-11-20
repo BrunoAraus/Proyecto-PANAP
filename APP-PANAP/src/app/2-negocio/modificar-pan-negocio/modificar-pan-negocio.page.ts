@@ -32,6 +32,7 @@ export class ModificarPanNegocioPage implements OnInit {
       clearInterval(this.intervalId);
     }
   }
+  
 
   cargarDatos() {
     const usuarioData = localStorage.getItem('usuarioData');
@@ -64,6 +65,7 @@ export class ModificarPanNegocioPage implements OnInit {
       .toString()
       .padStart(2, '0')}`;
   }
+  
 
   reconectar() {
     const correo = localStorage.getItem('userEmail');
@@ -106,6 +108,12 @@ export class ModificarPanNegocioPage implements OnInit {
   }
 
   modificar() {
+      // Validación: Verificar si hay una opción seleccionada
+  if (!this.negocio.disponibilidad) {
+    this.errorMensaje = 'Debe seleccionar una opción antes de actualizar.';
+    console.error(this.errorMensaje);
+    return; // Detener la ejecución si no hay selección
+  }
     console.log('Fecha y hora en formato TIMESTAMP:', this.negocio.fecha_stock);
     if (this.usuario && this.usuario.id) {
       const body = {

@@ -47,11 +47,6 @@ export class PedidoClientePage implements OnInit {
     }, 60000);
   }
 
-
-  
-    
-  
-
   cargarDatos() {
     const usuarioData = localStorage.getItem('usuarioData');
     const negociosData = localStorage.getItem('negociosData');
@@ -82,7 +77,7 @@ export class PedidoClientePage implements OnInit {
 
       const headers = new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': '  '
+        'Authorization': ''
       });
 
     

@@ -153,4 +153,10 @@ ion-radio::part(container) {
   
     transform: rotate(45deg);
   }
-
+  .error{
+    color: red;
+    font-style: italic;
+    font-size: 16px;
+    text-align: center;
+    margin: 3px 0px 3px 0px;
+}
