@@ -1,24 +1,27 @@
 <ion-content>
-<div class="titulovalidacion">
-  <div class="instruccion">
-    <h2>Se ha enviando un correo a: <b>{{ correoCensurado }}</b></h2>
-    <h2> <u>Copia</u> y <u>pega</u> el codigo de tu correo para poder ingresar a la App.</h2>
-  </div>
-  <div class="contenedor-validacion">
-    
-    <ion-label class="etiqueta">Ingrese el código</ion-label>
-    <ion-item lines="none">
-      <ion-input [(ngModel)]="codigoIngresado" placeholder="Código de validación"></ion-input>
-    </ion-item>
-
-    <div class="botonValidacion">
-      <ion-button expand="block" (click)="validarCodigo()">Validar</ion-button>
+  <div class="titulovalidacion">
+    <a href="/iniciar-sesion">
+      <ion-icon name="chevron-back-outline" class="iconoVolver"></ion-icon>
+    </a>
+    <div class="instruccion">
+      <h2>Se ha enviando un correo a: <b>{{ correoCensurado }}</b></h2>
+      <h2> <u>Copia</u> y <u>pega</u> el codigo de tu correo para poder ingresar a la App.</h2>
     </div>
-
-    <p style="color: red;" *ngIf="mensajeError">{{ mensajeError }}</p>
+    <div class="contenedor-validacion">
+  
+      <ion-label class="etiqueta">Ingrese el código</ion-label>
+      <ion-item lines="none">
+        <ion-input [(ngModel)]="codigoIngresado" placeholder="Código de validación"></ion-input>
+      </ion-item>
+  
+      <div class="botonValidacion">
+        <ion-button expand="block" (click)="validarCodigo()">Validar</ion-button>
+      </div>
+  
+      <p style="color: red;" *ngIf="mensajeError">{{ mensajeError }}</p>
+    </div>
+    <div class="footer">
+      <p id="textoFooter">Creado por Yuzzo inc. © Copyright</p>
+    </div>
   </div>
-  <div class="footer">
-    <p id="textoFooter">Creado por Yuzzo inc. © Copyright</p>
-  </div>
-</div>
 </ion-content>

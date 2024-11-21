@@ -4,6 +4,16 @@
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
+.iconoVolver {
+    position: fixed;
+    z-index: 9998;
+    left: 2%;
+    top: 1%;
+    width: 45px;
+    height: 45px;
+    color: black;
+  }
+
 .contenedor-central{
     width: 100%;
     height: 100%;
