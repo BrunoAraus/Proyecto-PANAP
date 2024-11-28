@@ -191,7 +191,11 @@ const routes: Routes = [
       {
         path: 'detalle-negocio',
         loadChildren: () => import('./1-cliente/detalle-negocio/detalle-negocio.module').then( m => m.DetalleNegocioPageModule)
-      },      
+      },
+      {
+        path: 'pruebas-api',
+        loadChildren: () => import('./3-pruebas/pruebas-api/pruebas-api.module').then( m => m.PruebasApiPageModule)
+      },    
     ]
   },
   

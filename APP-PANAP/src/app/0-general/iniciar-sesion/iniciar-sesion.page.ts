@@ -7,7 +7,7 @@ import { NavController } from '@ionic/angular';
   templateUrl: './iniciar-sesion.page.html',
   styleUrls: ['./iniciar-sesion.page.scss'],
 })
-export class IniciarSesionPage implements OnInit {
+export class IniciarSesionPage {
   apiUrl = 'https://panapp.duckdns.org/rest/API_PRUEBA.php';
 
   correo: string = ''; 
@@ -19,9 +19,6 @@ export class IniciarSesionPage implements OnInit {
   cargando: boolean = false; // Variable para controlar el estado del spinner
 
   constructor(private http: HttpClient, private navCtrl: NavController) {}
-
-  ngOnInit() {
-  }
 
   iniciarSesion() {
     this.cargando = true; // Mostrar el spinner de carga
@@ -64,9 +61,11 @@ export class IniciarSesionPage implements OnInit {
             this.errorMensaje = ''; 
             const usuarioData = response.user; 
             const negociosData = response.negocios; 
+            const historicoData = response.historicos; 
 
             localStorage.setItem('usuarioData', JSON.stringify(usuarioData));
             localStorage.setItem('negociosData', JSON.stringify(negociosData));
+            localStorage.setItem('historicoData', JSON.stringify(historicoData));
             localStorage.setItem('userEmail', this.correo);
             localStorage.setItem('userPassword', this.clave);
 

@@ -1,16 +1,24 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Subir Foto del Negocio</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content [fullscreen]="true">
+  <div id="contenido">
+    <h1 class="TituloPrincipal">¡Bienvenido!</h1>
+    <h1 class="usuarioNombre">{{ usuario?.nombre }} {{ usuario?.apellido }}</h1>
+    <p id="SubTitulo">En PanaP puedes ver el resumen de tus reservas.</p>
 
-<ion-content class="ion-padding">
-  <h2>Selecciona una foto</h2>
-
-
-  <input type="file" (change)="onFileSelected($event)" accept="image/*" />
-
-
-  <ion-button expand="block" (click)="uploadPhoto()">Subir Foto</ion-button>
-
+    <div>
+      <h2>Resumen de tus Reservas:</h2>
+      
+      <div>
+        <h2>Resumen de Moneda:</h2>
+        <p><strong>Total gastado:</strong> ${{ totalGastado }}</p>
+        <p><strong>Pan más solicitado:</strong> {{ panFavorito || 'Sin preferencias' }}</p>
+      </div>
+      
+      <div>
+        <h2>Resumen de Cantidad:</h2>
+        <p><strong>Total Hallullas:</strong> {{ totalHallulla }}</p>
+        <p><strong>Total Marraquetas:</strong> {{ totalMarraqueta }}</p>
+        <p><strong>Total Comprado:</strong> {{ totalHallulla + totalMarraqueta }}</p>
+      </div>
+    </div>
+  </div>
 </ion-content>

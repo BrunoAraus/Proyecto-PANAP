@@ -11,6 +11,7 @@
     usuario: any;
     negocios: any[] = [];
     reserva: any;
+    historico: any[] = [];
     apiUrl = 'https://panapp.duckdns.org/rest/API_PRUEBA.php';
     intervalId: any;
 
@@ -35,6 +36,7 @@
       const usuarioData = localStorage.getItem('usuarioData');
       const negociosData = localStorage.getItem('negociosData');
       const reservasData = localStorage.getItem('reservasData');
+      const historicoData = localStorage.getItem('historicoData');
 
       if (usuarioData) {
         this.usuario = JSON.parse(usuarioData); 
@@ -45,6 +47,9 @@
       }
       if (reservasData) {
         this.reserva = JSON.parse(reservasData);
+      }
+      if (historicoData) {
+        this.historico = JSON.parse(historicoData); 
       }
     }
 
@@ -75,15 +80,18 @@
                 const usuarioData = response.user;
                 const negociosData = response.negocios;
                 const reservasData = response.reservas;
+                const historicoData = response.historicos;
 
                 localStorage.setItem('usuarioData', JSON.stringify(usuarioData));
                 localStorage.setItem('negociosData', JSON.stringify(negociosData));
                 localStorage.setItem('reservasData', JSON.stringify(reservasData));
+                localStorage.setItem('historicoData', JSON.stringify(historicoData));
 
               
                 this.usuario = usuarioData;
                 this.negocios = negociosData;
                 this.reserva = reservasData;
+                this.historico = historicoData;
               } else {
                 console.log('Error en la reconexión:', response.message);
               }
