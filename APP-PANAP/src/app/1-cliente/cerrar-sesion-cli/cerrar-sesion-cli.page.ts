@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-cerrar-sesion-cli',
   templateUrl: './cerrar-sesion-cli.page.html',
   styleUrls: ['./cerrar-sesion-cli.page.scss'],
 })
-export class CerrarSesionCliPage implements OnInit {
+export class CerrarSesionCliPage {
+  constructor(private navCtrl: NavController) {}
 
-  constructor() { }
+  cerrarSesion() {
+    
+    localStorage.clear();
 
-  ngOnInit() {
+
+    this.navCtrl.navigateRoot('/home');
   }
-
 }

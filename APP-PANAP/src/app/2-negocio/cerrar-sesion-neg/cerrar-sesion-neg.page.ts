@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-cerrar-sesion-neg',
   templateUrl: './cerrar-sesion-neg.page.html',
   styleUrls: ['./cerrar-sesion-neg.page.scss'],
 })
-export class CerrarSesionNegPage implements OnInit {
+export class CerrarSesionNegPage{
+  constructor(private navCtrl: NavController) {}
 
-  constructor() { }
+  cerrarSesion() {
+    
+    localStorage.clear();
 
-  ngOnInit() {
+
+    this.navCtrl.navigateRoot('/home');
   }
-
 }

@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { CerrarSesionNegPageRoutingModule } from './cerrar-sesion-neg-routing.module';
 
 import { CerrarSesionNegPage } from './cerrar-sesion-neg.page';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    CerrarSesionNegPageRoutingModule
+    CerrarSesionNegPageRoutingModule,
+    HttpClientModule
   ],
   declarations: [CerrarSesionNegPage]
 })

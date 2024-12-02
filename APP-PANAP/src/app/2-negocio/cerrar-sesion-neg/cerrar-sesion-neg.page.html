@@ -1,15 +1,17 @@
 <ion-content [fullscreen]="true">
   <h1>¿Cerrar sesión?</h1>
   <div id="unionBotones">
-    <a href="/home">
-      <ion-button id="siBtn">
-          <p class="btn-cs">Sí</p>
-      </ion-button>
-    </a>
-    <a href="/tabs-negocio/home-negocio">
+    
+    <ion-button id="siBtn" (click)="cerrarSesion()">
+      <p class="btn-cs">Sí</p>
+    </ion-button>
+
+    
+    <a href="/tabs-cliente/home-cliente">
       <ion-button id="noBtn">
-          <p class="btn-cs">No</p>
+        <p class="btn-cs">No</p>
       </ion-button>
     </a>
   </div>
 </ion-content>
+
