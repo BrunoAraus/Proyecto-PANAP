@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 import { IonIcon, IonTabBar, IonTabButton, IonTabs } from '@ionic/angular/standalone';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-tabs-cliente',
@@ -10,18 +12,46 @@ import { IonIcon, IonTabBar, IonTabButton, IonTabs } from '@ionic/angular/standa
     IonTabs, IonTabButton, IonTabBar, IonIcon
   ]
 })
-export class TabsClienteComponent  implements OnInit {
+export class TabsClienteComponent implements OnInit {
+  activeTab: string = 'home-cliente';
+  isAnimating: boolean = false;
 
-  animateIcon(event: any) {
-    const icon = event.target; // Obtener el ícono clickeado
-    icon.classList.add('icon-animate');
+  constructor(private router: Router) {
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe((event: any) => {
+      const currentUrl = event.url;
+      
+      if (currentUrl.includes('home-cliente')) {
+        this.activeTab = 'home-cliente';
+      } else if (currentUrl.includes('reservas-cliente')) {
+        this.activeTab = 'reservas-cliente';
+      } else if (currentUrl.includes('buscar-pan')) {
+        this.activeTab = 'buscar-pan';
+      } else if (currentUrl.includes('menu-cliente') || 
+                 currentUrl.includes('cambiar-informacion-cli') ||
+                 currentUrl.includes('preguntas-frecuentes') ||
+                 currentUrl.includes('cerrar-sesion-cli') ||
+                 currentUrl.includes('contacto')) {
+        this.activeTab = 'menu-cliente';
+      }
+    });
+  }
 
-    // Remover la clase después de que la animación termine
+  onTabClick(event: any, tabId: string) {
+    if (this.isAnimating) return;
+    
+    const tabButton = event.currentTarget;
+    this.isAnimating = true;
+    
+    tabButton.classList.add('tab-animate');
+    
     setTimeout(() => {
-      icon.classList.remove('icon-animate');
-    }, 300); // La duración debe coincidir con la duración de la animación
+      this.activeTab = tabId;
+      tabButton.classList.remove('tab-animate');
+      this.isAnimating = false;
+    }, 500);
   }
 
   ngOnInit() {}
-
 }

@@ -147,6 +147,10 @@ const routes: Routes = [
     path: 'detalles',
     loadChildren: () => import('./4-admin/detalles/detalles.module').then( m => m.DetallesPageModule)
   },
+  {
+    path: 'resumen-cliente',
+    loadChildren: () => import('./1-cliente/resumen-cliente/resumen-cliente.module').then( m => m.ResumenClientePageModule)
+  },
   
   {
     path: 'tabs-cliente',
@@ -195,6 +199,10 @@ const routes: Routes = [
       {
         path: 'pruebas-api',
         loadChildren: () => import('./3-pruebas/pruebas-api/pruebas-api.module').then( m => m.PruebasApiPageModule)
+      },
+      {
+        path: 'resumen-cliente',
+        loadChildren: () => import('./1-cliente/resumen-cliente/resumen-cliente.module').then( m => m.ResumenClientePageModule)
       },    
     ]
   },
@@ -276,6 +284,11 @@ const routes: Routes = [
       },
     ]
   },
+  {
+    path: 'resumen-negocio',
+    loadChildren: () => import('./2-negocio/resumen-negocio/resumen-negocio.module').then( m => m.ResumenNegocioPageModule)
+  },
+
 
 
 

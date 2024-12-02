@@ -6,43 +6,43 @@
 }
 
 .iconoCerrar {
-    height: 40px;
-    width: 40px;
     position: fixed;
-    top: 1%;
-    left: 87%;
+    z-index: 9998;
+    top: 10px;
+    right: 10px;
+    width: 35px;
+    height: 35px;
     color: black;
-    z-index: 9999;
-  }  
+}  
 
 .contenedor{
     width: 100%;
-    height: 85vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    padding: 10px;
+    overflow-y: auto;
 }
 
 .titularReserva{
-    font-size: 25px;
+    font-size: 22px;
     color: black;
     text-align: center;
-    margin: 25px 5px 25px 5px;
+    margin: 15px 5px 15px 5px;
     font-style: italic;
     font-weight: bold;
 }
 
 .contenidoReserva{
-    width: 75%;
+    width: 90%;
     border-radius: 15px;
-    height: auto;
+    padding: 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     background-color: rgba(83, 83, 83, 0.11);
-    padding: 10px;
+    margin-bottom: 15px;
 }
 
 .textoReserva{
@@ -67,30 +67,28 @@
 }
 
 .accion{
-    font-size: 30px;
+    font-size: 25px;
     color: black;
     font-style: italic;
-    margin: 20px 0px 10px 0px;
+    margin: 15px 0px 10px 0px;
 }
 
 .ordenBotones{
-    margin: 5px 0px 20px 0px;
     width: 100%;
-    height: 150px;
     display: flex;
     justify-content: center;
-    align-items: center;
-    gap: 70px;
+    gap: 50px;
+    margin: 10px 0px 20px 0px;
 }
 
 .acciones1{
-    width: 70px;
-    height: 70px;
+    width: 65px;
+    height: 65px;
     color: red;
 }
 
 .acciones2{
-    width: 70px;
-    height: 70px;
+    width: 65px;
+    height: 65px;
     color: green;
 }

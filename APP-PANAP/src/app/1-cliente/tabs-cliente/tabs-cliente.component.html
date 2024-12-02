@@ -1,24 +1,24 @@
 <ion-tabs>
   <ion-tab-bar slot="bottom">
-    <ion-tab-button tab="home-cliente">
-      <ion-icon name="home-outline" (click)="animateIcon($event)"></ion-icon>
+    <ion-tab-button tab="home-cliente" (click)="onTabClick($event, 'home-cliente')" [class.active-tab]="activeTab === 'home-cliente'">
+      <ion-icon name="home-outline"></ion-icon>
       Inicio
     </ion-tab-button>
-    <ion-tab-button tab="mapa-cliente">
-      <ion-icon name="location-outline" (click)="animateIcon($event)"></ion-icon>
+    <ion-tab-button tab="mapa-cliente" (click)="onTabClick($event, 'mapa-cliente')" [class.active-tab]="activeTab === 'mapa-cliente'">
+      <ion-icon name="location-outline"></ion-icon>
       Mapa
     </ion-tab-button>
-    <ion-tab-button tab="pedido-cliente">
-      <ion-icon name="bag-add-outline" (click)="animateIcon($event)"></ion-icon>
+    <ion-tab-button tab="pedido-cliente" (click)="onTabClick($event, 'pedido-cliente')" [class.active-tab]="activeTab === 'pedido-cliente'">
+      <ion-icon name="bag-add-outline"></ion-icon>
       Reservar
     </ion-tab-button>
-    <ion-tab-button tab="menu-cliente">
-      <ion-icon name="menu-sharp" (click)="animateIcon($event)"></ion-icon>
-      Menú
-    </ion-tab-button>
-    <ion-tab-button tab="pruebas-api">
-      <ion-icon name="menu-sharp" (click)="animateIcon($event)"></ion-icon>
+    <ion-tab-button tab="resumen-cliente" (click)="onTabClick($event, 'resumen-cliente')" [class.active-tab]="activeTab === 'resumen-cliente'">
+      <ion-icon name="flame-outline"></ion-icon>
       Resumen
+    </ion-tab-button>
+    <ion-tab-button tab="menu-cliente" (click)="onTabClick($event, 'menu-cliente')" [class.active-tab]="activeTab === 'menu-cliente'">
+      <ion-icon name="menu-sharp"></ion-icon>
+      Menú
     </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>

@@ -1,24 +1,24 @@
 <ion-tabs>
   <ion-tab-bar slot="bottom">
-    <ion-tab-button tab="home-negocio">
-      <ion-icon name="home-outline" (click)="animateIcon($event)"></ion-icon>
-        Inicio
+    <ion-tab-button tab="home-negocio" (click)="onTabClick($event, 'home-negocio')" [class.active-tab]="activeTab === 'home-negocio'">
+      <ion-icon name="home-outline"></ion-icon>
+      Inicio
     </ion-tab-button>
-    <ion-tab-button tab="reservas-negocio">
-      <ion-icon name="book-outline" (click)="animateIcon($event)"></ion-icon>
-        Reservas
+    <ion-tab-button tab="reservas-negocio" (click)="onTabClick($event, 'reservas-negocio')" [class.active-tab]="activeTab === 'reservas-negocio'">
+      <ion-icon name="book-outline"></ion-icon>
+      Reservas
     </ion-tab-button>
-    <ion-tab-button tab="ingreso-pan-negocio">
-      <ion-icon name="duplicate-outline" (click)="animateIcon($event)"></ion-icon>
-        Registrar
+    <ion-tab-button tab="ingreso-pan-negocio" (click)="onTabClick($event, 'ingreso-pan-negocio')" [class.active-tab]="activeTab === 'ingreso-pan-negocio'">
+      <ion-icon name="duplicate-outline"></ion-icon>
+      Registrar
     </ion-tab-button>
-    <ion-tab-button tab="modificar-pan-negocio">
-      <ion-icon name="create-outline" (click)="animateIcon($event)"></ion-icon>
-        Modificar
+    <ion-tab-button tab="modificar-pan-negocio" (click)="onTabClick($event, 'modificar-pan-negocio')" [class.active-tab]="activeTab === 'modificar-pan-negocio'">
+      <ion-icon name="create-outline"></ion-icon>
+      Modificar
     </ion-tab-button>
-    <ion-tab-button tab="menu-negocio">
-      <ion-icon name="menu-sharp" (click)="animateIcon($event)"></ion-icon>
-        Menú
+    <ion-tab-button tab="menu-negocio" (click)="onTabClick($event, 'menu-negocio')" [class.active-tab]="activeTab === 'menu-negocio'">
+      <ion-icon name="menu-sharp"></ion-icon>
+      Menú
     </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>
