@@ -178,8 +178,8 @@ enviarFormularioMoneda() {
     this.http.post(this.apiUrl, body, { headers: headers }).subscribe(
       response => {
         console.log('Datos de moneda enviados exitosamente:', response);
-        this.popoverController.dismiss();
         this.navCtrl.navigateRoot('/tabs-cliente/pedido-cliente');
+        this.popoverController.dismiss();
       },
       error => {
         console.error('Error al enviar los datos de moneda:', error);

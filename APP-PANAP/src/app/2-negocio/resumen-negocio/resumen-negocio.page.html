@@ -1,13 +1,27 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>resumen-negocio</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">resumen-negocio</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div id="contenido">
+    <h1 class="usuarioNombre">{{ usuario?.nombre }} Este es tu resumen de ventas en el negocio</h1>
+    <div>
+      <h2>Resumen de Negocio:</h2>
+      <div>
+        <h2>Resumen de ventas en Moneda:</h2>
+        <p><strong>Total de Pan Vendido:</strong> ${{ totalGastado }}</p>
+        <p><strong>Pan más solicitado al negocio:</strong> {{ panFavorito || 'Sin preferencias' }}</p>
+      </div>
+      <div>
+        <h2>Resumen de ventas en Cantidad:</h2>
+        <p><strong>Total Hallullas vendidas:</strong> {{ totalHallulla }}</p>
+        <p><strong>Total Marraquetas vendidas:</strong> {{ totalMarraqueta }}</p>
+        <p><strong>Total de pan vendido:</strong> {{ totalHallulla + totalMarraqueta }}</p>
+      </div>
+      <div>
+        <h2>Cantidad de reservas por dia</h2>
+        <canvas id="lineChart"></canvas>
+      </div>
+      <div>
+        <h2> Preferencias de los clientes al reservar</h2>
+        <canvas id="tipoReservaChart"></canvas>
+      </div>
+    </div>
+  </div>
 </ion-content>
