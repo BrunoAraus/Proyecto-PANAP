@@ -82,4 +82,17 @@ export class HistorialReservasPage implements OnInit {
       this.historicos = JSON.parse(historicosData);
     }
   }
+
+  handleRefresh(event: any) {
+    // Primero reconectamos con el servidor
+    this.reconectar();
+    
+    // Luego cargamos los datos
+    this.cargarDatos();
+    
+    // Completamos el evento de refresh después de 1.5 segundos
+    setTimeout(() => {
+      event.target.complete();
+    }, 1500);
+  }
 }

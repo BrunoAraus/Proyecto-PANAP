@@ -8,6 +8,7 @@ import { ResumenNegocioPageRoutingModule } from './resumen-negocio-routing.modul
 
 import { ResumenNegocioPage } from './resumen-negocio.page';
 import { HttpClientModule } from '@angular/common/http';
+import { IonContent } from '@ionic/angular';
 
 @NgModule({
   imports: [

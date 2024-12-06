@@ -5,7 +5,7 @@
     
     <div class="contenidoReserva">
       <h2 class="textoReserva">Reserva N°<h3 class="textoInterno">{{ detallesReserva?.ID_RESERVAS }}</h3></h2>
-      <h2 class="textoReserva">Nombre<h3 class="textoInterno">{{ detallesReserva?.NOMBRE_R }} {{ detallesReserva?.APELLIDO_R }}</h3></h2>
+      <h2 class="textoReserva">Nombre y apellido<h3 class="textoInterno">{{ detallesReserva?.NOMBRE_R }} {{ detallesReserva?.APELLIDO_R }}</h3></h2>
       <h2 class="textoReserva">Código de la reserva<h3 class="textoInterno">{{ detallesReserva?.R_CODIGO }}</h3></h2>
       <h2 class="textoReserva">Estado de la reserva<h3 class="textoInterno">{{ detallesReserva?.ESTADO }}</h3></h2>
       <h2 class="textoReserva">Fecha de la reserva<h3 class="textoInterno">{{ detallesReserva?.FECHA }}</h3></h2>
@@ -29,3 +29,15 @@
     </div>
   </div>
 </ion-content>
+
+<div class="overlay-animation" *ngIf="mostrarAnimacion" [class.fadeOut]="animacionSalida">
+  <div class="animation-content">
+    <ion-icon [name]="tipoAnimacion === 'entregado' ? 'checkmark-circle-outline' : 'close-circle-outline'" 
+              class="animation-icon" 
+              [ngClass]="{'entregado': tipoAnimacion === 'entregado', 'rechazado': tipoAnimacion === 'rechazado'}">
+    </ion-icon>
+    <p class="mensaje-animacion" [ngClass]="{'entregado': tipoAnimacion === 'entregado', 'rechazado': tipoAnimacion === 'rechazado'}">
+      {{ tipoAnimacion === 'entregado' ? '¡Entregado!' : '¡Rechazado!' }}
+    </p>
+  </div>
+</div>

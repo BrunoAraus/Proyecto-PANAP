@@ -1,3 +1,116 @@
 *{
+    padding: 0;
+    margin: 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color: black;
+}
+
+.contenido {
+    width: 100%;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0px 0px 20px 0px;
+}
+
+.titulo {
+    text-align: center;
+    font-size: 25px;
+    color: #333;
+    margin-top: 35px;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.contenidoTabla {
+    width: 330px;
+    height: 50%;
+    overflow-y: auto;
+    margin: 30px 0px 30px 0px;
+    border-radius: 0px 0px 15px 15px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.encabezado {
+    width: 330px;
+    height: 60px;
+    background-color: rgb(65, 33, 206);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px 15px 0px 0px;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.titulares {
+    text-align: center;
+    font-size: 15px;
+    color: #fff;
+}
+
+.tabla-solicitudes {
+    width: 100%;
+    background-color: #f8f9fa;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 0;
+}
+
+.fila-datos {
+    background-color: #fff;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        background-color: #f5f5f5;
+    }
+
+    &:last-child {
+        border-bottom: none;
+    }
+}
+
+.contenidoCeldas {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: #333;
+}
+
+.contenidoCeldas4 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-style: italic;
+    color: #666;
+}
+
+.contenidoCeldas2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.iconoAcciones {
+    width: 25px;
+    height: 25px;
+    color: #4121ce;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+
+    &:hover {
+        transform: scale(1.1);
+    }
 }

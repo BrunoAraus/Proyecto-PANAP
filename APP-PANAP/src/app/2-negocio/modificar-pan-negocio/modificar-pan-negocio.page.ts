@@ -18,6 +18,8 @@ export class ModificarPanNegocioPage implements OnInit {
 
   apiUrl = 'https://panapp.duckdns.org/rest/API_PRUEBA.php';
   intervalId: any;
+  mostrarAnimacion = false;
+  animacionSalida = false;
 
   constructor(private http: HttpClient, private navCtrl: NavController) {}
 
@@ -108,13 +110,12 @@ export class ModificarPanNegocioPage implements OnInit {
   }
 
   modificar() {
-      // Validación: Verificar si hay una opción seleccionada
-  if (!this.negocio.disponibilidad) {
-    this.errorMensaje = 'Debe seleccionar una opción antes de actualizar.';
-    console.error(this.errorMensaje);
-    return; // Detener la ejecución si no hay selección
-  }
-    console.log('Fecha y hora en formato TIMESTAMP:', this.negocio.fecha_stock);
+    if (!this.negocio.disponibilidad) {
+      this.errorMensaje = 'Debe seleccionar una opción antes de actualizar.';
+      console.error(this.errorMensaje);
+      return;
+    }
+
     if (this.usuario && this.usuario.id) {
       const body = {
         accion: 'stock',
@@ -125,26 +126,86 @@ export class ModificarPanNegocioPage implements OnInit {
 
       const headers = new HttpHeaders({
         'Content-Type': 'application/json',
-        Authorization:
-          '',
+        Authorization: ''
       });
 
-      this.http.post(this.apiUrl, body, { headers: headers }).subscribe(
+      this.http.post(this.apiUrl, body, { headers: headers, responseType: 'text' }).subscribe(
         (response: any) => {
-          if (response.success) {
-            console.log('Stock Añadido Correctamente:', response.message);
-            this.navCtrl.navigateBack('/tabs-negocio/home-negocio');
-          } else {
-            this.errorMensaje = 'Error al modificar la disponibilidad: ' + response.message;
+          try {
+            const jsonResponse = response ? JSON.parse(response) : null;
+            
+            if (jsonResponse && jsonResponse.success) {
+              this.mostrarAnimacion = true;
+              this.animacionSalida = false;
+              
+              setTimeout(() => {
+                this.limpiarFormulario();
+              }, 800);
+              
+              setTimeout(() => {
+                this.animacionSalida = true;
+                setTimeout(() => {
+                  this.mostrarAnimacion = false;
+                  this.animacionSalida = false;
+                  this.navCtrl.navigateBack('/tabs-negocio/modificar-pan-negocio');
+                }, 300);
+              }, 1700);
+            }
+          } catch (e) {
+            if (response) {
+              this.mostrarAnimacion = true;
+              this.animacionSalida = false;
+              
+              setTimeout(() => {
+                this.limpiarFormulario();
+              }, 800);
+              
+              setTimeout(() => {
+                this.animacionSalida = true;
+                setTimeout(() => {
+                  this.mostrarAnimacion = false;
+                  this.animacionSalida = false;
+                  this.navCtrl.navigateBack('/tabs-negocio/modificar-pan-negocio');
+                }, 300);
+              }, 1700);
+            } else {
+              this.errorMensaje = 'Error al procesar la respuesta del servidor';
+            }
           }
         },
         (error) => {
-          console.error('Error al modificar la disponibilidad:', error);
-          this.errorMensaje = 'Ocurrió un error al modificar la disponibilidad.';
+          if (error.status === 200) {
+            this.mostrarAnimacion = true;
+            this.animacionSalida = false;
+            
+            setTimeout(() => {
+              this.limpiarFormulario();
+            }, 800);
+            
+            setTimeout(() => {
+              this.animacionSalida = true;
+              setTimeout(() => {
+                this.mostrarAnimacion = false;
+                this.animacionSalida = false;
+                this.navCtrl.navigateBack('/tabs-negocio/modificar-pan-negocio');
+              }, 300);
+            }, 1700);
+          } else {
+            console.error('Error al modificar la disponibilidad:', error);
+            this.errorMensaje = 'Ocurrió un error al modificar la disponibilidad.';
+          }
         }
       );
     } else {
       this.errorMensaje = 'Usuario no autenticado.';
     }
+  }
+
+  limpiarFormulario() {
+    this.negocio = {
+      fecha_stock: '',
+      disponibilidad: '',
+    };
+    this.FECHA();
   }
 }

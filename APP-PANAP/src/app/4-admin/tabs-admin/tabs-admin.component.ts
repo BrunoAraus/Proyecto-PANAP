@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 import { IonIcon, IonTabBar, IonTabButton, IonTabs } from '@ionic/angular/standalone';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-tabs-admin',
@@ -11,15 +13,40 @@ import { IonIcon, IonTabBar, IonTabButton, IonTabs } from '@ionic/angular/standa
   ]
 })
 export class TabsAdminComponent  implements OnInit {
+  activeTab: string = 'home-admin';
+  isAnimating: boolean = false;
 
-  animateIcon(event: any) {
-    const icon = event.target; // Obtener el ícono clickeado
-    icon.classList.add('icon-animate');
+  constructor(private router: Router) {
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe((event: any) => {
+      const currentUrl = event.url;
+      
+      if (currentUrl.includes('home-admin')) {
+        this.activeTab = 'home-admin';
+      } else if (currentUrl.includes('solicitudes-negocio')) {
+        this.activeTab = 'solicitudes-negocio';
+      } else if (currentUrl.includes('listado-negocios')) {
+        this.activeTab = 'listado-negocios';
+      } else if (currentUrl.includes('cerrar-sesion-adm')) {
+        this.activeTab = 'cerrar-sesion-adm';
+      }
+    });
+  }
 
-    // Remover la clase después de que la animación termine
+  onTabClick(event: any, tabId: string) {
+    if (this.isAnimating) return;
+    
+    const tabButton = event.currentTarget;
+    this.isAnimating = true;
+    
+    tabButton.classList.add('tab-animate');
+    
     setTimeout(() => {
-      icon.classList.remove('icon-animate');
-    }, 300); // La duración debe coincidir con la duración de la animación
+      this.activeTab = tabId;
+      tabButton.classList.remove('tab-animate');
+      this.isAnimating = false;
+    }, 500);
   }
   
   ngOnInit() {}

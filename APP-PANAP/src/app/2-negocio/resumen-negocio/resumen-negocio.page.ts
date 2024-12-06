@@ -1,13 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Chart } from 'chart.js/auto';
+import { IonContent } from '@ionic/angular';
 
 @Component({
   selector: 'app-resumen-negocio',
   templateUrl: './resumen-negocio.page.html',
   styleUrls: ['./resumen-negocio.page.scss'],
 })
-export class ResumenNegocioPage {
+export class ResumenNegocioPage implements OnInit {
+  @ViewChild(IonContent) content!: IonContent;
+  showScrollTop: boolean = false;
+  
   usuario: any = { nombre: '', apellido: '' };
   totalGastado: number = 0;
   panFavorito: string | null = null;
@@ -26,6 +30,15 @@ export class ResumenNegocioPage {
   ngOnInit() {
     this.reconectar();
     this.cargarDatos();
+  }
+
+  onScroll(event: any) {
+    const scrollTop = event.detail.scrollTop;
+    this.showScrollTop = scrollTop > window.innerHeight / 2;
+  }
+
+  scrollToTop() {
+    this.content.scrollToTop(500);
   }
 
   reconectar() {
@@ -154,20 +167,58 @@ export class ResumenNegocioPage {
               borderColor: '#36A2EB',
               backgroundColor: 'rgba(54, 162, 235, 0.2)',
               fill: true,
+              borderWidth: 3,
+              pointRadius: 6,
+              pointHoverRadius: 8,
             },
           ],
         },
         options: {
           responsive: true,
+          maintainAspectRatio: false,
           plugins: {
-            legend: { display: true },
+            legend: { 
+              display: true,
+              labels: {
+                font: {
+                  size: 14
+                }
+              }
+            },
           },
           scales: {
-            x: { title: { display: true, text: 'Fecha' } },
+            x: { 
+              title: { 
+                display: true, 
+                text: 'Fecha',
+                font: {
+                  size: 14
+                }
+              },
+              ticks: {
+                font: {
+                  size: 12
+                },
+                maxRotation: 45,
+                minRotation: 45
+              }
+            },
             y: {
-              title: { display: true, text: 'Cantidad de Reservas' },
+              title: { 
+                display: true, 
+                text: 'Cantidad de Reservas',
+                font: {
+                  size: 14
+                }
+              },
               beginAtZero: true,
-              ticks: { stepSize: 1, callback: (value) => Number(value).toFixed(0) },
+              ticks: { 
+                stepSize: 1, 
+                callback: (value) => Number(value).toFixed(0),
+                font: {
+                  size: 12
+                }
+              },
             },
           },
         },
@@ -194,12 +245,54 @@ export class ResumenNegocioPage {
         options: {
           responsive: true,
           plugins: {
-            legend: { display: true },
+            legend: { 
+              display: true,
+              position: 'bottom',
+              onClick: (event: any, legendItem: any, legend: any) => {
+                console.log('Legend item clicked:', legendItem);
+              },
+              labels: {
+                boxWidth: 15,
+                padding: 15,
+                font: {
+                  size: 14
+                },
+                generateLabels: function(chart: any) {
+                  const datasets = chart.data.datasets[0];
+                  return [{
+                    text: `Moneda: ${datasets.data[0]}`,
+                    fillStyle: datasets.backgroundColor[0],
+                    hidden: false,
+                    index: 0,
+                    lineWidth: 0
+                  }, {
+                    text: `Cantidad: ${datasets.data[1]}`,
+                    fillStyle: datasets.backgroundColor[1],
+                    hidden: false,
+                    index: 1,
+                    lineWidth: 0
+                  }];
+                },
+                usePointStyle: false
+              }
+            },
+            tooltip: {
+              enabled: true
+            }
           },
+          events: ['mousemove', 'mouseout', 'click', 'touchstart', 'touchmove'],
         },
       });
     }
   }
+
+  formatearNumero(numero: number): string {
+    return numero.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  }
+
+  formatearCapital(texto: string): string {
+    return texto.charAt(0).toUpperCase() + texto.slice(1);
+  }
   
-  
+
 }

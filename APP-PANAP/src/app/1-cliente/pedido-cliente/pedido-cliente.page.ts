@@ -129,9 +129,11 @@ async presentPopover(negocio: any) {
 
 
   const { data } = await popover.onWillDismiss();
+  this.navCtrl.navigateRoot('/tabs-cliente/pedido-cliente');
   this.reconectar();
   this.cargarDatos();
   console.log('Popover cerrado: ', data);
+  this.navCtrl.navigateRoot('/tabs-cliente/pedido-cliente');
 }
 
 

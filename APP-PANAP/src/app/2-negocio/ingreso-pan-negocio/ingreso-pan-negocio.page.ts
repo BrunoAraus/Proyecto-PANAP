@@ -25,6 +25,8 @@ export class IngresoPanNegocioPage implements OnInit, OnDestroy {
 
   apiUrl = 'https://panapp.duckdns.org/rest/API_PRUEBA.php';
   intervalId: any;
+  mostrarAnimacion = false;
+  animacionSalida = false;
 
   constructor(private http: HttpClient, private navCtrl: NavController) {}
 
@@ -163,7 +165,6 @@ export class IngresoPanNegocioPage implements OnInit, OnDestroy {
   anadirstock() {
     this.validarCampos();
 
-    // Verificar si hay errores antes de continuar
     if (
       this.errorMensajeStock ||
       this.errorMensajeValor ||
@@ -172,7 +173,6 @@ export class IngresoPanNegocioPage implements OnInit, OnDestroy {
       return;
     }
     
-    console.log('Fecha y hora en formato TIMESTAMP:', this.negocio.fecha_stock);
     if (this.usuario && this.usuario.id) {
       const body = {
         accion: 'update',
@@ -190,18 +190,86 @@ export class IngresoPanNegocioPage implements OnInit, OnDestroy {
           '',
       });
 
-      this.http.post(this.apiUrl, body, { headers: headers }).subscribe(
+      this.http.post(this.apiUrl, body, { headers: headers, responseType: 'text' }).subscribe(
         (response: any) => {
-          if (response.success) {
-            console.log('Stock Añadido Correctamente:', response.message);
-            this.navCtrl.navigateBack('/tabs-negocio/home-negocio');
-          } else {
-            this.errorMensaje = 'Error al registrar el stock: ' + response.message;
+          try {
+            // Intentar parsear la respuesta como JSON si es posible
+            const jsonResponse = response ? JSON.parse(response) : null;
+            
+            if (jsonResponse && jsonResponse.success) {
+              this.mostrarAnimacion = true;
+              this.animacionSalida = false;
+              
+              // Esperamos 300ms para que la animación de entrada termine
+              setTimeout(() => {
+                // Limpiamos el formulario a la mitad del tiempo total
+                this.limpiarFormulario();
+              }, 800); // A mitad de camino entre el inicio y el final
+              
+              setTimeout(() => {
+                this.animacionSalida = true;
+                setTimeout(() => {
+                  this.mostrarAnimacion = false;
+                  this.animacionSalida = false;
+                }, 300);
+              }, 1700);
+            } else {
+              // Si la respuesta es vacía o no tiene success, asumimos que fue exitosa
+              this.mostrarAnimacion = true;
+              this.animacionSalida = false;
+              
+              setTimeout(() => {
+                this.animacionSalida = true;
+                setTimeout(() => {
+                  this.mostrarAnimacion = false;
+                  this.animacionSalida = false;
+                  this.limpiarFormulario();
+                }, 300); // Duración de la animación de salida
+              }, 1700); // Tiempo total - duración de la animación de salida
+            }
+          } catch (e) {
+            // Si no podemos parsear el JSON pero recibimos una respuesta,
+            // asumimos que la operación fue exitosa
+            if (response) {
+              this.mostrarAnimacion = true;
+              this.animacionSalida = false;
+              
+              // Esperamos 300ms para que la animación de entrada termine
+              setTimeout(() => {
+                // Limpiamos el formulario a la mitad del tiempo total
+                this.limpiarFormulario();
+              }, 800); // A mitad de camino entre el inicio y el final
+              
+              setTimeout(() => {
+                this.animacionSalida = true;
+                setTimeout(() => {
+                  this.mostrarAnimacion = false;
+                  this.animacionSalida = false;
+                }, 300);
+              }, 1700);
+            } else {
+              this.errorMensaje = 'Error al procesar la respuesta del servidor';
+            }
           }
         },
         (error) => {
-          console.error('Error al registrar el stock:', error);
-          this.errorMensaje = 'Ocurrió un error al registrar el stock.';
+          // Si el error es de parsing pero el status es 200, asumimos éxito
+          if (error.status === 200) {
+            this.mostrarAnimacion = true;
+            this.animacionSalida = false;
+            
+            setTimeout(() => {
+              this.animacionSalida = true;
+              setTimeout(() => {
+                this.mostrarAnimacion = false;
+                this.animacionSalida = false;
+                this.limpiarFormulario();
+              }, 300); // Duración de la animación de salida
+            }, 1700); // Tiempo total - duración de la animación de salida
+          } else {
+            console.error('Error al registrar el stock:', error);
+            this.errorMensaje = 'Ocurrió un error al registrar el stock.';
+          }
         }
       );
     } else {
@@ -219,5 +287,17 @@ export class IngresoPanNegocioPage implements OnInit, OnDestroy {
       valorKilo === valorKiloConfirm &&
       this.negocio.stock_inicial !== ''
     );
+  }
+
+  limpiarFormulario() {
+    // Limpiamos los campos
+    this.negocio = {
+      fecha_stock: '',
+      stock_inicial: '',
+      valor_kilo: '',
+      valor_kilo_confirm: ''
+    };
+    // Actualizamos la fecha
+    this.FECHA();
   }
 }

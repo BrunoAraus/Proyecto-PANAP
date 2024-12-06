@@ -1,16 +1,20 @@
 <ion-tabs>
   <ion-tab-bar slot="bottom">
-    <ion-tab-button tab="solicitudes">
-      <ion-icon name="file-tray-full-outline" (click)="animateIcon($event)"></ion-icon>
-        Solicitudes
+    <ion-tab-button tab="home-admin" (click)="onTabClick($event, 'home-admin')" [class.active-tab]="activeTab === 'home-admin'">
+      <ion-icon name="home-outline"></ion-icon>
+      Inicio
     </ion-tab-button>
-    <ion-tab-button tab="listado-negocios">
-      <ion-icon name="storefront-outline" (click)="animateIcon($event)"></ion-icon>
-        Negocios
+    <ion-tab-button tab="solicitudes-negocio" (click)="onTabClick($event, 'solicitudes-negocio')" [class.active-tab]="activeTab === 'solicitudes-negocio'">
+      <ion-icon name="file-tray-full-outline"></ion-icon>
+      Solicitudes
     </ion-tab-button>
-    <ion-tab-button tab="cerrar-sesion-adm">
-      <ion-icon name="exit-outline" (click)="animateIcon($event)"></ion-icon>
-        Salir
+    <ion-tab-button tab="listado-negocios" (click)="onTabClick($event, 'listado-negocios')" [class.active-tab]="activeTab === 'listado-negocios'">
+      <ion-icon name="storefront-outline"></ion-icon>
+      Negocios
+    </ion-tab-button>
+    <ion-tab-button tab="cerrar-sesion-adm" (click)="onTabClick($event, 'cerrar-sesion-adm')" [class.active-tab]="activeTab === 'cerrar-sesion-adm'">
+      <ion-icon name="exit-outline"></ion-icon>
+      Salir
     </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>

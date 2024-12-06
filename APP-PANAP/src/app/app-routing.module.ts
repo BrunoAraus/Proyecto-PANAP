@@ -136,10 +136,6 @@ const routes: Routes = [
     loadChildren: () => import('./2-negocio/detalles/detalles.module').then( m => m.DetallesPageModule)
   },
   {
-    path: 'solicitudes',
-    loadChildren: () => import('./4-admin/solicitudes/solicitudes.module').then( m => m.SolicitudesPageModule)
-  },
-  {
     path: 'listado-negocios',
     loadChildren: () => import('./4-admin/listado-negocios/listado-negocios.module').then( m => m.ListadoNegociosPageModule)
   },
@@ -150,6 +146,18 @@ const routes: Routes = [
   {
     path: 'resumen-cliente',
     loadChildren: () => import('./1-cliente/resumen-cliente/resumen-cliente.module').then( m => m.ResumenClientePageModule)
+  },
+  {
+    path: 'resumen-negocio',
+    loadChildren: () => import('./2-negocio/resumen-negocio/resumen-negocio.module').then( m => m.ResumenNegocioPageModule)
+  },
+  {
+    path: 'home-admin',
+    loadChildren: () => import('./4-admin/home-admin/home-admin.module').then( m => m.HomeAdminPageModule)
+  },
+  {
+    path: 'solicitudes-negocio',
+    loadChildren: () => import('./4-admin/solicitudes-negocio/solicitudes-negocio.module').then( m => m.SolicitudesNegocioPageModule)
   },
   
   {
@@ -259,6 +267,10 @@ const routes: Routes = [
         path: 'detalles',
         loadChildren: () => import('./2-negocio/detalles/detalles.module').then( m => m.DetallesPageModule)
       },
+      {
+        path: 'resumen-negocio',
+        loadChildren: () => import('./2-negocio/resumen-negocio/resumen-negocio.module').then( m => m.ResumenNegocioPageModule)
+      },
     ]
   },
 
@@ -271,10 +283,6 @@ const routes: Routes = [
         loadChildren: () => import('./4-admin/cerrar-sesion-adm/cerrar-sesion-adm.module').then( m => m.CerrarSesionAdmPageModule)
       },
       {
-        path: 'solicitudes',
-        loadChildren: () => import('./4-admin/solicitudes/solicitudes.module').then( m => m.SolicitudesPageModule)
-      },
-      {
         path: 'listado-negocios',
         loadChildren: () => import('./4-admin/listado-negocios/listado-negocios.module').then( m => m.ListadoNegociosPageModule)
       },
@@ -282,17 +290,16 @@ const routes: Routes = [
         path: 'detalles',
         loadChildren: () => import('./4-admin/detalles/detalles.module').then( m => m.DetallesPageModule)
       },
+      {
+        path: 'home-admin',
+        loadChildren: () => import('./4-admin/home-admin/home-admin.module').then( m => m.HomeAdminPageModule)
+      },
+      {
+        path: 'solicitudes-negocio',
+        loadChildren: () => import('./4-admin/solicitudes-negocio/solicitudes-negocio.module').then( m => m.SolicitudesNegocioPageModule)
+      },
     ]
   },
-  {
-    path: 'resumen-negocio',
-    loadChildren: () => import('./2-negocio/resumen-negocio/resumen-negocio.module').then( m => m.ResumenNegocioPageModule)
-  },
-
-
-
-
-
 ];
 
 @NgModule({

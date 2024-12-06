@@ -12,8 +12,9 @@ export class DetallesPage implements OnInit {
   @Input() detallesReserva: any;
   errorMensaje: string = '';
   apiUrl = 'https://panapp.duckdns.org/rest/API_PRUEBA.php';
-
-
+  mostrarAnimacion = false;
+  animacionSalida = false;
+  tipoAnimacion: 'entregado' | 'rechazado' = 'entregado';
 
   constructor( 
     private http: HttpClient,
@@ -41,16 +42,48 @@ export class DetallesPage implements OnInit {
     this.http.post(this.apiUrl, body, { headers: headers })
       .subscribe(
         (response: any) => {
-          if (response.success) {
-            console.log('Estado cambiado a ACEPTADO para el usuario:', idUsuario);
-            this.navCtrl.navigateRoot('/tabs-negocio/reservas-dia');
-            this.cerrarPopover();
-          } else {
-            console.error('Error al cambiar el estado:', response.message);
+          if (response.success || response.status === 200) {
+            this.tipoAnimacion = 'entregado';
+            this.mostrarAnimacion = true;
+            this.animacionSalida = false;
+            
+            setTimeout(() => {
+              this.navCtrl.navigateRoot('/tabs-negocio/reservas-dia');
+              this.cerrarPopover();
+            }, 1500);
+            
+            setTimeout(() => {
+              this.animacionSalida = true;
+              setTimeout(() => {
+                this.mostrarAnimacion = false;
+                this.animacionSalida = false;
+                this.navCtrl.navigateRoot('/tabs-negocio/reservas-dia');
+              }, 1000);
+            }, 3000);
           }
         },
         (error) => {
-          console.error('Error en la solicitud:', error);
+          if (error.status === 200) {
+            this.tipoAnimacion = 'entregado';
+            this.mostrarAnimacion = true;
+            this.animacionSalida = false;
+            
+            setTimeout(() => {
+              this.navCtrl.navigateRoot('/tabs-negocio/reservas-dia');
+              this.cerrarPopover();
+            }, 1500);
+            
+            setTimeout(() => {
+              this.animacionSalida = true;
+              setTimeout(() => {
+                this.mostrarAnimacion = false;
+                this.animacionSalida = false;
+                this.navCtrl.navigateRoot('/tabs-negocio/reservas-dia');
+              }, 1000);
+            }, 3000);
+          } else {
+            console.error('Error en la solicitud:', error);
+          }
         }
       );
   }
@@ -70,21 +103,55 @@ export class DetallesPage implements OnInit {
     this.http.post(this.apiUrl, body, { headers: headers })
       .subscribe(
         (response: any) => {
-          if (response.success) {
-            console.log('Reserva cancelada para el usuario:', idUsuario);
-            this.navCtrl.navigateRoot('/tabs-negocio/reservas-dia');
-            this.cerrarPopover();
-          } else {
-            console.error('Error al cancelar la reserva:', response.message);
+          if (response.success || response.status === 200) {
+            this.tipoAnimacion = 'rechazado';
+            this.mostrarAnimacion = true;
+            this.animacionSalida = false;
+            
+            setTimeout(() => {
+              this.navCtrl.navigateRoot('/tabs-negocio/reservas-dia');
+              this.cerrarPopover();
+            }, 2000);
+            
+            setTimeout(() => {
+              this.animacionSalida = true;
+              setTimeout(() => {
+                this.mostrarAnimacion = false;
+                this.animacionSalida = false;
+                this.navCtrl.navigateRoot('/tabs-negocio/reservas-dia');
+              }, 1000);
+            }, 3000);
           }
         },
         (error) => {
-          console.error('Error en la solicitud de cancelación:', error);
+          if (error.status === 200) {
+            this.tipoAnimacion = 'rechazado';
+            this.mostrarAnimacion = true;
+            this.animacionSalida = false;
+            
+            setTimeout(() => {
+              this.navCtrl.navigateRoot('/tabs-negocio/reservas-dia');
+              this.cerrarPopover();
+            }, 2000);
+            
+            setTimeout(() => {
+              this.animacionSalida = true;
+              setTimeout(() => {
+                this.mostrarAnimacion = false;
+                this.animacionSalida = false;
+                this.navCtrl.navigateRoot('/tabs-negocio/reservas-dia');
+              }, 1000);
+            }, 3000);
+          } else {
+            console.error('Error en la solicitud de cancelación:', error);
+          }
         }
       );
   }
   cerrarPopover() {
+    this.navCtrl.navigateRoot('/tabs-negocio/reservas-dia');
     this.popoverController.dismiss();
+    this.navCtrl.navigateRoot('/tabs-negocio/reservas-dia');
   }
 
   formatearNumero(numero: number): string {

@@ -9,7 +9,7 @@
   text-align: center;
   font-size: 25px;
   color: black;
-  margin-top: 20px;
+  margin-top: 15px;
   font-weight: bold;
   font-style: italic;
 }
@@ -30,6 +30,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
+  padding-top: 10px;
 }
 
 .titulares {
@@ -51,7 +53,7 @@
   z-index: 1;
 }
 
-.contenidoTabla{
+.contenidoTabla {
   width: 90%;
   height: 700px;
   overflow-y: auto;
@@ -65,7 +67,7 @@
   display: none;
 }
 
-.tablaHitorico{
+.tablaHitorico {
   margin: 0px 0px 0px 0px;
   width: 100%;
   overflow-y: auto;
@@ -76,8 +78,21 @@
   text-align: center;
   padding: 12px 0;
   border-bottom: 1px solid #ddd;
-  
+
   &:nth-child(even) {
     background-color: #f1f1f1;
   }
+
+}
+
+ion-refresher {
+  --ion-text-color: black;
+}
+
+ion-refresher-content {
+  --color: black;
+  background: transparent;
+  --pulling-icon-color: black;
+  --refreshing-spinner-color: black;
+  --pulling-text-color: black;
 }

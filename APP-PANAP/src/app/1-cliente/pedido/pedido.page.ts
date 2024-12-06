@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {  NavController,PopoverController } from '@ionic/angular';
+import { NavController, PopoverController } from '@ionic/angular';
 
 @Component({
   selector: 'app-pedido',
@@ -18,12 +18,15 @@ export class PedidoPage {
   tipo: string = '';
   errorMensaje: string = '';
   errorMensajeHallulla: string = '';
-  errorMensajeMarraqueta: string = '';  
+  errorMensajeMarraqueta: string = '';
   errorFormato: string = '';
 
   formularioActual: 'cantidad' | 'moneda' = 'cantidad';
 
   apiUrl = 'https://panapp.duckdns.org/rest/API_PRUEBA.php';
+
+  mostrarAnimacion: boolean = false;
+  animacionSalida: boolean = false;
 
   constructor(
     private http: HttpClient,
@@ -38,6 +41,14 @@ export class PedidoPage {
 
   seleccionarFormulario(tipo: 'cantidad' | 'moneda') {
     this.formularioActual = tipo;
+    this.r_valor = '';
+    this.hallulla = '';
+    this.marraqueta = '';
+    this.tipo = '';
+    this.errorMensaje = '';
+    this.errorMensajeHallulla = '';
+    this.errorMensajeMarraqueta = '';
+    this.errorFormato = '';
   }
 
   cerrarPopover() {
@@ -46,7 +57,7 @@ export class PedidoPage {
 
   formatearNumero(event: any) {
     let valor = event.target.value;
-    
+
     // Verifica si el valor contiene solo números
     if (/^\d*$/.test(valor)) {
       // Si solo hay números, limita a cinco dígitos
@@ -57,7 +68,7 @@ export class PedidoPage {
       this.errorMensaje = 'Por favor, ingresa solo números';
     }
   }
-  
+
 
   private generarCodigoAleatorio(longitud: number = 6): string {
     const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -70,35 +81,23 @@ export class PedidoPage {
   }
 
   enviarFormularioCantidad() {
-    
- // Validación para Hallulla
- if (/[^0-9]/.test(this.hallulla)) {
-  this.errorMensajeHallulla = 'La cantidad de Hallulla no puede contener letras.';
-} else if (parseInt(this.hallulla) <= 0 || this.hallulla === '') {
-  this.errorMensajeHallulla = 'La cantidad de Hallulla debe ser un número mayor a 0.';
-} else {
-  this.errorMensajeHallulla = ''; // Limpiar mensaje si es válido
-}
+    if (this.formularioActual !== 'cantidad') return;
 
-// Validación para Marraqueta
-if (/[^0-9]/.test(this.marraqueta)) {
-  this.errorMensajeMarraqueta = 'La cantidad de Marraqueta no puede contener letras.';
-} else if (parseInt(this.marraqueta) <= 0 || this.marraqueta === '') {
-  this.errorMensajeMarraqueta = 'La cantidad de Marraqueta debe ser un número mayor a 0.';
-} else {
-  this.errorMensajeMarraqueta = ''; // Limpiar mensaje si es válido
-}
+    // Convertir los valores a números
+    const hallullaNum = parseInt(this.hallulla) || 0;
+    const marraquetaNum = parseInt(this.marraqueta) || 0;
 
-if (!this.tipo) {
-  this.errorFormato = 'Por favor, elige un formato para continuar.';
-  return;
-} else {
-  this.errorFormato = ''; // Limpiar mensaje de error si se seleccionó un formato
-}
-// Detener si hay errores
-if (this.errorMensajeHallulla || this.errorMensajeMarraqueta) {
-  return;
-}
+    // Validar que al menos uno de los dos sea mayor que 0
+    if (hallullaNum === 0 && marraquetaNum === 0) {
+      this.errorMensajeHallulla = 'Debe pedir al menos un tipo de pan';
+      this.errorMensajeMarraqueta = 'Debe pedir al menos un tipo de pan';
+      return;
+    }
+
+    // Limpiar mensajes de error si todo está bien
+    this.errorMensajeHallulla = '';
+    this.errorMensajeMarraqueta = '';
+
     const codigoAleatorio = this.generarCodigoAleatorio();
 
     const body = {
@@ -115,47 +114,24 @@ if (this.errorMensajeHallulla || this.errorMensajeMarraqueta) {
       TIPO: "CANTIDAD"
     };
 
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': ''
-    });
-
-    this.http.post(this.apiUrl, body, { headers: headers }).subscribe(
-      response => {
-        console.log('Datos de cantidad enviados exitosamente:', response);
-        this.popoverController.dismiss();
-        this.navCtrl.navigateRoot('/tabs-cliente/pedido-cliente');
-      },
-      error => {
-        console.error('Error al enviar los datos de cantidad:', error);
-      }
-    );
+    this.enviarPeticion(body);
   }
 
-enviarFormularioMoneda() {
-  // Validación para el valor monetario
-  if (!this.r_valor || this.r_valor === '0' || this.r_valor === '') {
-    this.errorMensaje = 'Por favor, ingresa un monto válido mayor a 0';
-    return;
-  } else {
-    this.errorMensaje = '';
-  }
+  enviarFormularioMoneda() {
+    if (this.formularioActual !== 'moneda') return;
 
-  // Validación para el tipo de pan (formato)
-  if (!this.tipo) {
-    this.errorFormato = 'Por favor, elige un formato para continuar.';
-    return;
-  } else {
-    this.errorFormato = '';
-  }
+    if (!this.r_valor || this.r_valor === '0' || this.r_valor === '') {
+      this.errorMensaje = 'Por favor, ingresa un monto válido mayor a 0';
+      return;
+    }
 
-  // Solo continuar si no hay errores
-  if (!this.errorMensaje && !this.errorFormato) {
+    if (!this.tipo) {
+      this.errorFormato = 'Por favor, elige un formato para continuar.';
+      return;
+    }
+
     const codigoAleatorio = this.generarCodigoAleatorio();
-    // ... resto del código existente del método ...
-  }
-    const codigoAleatorio = this.generarCodigoAleatorio();
-
+    
     const body = {
       accion: 'registrarDatosNegocio',
       ID_NEGOCIO: this.idNegocio,
@@ -170,6 +146,10 @@ enviarFormularioMoneda() {
       TIPO: "MONEDA"
     };
 
+    this.enviarPeticion(body);
+  }
+
+  private enviarPeticion(body: any) {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': ''
@@ -177,12 +157,19 @@ enviarFormularioMoneda() {
 
     this.http.post(this.apiUrl, body, { headers: headers }).subscribe(
       response => {
-        console.log('Datos de moneda enviados exitosamente:', response);
-        this.navCtrl.navigateRoot('/tabs-cliente/pedido-cliente');
-        this.popoverController.dismiss();
+        console.log('Datos enviados exitosamente:', response);
+        this.mostrarAnimacion = true;
+
+        setTimeout(() => {
+          this.animacionSalida = true;
+          setTimeout(() => {
+            this.navCtrl.navigateRoot('/tabs-cliente/pedido-cliente');
+            this.popoverController.dismiss({actualizar: true});
+          }, 500);
+        }, 2000);
       },
       error => {
-        console.error('Error al enviar los datos de moneda:', error);
+        console.error('Error al enviar los datos:', error);
       }
     );
   }

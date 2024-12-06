@@ -153,4 +153,53 @@
     width: 25px;
     height: 25px;
   }
+
+  .busqueda {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  .barra-busqueda {
+    --background: #ffffff;
+    --border-radius: 10px;
+    --box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .sin-reservas {
+    text-align: center;
+    padding: 20px;
+    font-size: 16px;
+    color: #666;
+    background: #fff;
+    border-radius: 10px;
+    margin-top: 20px;
+    font-style: italic;
+  }
+
+  .tabla-interna{
+    width: 90%;
+    min-width: 320px;
+    margin: 0 auto;
+    height: 400px;
+    overflow-y: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  ion-refresher {
+    --ion-text-color: black;
+  }
+
+  ion-refresher-content {
+    margin-top: 5px;
+    --color: black;
+    background: transparent;
+    --pulling-icon-color: black;
+    --refreshing-spinner-color: black;
+    --pulling-text-color: black;
+  }
   

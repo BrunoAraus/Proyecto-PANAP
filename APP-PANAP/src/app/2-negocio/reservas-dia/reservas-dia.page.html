@@ -2,27 +2,46 @@
   <a href="/tabs-negocio/reservas-negocio">
     <ion-icon name="chevron-back" class="iconoVolver" href="/tabs-negocio/reservas-negocio"></ion-icon>
   </a>
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Desliza para actualizar"
+      refreshingSpinner="circles">
+    </ion-refresher-content>
+  </ion-refresher>
   <div class="contenido">
     <h1 class="titulo">Reservas del Día</h1>
 
     <div class="contenidoTabla">
-      <ion-row class="encabezado">
-        <ion-col class="titulares">Nombre</ion-col>
-        <ion-col class="titulares">Codigo</ion-col>
-        <ion-col class="titulares">Estado</ion-col>
-        <ion-col class="titulares">Acciones</ion-col>
-      </ion-row>
-
-      <ion-grid class="tabla-reservas">
-        <ion-row class="fila-datos" *ngFor="let reserva of reservas">
-          <ion-col class="contenidoCeldas">{{ reserva.NOMBRE_R }} {{ reserva.APELLIDO_R }}</ion-col>
-          <ion-col class="contenidoCeldas">{{ reserva.R_CODIGO }}</ion-col>
-          <ion-col class="contenidoCeldas4">{{ reserva.ESTADO }}</ion-col>
-          <ion-col class="contenidoCeldas2">            
-            <ion-icon name="ellipsis-horizontal-circle-outline" (click)="presentPopover(reserva)" class="iconoAcciones"></ion-icon>
-          </ion-col>
+      <div class="busqueda">
+        <ion-searchbar [(ngModel)]="codigoBusqueda" (ionChange)="filtrarReservas()" (ionInput)="filtrarReservas()"
+          placeholder="Código, nombre o apellido" class="barra-busqueda">
+        </ion-searchbar>
+      </div>
+      <div class="tabla-interna">
+        <ion-row class="encabezado">
+          <ion-col class="titulares">Nombre</ion-col>
+          <ion-col class="titulares">Codigo</ion-col>
+          <ion-col class="titulares">Estado</ion-col>
+          <ion-col class="titulares">Acciones</ion-col>
         </ion-row>
-      </ion-grid>   
+
+        <div *ngIf="reservasFiltradas.length === 0" class="sin-reservas">
+          No hay reservas disponibles
+        </div>
+
+        <ion-grid class="tabla-reservas" *ngIf="reservasFiltradas.length > 0">
+          <ion-row class="fila-datos" *ngFor="let reserva of reservasFiltradas">
+            <ion-col class="contenidoCeldas">{{ reserva.NOMBRE_R }} {{ reserva.APELLIDO_R }}</ion-col>
+            <ion-col class="contenidoCeldas">{{ reserva.R_CODIGO }}</ion-col>
+            <ion-col class="contenidoCeldas4">{{ reserva.ESTADO }}</ion-col>
+            <ion-col class="contenidoCeldas2">
+              <ion-icon name="ellipsis-horizontal-circle-outline" (click)="presentPopover(reserva)"
+                class="iconoAcciones"></ion-icon>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
     </div>
   </div>
 </ion-content>

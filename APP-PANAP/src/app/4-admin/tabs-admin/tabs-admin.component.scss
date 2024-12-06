@@ -1,43 +1,70 @@
 ion-tab-bar {
-    background: rgba(255, 145, 0, 0.863) !important;
-    border-color: transparent;
-    border-top-left-radius: 20px; 
-    border-top-right-radius: 20px;
-    height: 10%;
-    font-size: 40px;
+  background: rgb(255, 145, 0) !important;
+  border-color: transparent;
+  border-top-left-radius: 20px; 
+  border-top-right-radius: 20px;
+  height: 65px;
+  font-size: 40px;
+  padding: 5px 0;
+  display: flex;
+  align-items: center;
+}
+
+ion-tab-button {
+  background-color: rgb(255, 145, 0) !important;
+  color: #fff;
+  padding: 5px 2px;
+  font-size: 13px;
+  position: relative;
+  transition: all 0.5s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+
+  &.active-tab::after {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    border-radius: 2px;
+    animation: fadeIn 0.5s ease-in;
   }
-  
-  ion-tab-button {
-    background-color: rgb(255, 145, 0) !important;
-    color: #fff;
-    // border-top-left-radius: 25px;
-    // border-top-right-radius: 25px;
-    padding-bottom: 0px;
-    padding-top: 0px;
-    font-size: 13px;
 }
 
-ion-icon{
-  font-size: 30px;
-  padding-bottom: 8px;
-  min-width: 30px;
-  min-height: 30px;
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
 }
 
-/* Definir la animación para el movimiento hacia arriba */
-@keyframes moveUp {
+ion-icon {
+  font-size: 24px;
+  min-width: 24px;
+  min-height: 24px;
+  margin-bottom: 2px;
+}
+
+/* Animación para el tab completo */
+@keyframes moveUpTab {
   0% {
-    transform: translateY(0); /* Posición original */
+      transform: translateY(0);
   }
   50% {
-    transform: translateY(-10px); /* Mover hacia arriba 5px */
+      transform: translateY(-7px);
   }
   100% {
-    transform: translateY(0); /* Volver a la posición original */
+      transform: translateY(0);
   }
 }
 
-/* Estilo aplicado cuando se clickea el botón */
-.icon-animate {
-  animation: moveUp 0.4s ease-in-out; /* Duración de 0.3 segundos */
+.tab-animate {
+  animation: moveUpTab 0.4s ease-in-out;
 }

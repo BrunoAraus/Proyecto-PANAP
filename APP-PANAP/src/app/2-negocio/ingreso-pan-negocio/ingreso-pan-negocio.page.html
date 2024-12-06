@@ -75,4 +75,10 @@
       </div>
     </form>
   </div>
+  <div class="overlay-animation" *ngIf="mostrarAnimacion" [class.fadeOut]="animacionSalida">
+    <div class="animation-content">
+      <ion-icon name="checkmark-circle-outline" class="check-icon"></ion-icon>
+      <p class="mensaje-exito">¡Registrado!</p>
+    </div>
+  </div>
 </ion-content>

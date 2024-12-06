@@ -1,24 +1,40 @@
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" #content scrollEvents="true" (ionScroll)="onScroll($event)">
+  <a href="/tabs-cliente/home-cliente">
+    <ion-icon name="chevron-back-outline" class="iconoVolver"></ion-icon>
+  </a>
   <div id="contenido">
-    <h1 class="TituloPrincipal">¡Bienvenido!</h1>
-    <h1 class="usuarioNombre">{{ usuario?.nombre }} {{ usuario?.apellido }}</h1>
-    <p id="SubTitulo">En PanaP puedes ver el resumen de tus reservas.</p>
+    <h1 class="usuarioNombre">{{ formatearCapital(usuario?.nombre) }}, aquí está el resumen de tus reservas de Pan.</h1>
 
-    <div>
-      <h2>Resumen de tus Reservas:</h2>
-      
-      <div>
-        <h2>Resumen de Moneda:</h2>
-        <p><strong>Total gastado:</strong> ${{ totalGastado }}</p>
-        <p><strong>Pan más solicitado:</strong> {{ panFavorito || 'Sin preferencias' }}</p>
+    <div class="tarjeta">
+      <h2 class="titulo-seccion">Resumen de tus Gastos</h2>
+      <div class="info-item">
+        <span class="info-label">Total gastado:</span>
+        <span class="info-valor total-destacado">${{ formatearNumero(totalGastado) }}</span>
       </div>
-      
-      <div>
-        <h2>Resumen de Cantidad:</h2>
-        <p><strong>Total Hallullas:</strong> {{ totalHallulla }}</p>
-        <p><strong>Total Marraquetas:</strong> {{ totalMarraqueta }}</p>
-        <p><strong>Total Comprado:</strong> {{ totalHallulla + totalMarraqueta }}</p>
+      <div class="info-item">
+        <span class="info-label">Pan favorito:</span>
+        <span class="info-valor">{{ panFavorito || 'Sin preferencias' }}</span>
       </div>
     </div>
+
+    <div class="tarjeta">
+      <h2 class="titulo-seccion">Resumen de Cantidad</h2>
+      <div class="info-item">
+        <span class="info-label">Hallullas compradas:</span>
+        <span class="info-valor">{{ formatearNumero(totalHallulla) }}</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Marraquetas compradas:</span>
+        <span class="info-valor">{{ formatearNumero(totalMarraqueta) }}</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Total de pan comprado:</span>
+        <span class="info-valor total-destacado">{{ formatearNumero(totalHallulla + totalMarraqueta) }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-top-button" [class.visible]="showScrollTop" (click)="scrollToTop()">
+    <ion-icon name="arrow-up"></ion-icon>
   </div>
 </ion-content>

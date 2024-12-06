@@ -1,12 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { NavController } from '@ionic/angular';
+import { IonContent } from '@ionic/angular';
+
 @Component({
   selector: 'app-resumen-cliente',
   templateUrl: './resumen-cliente.page.html',
   styleUrls: ['./resumen-cliente.page.scss'],
 })
 export class ResumenClientePage implements OnInit {
+  @ViewChild(IonContent) content!: IonContent;
+  showScrollTop = false;
   usuario: any = { nombre: '', apellido: '' };
   historico: any[] = [];
   totalGastado: number = 0;
@@ -122,5 +126,21 @@ export class ResumenClientePage implements OnInit {
     this.totalMarraqueta = this.historico.reduce((total, reserva) => total + (reserva.MARRAQUETA || 0), 0);
   }
   
-  
+  formatearCapital(texto: string | undefined): string {
+    if (!texto) return '';
+    return texto.charAt(0).toUpperCase() + texto.slice(1).toLowerCase();
+  }
+
+  formatearNumero(numero: number): string {
+    return numero.toLocaleString('es-CL');
+  }
+
+  onScroll(event: any) {
+    const scrollTop = event.detail.scrollTop;
+    this.showScrollTop = scrollTop > 300;
+  }
+
+  scrollToTop() {
+    this.content.scrollToTop(500);
+  }
 }  

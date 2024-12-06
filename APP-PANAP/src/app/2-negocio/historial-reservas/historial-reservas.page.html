@@ -1,9 +1,15 @@
 <ion-content [fullscreen]="true">
+  <a href="/tabs-negocio/reservas-negocio">
+    <ion-icon name="chevron-back" class="iconoVolver" href="/tabs-negocio/reservas-negocio"></ion-icon>
+  </a>
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Desliza para actualizar"
+      refreshingSpinner="circles">
+    </ion-refresher-content>
+  </ion-refresher>
   <div class="contenido">
-    <a href="/tabs-negocio/reservas-negocio">
-      <ion-icon name="chevron-back" class="iconoVolver" href="/tabs-negocio/reservas-negocio"></ion-icon>
-    </a>
-
     <h1 class="titulo">Historial de Reservas</h1>
     <div class="contenidoTabla">
       <ion-row class="encabezado">
@@ -13,7 +19,6 @@
         </ion-row>
       
       <ion-grid class="tablaHitorico">
-        <!-- Filas de datos -->
         <ion-row class="fila-datos" *ngFor="let historico of historicos">
           <ion-col>{{ historico.H_FECHA }}</ion-col>
           <ion-col>{{ historico.R_CODIGO }}</ion-col>

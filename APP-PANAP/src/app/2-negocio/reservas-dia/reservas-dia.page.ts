@@ -13,14 +13,16 @@ export class ReservasDiaPage implements OnInit {
   usuario: any;
   negocios: any[] = [];
   reservas: any[] = [];
+  codigoBusqueda: string = '';
+  reservasFiltradas: any[] = [];
 
   apiUrl = 'https://panapp.duckdns.org/rest/API_PRUEBA.php';
   intervalId: any;
 
   constructor(
-    private http: HttpClient, 
+    private http: HttpClient,
     private navCtrl: NavController,
-    private popoverController: PopoverController) {}
+    private popoverController: PopoverController) { }
 
   ngOnInit() {
     this.reconectar();
@@ -37,13 +39,15 @@ export class ReservasDiaPage implements OnInit {
       translucent: true,
       cssClass: 'custom-popover-css4'
     });
-  
+
     await popover.present();
-  
+
     const { data } = await popover.onWillDismiss();
-    console.log('Popover cerrado: ', data);
+    this.navCtrl.navigateRoot('/tabs-negocio/reservas-dia');
     this.reconectar();
     this.cargarDatos();
+    console.log('Popover cerrado: ', data);
+    this.navCtrl.navigateRoot('/tabs-negocio/reservas-dia');
   }
 
   reconectar() {
@@ -96,7 +100,7 @@ export class ReservasDiaPage implements OnInit {
     const reservasData = localStorage.getItem('reservasData');
 
     if (usuarioData) {
-      this.usuario = JSON.parse(usuarioData); 
+      this.usuario = JSON.parse(usuarioData);
     }
 
     if (negociosData) {
@@ -104,7 +108,33 @@ export class ReservasDiaPage implements OnInit {
     }
     if (reservasData) {
       this.reservas = JSON.parse(reservasData);
+      this.reservasFiltradas = this.reservas;
     }
   }
-  
+
+  filtrarReservas() {
+    if (!this.codigoBusqueda) {
+      this.reservasFiltradas = this.reservas;
+    } else {
+      const busqueda = this.codigoBusqueda.toLowerCase();
+      this.reservasFiltradas = this.reservas.filter(reserva =>
+        reserva.R_CODIGO.toLowerCase().includes(busqueda) ||
+        reserva.NOMBRE_R.toLowerCase().includes(busqueda) ||
+        reserva.APELLIDO_R.toLowerCase().includes(busqueda)
+      );
+    }
+  }
+
+  handleRefresh(event: any) {
+    // Primero reconectamos con el servidor
+    this.reconectar();
+
+    // Luego cargamos los datos
+    this.cargarDatos();
+
+    // Completamos el evento de refresh después de 1.5 segundos
+    setTimeout(() => {
+      event.target.complete();
+    }, 1500);
+  }
 }
