@@ -9,7 +9,7 @@
   position: fixed;
   z-index: 9998;
   left: 1.5%;
-  top: 1%;
+  top: 5.5%;
   width: 45px;
   height: 45px;
 }
@@ -201,5 +201,49 @@
     --pulling-icon-color: black;
     --refreshing-spinner-color: black;
     --pulling-text-color: black;
+  }
+
+  .mensaje-actualizar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgb(65, 33, 206);
+    color: white;
+    text-align: center;
+    padding: 10px;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    animation: slideDown 0.3s ease-out;
+    
+    &.hiding {
+      animation: slideUp 0.3s ease-out forwards;
+    }
+    
+    ion-icon {
+      font-size: 20px;
+      color: white;
+    }
+  }
+
+  @keyframes slideDown {
+    from {
+      transform: translateY(-100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(0);
+    }
+    to {
+      transform: translateY(-100%);
+    }
   }
   

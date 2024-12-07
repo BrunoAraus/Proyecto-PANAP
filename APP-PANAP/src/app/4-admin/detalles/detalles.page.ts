@@ -51,10 +51,9 @@ export class DetallesPage implements OnInit {
         }
       );
   }
+
   cerrarPopover() {
     this.popoverController.dismiss({
     });
   }
-  
-  
 }

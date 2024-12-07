@@ -10,10 +10,11 @@ export class CerrarSesionCliPage {
   constructor(private navCtrl: NavController) {}
 
   cerrarSesion() {
-    
     localStorage.clear();
-
-
     this.navCtrl.navigateRoot('/home');
+  }
+
+  noCerrarSesion() {
+    this.navCtrl.navigateRoot('/tabs-cliente/home-cliente');
   }
 }

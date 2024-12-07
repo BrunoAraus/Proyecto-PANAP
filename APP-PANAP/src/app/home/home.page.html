@@ -14,20 +14,15 @@
     </swiper-slide>
 </swiper-container>
 
-
 <ion-container>
-    <!-- Insertar botones acá con los links para cada  -->
-    
-    <a href="/iniciar-sesion" id="iniciarSesion">
-        <ion-button>
-            <p id="btn-is">Iniciar sesión</p>
-        </ion-button>
-    </a>
+    <ion-button (click)="irLogin()" id="iniciarSesion">
+        <p id="btn-is">Iniciar sesión</p>
+    </ion-button>
 
     <br>
 
     <div id="union-texto">
         <p id="btn-re1">¿No tienes cuenta?</p>
-        <a href="/registro" id="linkRegistrarse">Registrate aquí</a>   
+        <a (click)="irRegistro()" id="linkRegistrarse">Registrate aquí</a>   
     </div>
 </ion-container>

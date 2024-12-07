@@ -155,10 +155,6 @@ const routes: Routes = [
     path: 'home-admin',
     loadChildren: () => import('./4-admin/home-admin/home-admin.module').then( m => m.HomeAdminPageModule)
   },
-  {
-    path: 'solicitudes-negocio',
-    loadChildren: () => import('./4-admin/solicitudes-negocio/solicitudes-negocio.module').then( m => m.SolicitudesNegocioPageModule)
-  },
   
   {
     path: 'tabs-cliente',
@@ -293,10 +289,6 @@ const routes: Routes = [
       {
         path: 'home-admin',
         loadChildren: () => import('./4-admin/home-admin/home-admin.module').then( m => m.HomeAdminPageModule)
-      },
-      {
-        path: 'solicitudes-negocio',
-        loadChildren: () => import('./4-admin/solicitudes-negocio/solicitudes-negocio.module').then( m => m.SolicitudesNegocioPageModule)
       },
     ]
   },

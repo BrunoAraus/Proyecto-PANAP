@@ -10,10 +10,11 @@ export class CerrarSesionNegPage{
   constructor(private navCtrl: NavController) {}
 
   cerrarSesion() {
-    
     localStorage.clear();
-
-
     this.navCtrl.navigateRoot('/home');
+  }
+
+  noCerrarSesion() {
+    this.navCtrl.navigateRoot('/tabs-negocio/home-negocio');
   }
 }

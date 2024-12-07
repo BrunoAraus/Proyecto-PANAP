@@ -24,8 +24,6 @@ export class TabsAdminComponent  implements OnInit {
       
       if (currentUrl.includes('home-admin')) {
         this.activeTab = 'home-admin';
-      } else if (currentUrl.includes('solicitudes-negocio')) {
-        this.activeTab = 'solicitudes-negocio';
       } else if (currentUrl.includes('listado-negocios')) {
         this.activeTab = 'listado-negocios';
       } else if (currentUrl.includes('cerrar-sesion-adm')) {

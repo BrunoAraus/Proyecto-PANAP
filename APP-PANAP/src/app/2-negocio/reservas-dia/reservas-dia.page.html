@@ -1,4 +1,8 @@
 <ion-content [fullscreen]="true">
+  <div class="mensaje-actualizar" *ngIf="mostrarMensajeActualizar">
+    <ion-icon name="arrow-up-outline"></ion-icon>
+    Desliza hacia abajo para actualizar la tabla
+  </div>
   <a href="/tabs-negocio/reservas-negocio">
     <ion-icon name="chevron-back" class="iconoVolver" href="/tabs-negocio/reservas-negocio"></ion-icon>
   </a>

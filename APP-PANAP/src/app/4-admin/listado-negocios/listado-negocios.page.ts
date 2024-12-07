@@ -91,7 +91,7 @@ export class ListadoNegociosPage implements OnInit, OnDestroy {
         negocio: negocio
       },
       translucent: true, 
-      cssClass: 'custom-popover-css2'
+      cssClass: 'custom-popover-css4'
     });
     
     await popover.present();
@@ -100,7 +100,4 @@ export class ListadoNegociosPage implements OnInit, OnDestroy {
     this.cargarDatos();
     console.log('Popover cerrado: ', data);
   }
-  
-  
-
 }

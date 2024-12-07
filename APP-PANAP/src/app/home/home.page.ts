@@ -67,7 +67,7 @@ export class HomePage implements OnInit {
                   : '/tabs-negocio/home-negocio'
               );
             } else if (usuarioData.tipo === 'Administrador') {
-              this.navCtrl.navigateRoot('/tabs-admin/listado-negocios');
+              this.navCtrl.navigateRoot('/tabs-admin/home-admin');
             }
           } else {
             console.log('No se pudo autenticar automáticamente.');
@@ -78,5 +78,13 @@ export class HomePage implements OnInit {
         }
       );
     }
+  }
+
+  irLogin() {
+    this.navCtrl.navigateRoot('/iniciar-sesion');
+  }
+
+  irRegistro() {
+    this.navCtrl.navigateRoot('/registro');
   }
 }

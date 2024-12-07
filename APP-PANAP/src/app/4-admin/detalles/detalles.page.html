@@ -1,41 +1,48 @@
 <ion-content [fullscreen]="true">
-
   <ion-icon name="close" (click)="cerrarPopover()" class="iconoCerrar"></ion-icon>
   
+  <div class="contenedor-detalles">
+    <!-- Encabezado -->
+    <h1 class="tituloPrincipal">Detalles del negocio</h1>
     <div class="ordenTituloPrincipal">
       <div class="icono">
         <ion-icon name="storefront-outline" class="iconoNegocio"></ion-icon>
       </div>
       <div class="texto">
-        <h1 class="tituloNegocio">{{ negocio.N_NOMBRE }}</h1>    
+        <h2 class="tituloNegocio">{{ negocio.N_NOMBRE }}</h2>    
       </div>
     </div>
 
-    <div class="ordenImagen">
-      <img *ngIf="negocio.FOTO" [src]="negocio.FOTO" alt="{{ negocio.N_NOMBRE }}" class="imagenNegocio"/>
-    </div>
+    <!-- Información del negocio -->
+    <div class="seccion-info">
+      <div class="item-info">
+        <h3>Número dirección</h3>
+        <p>#{{ negocio.N_NUMERO }}</p>
+      </div>
 
-    <div class="datosNegocio">
-      <h1 class="subTitulo">Detalles del Negocio</h1>
-      <p>Stock Inicial: {{ negocio.STOCK_INICIAL }}</p>
-      <p>Valor por Kilo: {{ negocio.VALOR_KILO }}</p>
-      <p>Hora actualización: {{ negocio.FECHA_STOCK }}</p>
-    </div>
+      <!-- Imagen -->
+      <div class="item-info">
+        <h3>Foto del negocio</h3>
+        <img *ngIf="negocio.FOTO" [src]="negocio.FOTO" alt="{{ negocio.N_NOMBRE }}" class="imagenNegocio"/>
+      </div>
 
-    <div class="formatoPago">
-      <h1>Métodos de Pago</h1>
-      <div class="pagosDisponibles">
-        <p *ngIf="negocio.EFECTIVO">Efectivo: Disponible</p>
-        <p *ngIf="negocio.TARJETA">Tarjeta: Disponible</p>
-        <p *ngIf="negocio.TRANSFERENCIA">Transferencia: Disponible</p>
+      <!-- Métodos de pago -->
+      <div class="item-info">
+        <h3>Métodos de Pago</h3>
+        <div class="pagosDisponibles">
+          <p *ngIf="negocio.EFECTIVO">Efectivo: Sí</p>
+          <p *ngIf="negocio.TARJETA">Tarjeta: Sí</p>
+          <p *ngIf="negocio.TRANSFERENCIA">Transferencia: Sí</p>
+        </div>
       </div>
     </div>
 
-  <h1 class="accion">Aceptar?</h1>
-
-  <div class="ordenBotones">
-    <h3 (click)="cambiarEstadoReserva(negocio?.ID_NEGOCIO)">Aprovar</h3>
-   <!-- 
-    <ion-icon name="checkmark-circle-outline" (click)="" class="acciones2"></ion-icon> -->
+    <!-- Acciones -->
+    <div class="acciones">
+      <h3>¿Aceptar negocio?</h3>
+      <ion-button (click)="cambiarEstadoReserva(negocio?.ID_NEGOCIO)" class="boton-aprobar">
+        Aprobar
+      </ion-button>
+    </div>
   </div>
 </ion-content>

@@ -15,6 +15,7 @@ export class ReservasDiaPage implements OnInit {
   reservas: any[] = [];
   codigoBusqueda: string = '';
   reservasFiltradas: any[] = [];
+  mostrarMensajeActualizar: boolean = false;
 
   apiUrl = 'https://panapp.duckdns.org/rest/API_PRUEBA.php';
   intervalId: any;
@@ -43,6 +44,16 @@ export class ReservasDiaPage implements OnInit {
     await popover.present();
 
     const { data } = await popover.onWillDismiss();
+    this.mostrarMensajeActualizar = true;
+    setTimeout(() => {
+      const mensaje = document.querySelector('.mensaje-actualizar');
+      mensaje?.classList.add('hiding');
+      
+      setTimeout(() => {
+        this.mostrarMensajeActualizar = false;
+      }, 300);
+    }, 2700);
+    
     this.navCtrl.navigateRoot('/tabs-negocio/reservas-dia');
     this.reconectar();
     this.cargarDatos();
