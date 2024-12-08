@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { NavController, PopoverController } from '@ionic/angular';
 import { ModalController } from '@ionic/angular';
 import { PedidoPage } from 'src/app/1-cliente/pedido/pedido.page';
+import { ChangeDetectorRef } from '@angular/core';
 declare var google: any;
 
 @Component({
@@ -27,7 +28,8 @@ export class PedidoClientePage implements OnInit {
     private http: HttpClient, 
     private navCtrl: NavController, 
     private modalCtrl: ModalController,
-    private popoverController: PopoverController 
+    private popoverController: PopoverController,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
@@ -51,18 +53,23 @@ export class PedidoClientePage implements OnInit {
     const usuarioData = localStorage.getItem('usuarioData');
     const negociosData = localStorage.getItem('negociosData');
     const reservasData = localStorage.getItem('reservasData');
-
+  
     if (usuarioData) {
       this.usuario = JSON.parse(usuarioData); 
     }
-
+  
     if (negociosData) {
       this.negocios = JSON.parse(negociosData);
     }
+  
     if (reservasData) {
       this.reserva = JSON.parse(reservasData);
+    } else {
+      this.reserva = null;
     }
+    this.cdr.detectChanges();
   }
+  
 
   reconectar() {
     const correo = localStorage.getItem('userEmail');
@@ -115,26 +122,32 @@ export class PedidoClientePage implements OnInit {
 
   
 
-async presentPopover(negocio: any) {
-  const popover = await this.popoverController.create({
-    component: PedidoPage,
-    componentProps: {
-      idNegocio: negocio.ID_NEGOCIO
-    },
-    translucent: true, 
-    cssClass: 'custom-popover-css2'
-  });
-
-  await popover.present();
-
-
-  const { data } = await popover.onWillDismiss();
-  this.navCtrl.navigateRoot('/tabs-cliente/pedido-cliente');
-  this.reconectar();
-  this.cargarDatos();
-  console.log('Popover cerrado: ', data);
-  this.navCtrl.navigateRoot('/tabs-cliente/pedido-cliente');
-}
+  async presentPopover(negocio: any) {
+    const popover = await this.popoverController.create({
+      component: PedidoPage,
+      componentProps: {
+        idNegocio: negocio.ID_NEGOCIO
+      },
+      translucent: true, 
+      cssClass: 'custom-popover-css2'
+    });
+  
+    await popover.present();
+  
+    const { data } = await popover.onWillDismiss();
+  
+    
+    this.reconectar();
+    this.cargarDatos();
+  
+    
+    this.cdr.detectChanges();
+  
+    
+    this.navCtrl.navigateRoot('/tabs-cliente/pedido-cliente');
+    console.log('Popover cerrado: ', data);
+  }
+  
 
 
   getCurrentLocation(): Promise<void> {
@@ -164,7 +177,7 @@ async presentPopover(negocio: any) {
       center: this.currentLocation || { lat: 0, lng: 0 },
       zoom: 15,
       disableDefaultUI: true,
-      draggable: true, 
+      draggable: false, 
       styles: [
         {
           featureType: 'all',
@@ -219,17 +232,29 @@ async presentPopover(negocio: any) {
             const diffInMs = now.getTime() - fechaStock.getTime();
             const diffInHours = diffInMs / (1000 * 60 * 60);
 
-            let markerIcon;
-            if (diffInHours >= 6) {
-                markerIcon = 'assets/image/PAN_GRIS_FINAL.png';
-            } else if (diffInHours >= 4) {
-                markerIcon = 'assets/image/PAN_ROJO_FINAL.png';
-            } else if (diffInHours >= 2) {
-                markerIcon = 'assets/image/PAN_AMARILLO_FINAL.png';
-            } else {
-                markerIcon = 'assets/image/PAN_VERDE_FINAL.png';
-            }
+            let markerIcon = '';
 
+            if (negocio.DISPONIBILIDAD === 'Disponible') {
+                if (diffInHours >= 6) {
+                    markerIcon = 'assets/image/PAN_GRIS_FINAL.png';
+                } else if (diffInHours >= 4) {
+                    markerIcon = 'assets/image/PAN_ROJO_FINAL.png';
+                } else if (diffInHours >= 2) {
+                    markerIcon = 'assets/image/PAN_AMARILLO_FINAL.png';
+                } else {
+                    markerIcon = 'assets/image/PAN_VERDE_FINAL.png';
+                }
+            } else if (negocio.DISPONIBILIDAD === 'Queda-poco') {
+                if (diffInHours >= 4) {
+                    markerIcon = 'assets/image/PAN_GRIS_FINAL.png';
+                } else if (diffInHours >= 2) {
+                    markerIcon = 'assets/image/PAN_ROJO_FINAL.png';
+                } else {
+                    markerIcon = 'assets/image/PAN_AMARILLO_FINAL.png';
+                }
+            } else if (negocio.DISPONIBILIDAD === 'Agotado') {
+              markerIcon = 'assets/image/PAN_GRIS_FINAL.png';
+            }
             this.addMarker({ lat: latitud, lng: longitud }, `Negocio: ${negocio.N_NOMBRE}`, false, negocio, markerIcon);
         } else {
             console.warn(`Datos de ubicación faltantes para: ${negocio.N_NOMBRE}`);
@@ -255,15 +280,18 @@ addMarker(location: { lat: number; lng: number }, title: string, isFixed: boolea
           fontWeight: 'bold',
       }
   });
-
-  if (negocio) {
-      google.maps.event.addListener(marker, 'click', () => {
-          this.presentPopover(negocio);
-      });
+  if (negocio && iconUrl !== 'assets/image/PAN_GRIS_FINAL.png') {
+    google.maps.event.addListener(marker, 'click', () => {
+      if (!negocio.reservas || negocio.reservas.length === 0) {
+        this.presentPopover(negocio);
+      } else {
+        console.log(`El negocio ${title} tiene reservas activas y no se abrirá el popover.`);
+      }
+    });
   }
 
   if (!isFixed) {
-      this.markers.push(marker);
+    this.markers.push(marker);
   }
 }
 }

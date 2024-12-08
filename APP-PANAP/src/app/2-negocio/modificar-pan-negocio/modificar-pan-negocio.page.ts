@@ -82,8 +82,7 @@ export class ModificarPanNegocioPage implements OnInit {
 
       const headers = new HttpHeaders({
         'Content-Type': 'application/json',
-        Authorization:
-          '',
+        'Authorization':''
       });
 
       this.http.post(this.apiUrl, body, { headers: headers }).subscribe(
@@ -126,7 +125,7 @@ export class ModificarPanNegocioPage implements OnInit {
 
       const headers = new HttpHeaders({
         'Content-Type': 'application/json',
-        Authorization: ''
+        'Authorization': ''
       });
 
       this.http.post(this.apiUrl, body, { headers: headers, responseType: 'text' }).subscribe(

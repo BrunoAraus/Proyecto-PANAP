@@ -109,8 +109,7 @@ export class IngresoPanNegocioPage implements OnInit, OnDestroy {
 
       const headers = new HttpHeaders({
         'Content-Type': 'application/json',
-        Authorization:
-          '',
+        'Authorization':''
       });
 
       this.http.post(this.apiUrl, body, { headers: headers }).subscribe(
@@ -186,8 +185,7 @@ export class IngresoPanNegocioPage implements OnInit, OnDestroy {
 
       const headers = new HttpHeaders({
         'Content-Type': 'application/json',
-        Authorization:
-          '',
+        'Authorization':''
       });
 
       this.http.post(this.apiUrl, body, { headers: headers, responseType: 'text' }).subscribe(

@@ -42,6 +42,7 @@ export class MapaClientePage implements OnInit {
     });
     this.reconectar();
     this.cargarDatos();
+    this.loadMap();
     this.intervalId = setInterval(() => {
       this.reconectar();
       this.cargarDatos();
@@ -53,6 +54,7 @@ export class MapaClientePage implements OnInit {
         }
       });
     }, 60000);
+    this.loadMap();
   }
 
   cargarDatos() {
@@ -282,6 +284,7 @@ addMarker(location: { lat: number; lng: number }, title: string, isFixed: boolea
   
 
     const { data } = await popover.onWillDismiss();
+    this.loadMap();
     console.log('Popover cerrado con datos:', data);
   }
   
