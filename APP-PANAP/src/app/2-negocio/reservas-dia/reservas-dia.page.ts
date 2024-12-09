@@ -38,7 +38,7 @@ export class ReservasDiaPage implements OnInit {
         detallesReserva: reserva
       },
       translucent: true,
-      cssClass: 'custom-popover-css4'
+      cssClass: 'custom-popover-css5'
     });
 
     await popover.present();
@@ -137,13 +137,10 @@ export class ReservasDiaPage implements OnInit {
   }
 
   handleRefresh(event: any) {
-    // Primero reconectamos con el servidor
     this.reconectar();
 
-    // Luego cargamos los datos
     this.cargarDatos();
 
-    // Completamos el evento de refresh después de 1.5 segundos
     setTimeout(() => {
       event.target.complete();
     }, 1500);

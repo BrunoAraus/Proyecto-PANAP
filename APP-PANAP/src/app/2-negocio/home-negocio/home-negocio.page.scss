@@ -43,6 +43,7 @@
     font-size: 18px;
     padding: 20px 5px 20px 5px;
     margin: 20px 5px 20px 5px;
+    text-align: center;
 }
 
 #separacionCampos{
@@ -52,13 +53,22 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 20px 0px 0px 0px;
+    margin: 30px 0px 10px 0px;
 }
 
 .opcion{
-    height: 100px;
+    height: 60px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    padding: 10px 15px 10px 15px;
+    text-align: center;
+    width: 70%;
+    min-width: 250px;
+    min-height: 50px;
+    background-color: rgb(255, 145, 0);
+    border-radius: 10px;
+    text-align: center;
 }
 
 #opcion-reservas{
@@ -148,16 +158,18 @@
 
 .botonGeneral {
   text-decoration: none;
-  width: 60%;
+  min-width: 200px;
+  min-height: 50px;
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 50px;
+  animation: botones 2s ease-in-out infinite;
 
   ion-button {
     width: 100%;
     min-width: 200px;
     min-height: 50px;
-    --background: rgb(255, 145, 0) !important;
+    --background: rgba(8, 212, 127, 0.788) !important;
     --background-hover: rgb(255, 145, 0) !important;
     --background-activated: rgb(255, 145, 0) !important;
     --background-focused: rgb(255, 145, 0) !important;
@@ -167,7 +179,7 @@
     transition: transform 0.2s ease-in-out;
 
     &:active {
-      animation: bounce 0.3s ease-in-out;
+      animation: bounce 0.2s ease-in-out;
     }
   }
 }
@@ -177,4 +189,13 @@
   margin: 0;
   color: white;
   text-transform: none;
+}
+
+@keyframes botones {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
 }

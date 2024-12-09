@@ -34,7 +34,6 @@
   }
   
   .tabla-reservas {
-    width: 90%;
     min-width: 320px;
     margin: 0 auto 10px auto;
     border-radius: 10px;
@@ -73,7 +72,6 @@
   }
   
   .encabezado {
-    width: 90%;
     min-width: 320px;
     height: 60px;
     background-color: rgb(65, 33, 206);
@@ -136,10 +134,9 @@
   .contenidoTabla{
     width: 90%;
     min-width: 320px;
-    max-width: 370px;
     height: 80%;
     overflow-y: auto;
-    margin: 25px auto 30px auto;
+    margin: 25px 0px 30px 0px;
     border-radius: 0px 0px 15px 15px;
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -177,9 +174,7 @@
   }
 
   .tabla-interna{
-    width: 90%;
     min-width: 320px;
-    margin: 0 auto;
     height: 400px;
     overflow-y: auto;
     -ms-overflow-style: none;

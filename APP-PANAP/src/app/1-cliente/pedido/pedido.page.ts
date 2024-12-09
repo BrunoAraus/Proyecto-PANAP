@@ -21,7 +21,7 @@ export class PedidoPage {
   errorMensajeMarraqueta: string = '';
   errorFormato: string = '';
 
-  formularioActual: 'cantidad' | 'moneda' = 'cantidad';
+  formularioActual: 'cantidad' | 'moneda' = 'moneda';
 
   apiUrl = 'https://panapp.duckdns.org/rest/API_PRUEBA.php';
 
