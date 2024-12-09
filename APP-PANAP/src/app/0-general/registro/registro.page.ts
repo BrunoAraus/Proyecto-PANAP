@@ -17,6 +17,7 @@ export class RegistroPage {
   correo: string = '';
   tipo: string = 'Cliente';
   mostrarContrasena: boolean = false;
+  mostrarConfirmacion: boolean = false;
 
   errorNombre: string = '';
   errorApellido: string = '';
@@ -44,7 +45,7 @@ export class RegistroPage {
     this.validarClaveConfirmada();
     
     
-    if (this.errorNombre || this.errorApellido || this.errorCorreo || this.errorClave || this.claveConfirmada) {
+    if (this.errorNombre || this.errorApellido || this.errorCorreo || this.errorClave || this.errorClaveConfirmada) {
       return;
     }
 
@@ -70,7 +71,7 @@ export class RegistroPage {
             localStorage.setItem('userPassword', this.clave);
             console.log('Usuario registrado correctamente:', response.message);
             if (this.tipo === 'Cliente') {
-              this.navCtrl.navigateRoot('/iniciar-sesion');
+              this.mostrarConfirmacion = true;
             } else if (this.tipo === 'Negocio') {
               this.navCtrl.navigateRoot('/informacion-negocio');
             }
@@ -153,7 +154,8 @@ export class RegistroPage {
     } else if (this.clave && this.claveConfirmada && this.clave === this.claveConfirmada) {
       this.errorClaveConfirmada = ''; 
     }
-}
+  }
+  
   censurarContrasena(contrasena: string): string {
     if (contrasena.length <= 2) {
       return '*'.repeat(contrasena.length);
@@ -165,5 +167,9 @@ export class RegistroPage {
   }
   alternarMostrarContrasena() {
     this.mostrarContrasena = !this.mostrarContrasena;
+  }
+
+  irAInicioSesion() {
+    this.navCtrl.navigateRoot('/iniciar-sesion');
   }
 }

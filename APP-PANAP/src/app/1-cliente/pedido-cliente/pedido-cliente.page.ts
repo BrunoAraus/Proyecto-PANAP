@@ -177,7 +177,7 @@ export class PedidoClientePage implements OnInit {
       center: this.currentLocation || { lat: 0, lng: 0 },
       zoom: 15,
       disableDefaultUI: true,
-      draggable: false, 
+      draggable: true, 
       styles: [
         {
           featureType: 'all',

@@ -9,7 +9,7 @@
     </div>
 
     <form (ngSubmit)="probarAPI()">
-      
+
       <h1 class="tituloSeleccion">Selecciona tu perfil (<span class="obligatorio">*</span>)</h1>
       <div class="tipoUsuario">
 
@@ -36,7 +36,8 @@
 
       <ion-label class="etiqueta">Apellido (<span class="obligatorio">*</span>)</ion-label>
       <ion-item lines="none" class="campo1">
-        <ion-input [(ngModel)]="apellido" name="apellido" type="lastname" placeholder="Ejemplo: Marquez" class="input"></ion-input>
+        <ion-input [(ngModel)]="apellido" name="apellido" type="lastname" placeholder="Ejemplo: Marquez"
+          class="input"></ion-input>
       </ion-item>
       <ion-label *ngIf="errorApellido" class="error">{{ errorApellido }}</ion-label>
 
@@ -44,32 +45,46 @@
 
       <ion-label class="etiqueta">Correo (<span class="obligatorio">*</span>)</ion-label>
       <ion-item lines="none" class="campo1">
-        <ion-input [(ngModel)]="correo" name="correo" type="email" placeholder="ejemplo@gmail.com" class="input"></ion-input>
+        <ion-input [(ngModel)]="correo" name="correo" type="email" placeholder="ejemplo@gmail.com"
+          class="input"></ion-input>
       </ion-item>
       <ion-label *ngIf="errorCorreo" class="error">{{ errorCorreo }}</ion-label>
 
       <ion-label class="etiqueta">Contraseña (<span class="obligatorio">*</span>)</ion-label>
       <ion-item lines="none" class="campo1">
-        <ion-input [(ngModel)]="clave"  [type]="mostrarContrasena ? 'text' : 'password'" name="clave" type="password" placeholder="Contraseña" class="input"></ion-input>
-        <ion-icon
-        slot="end" [name]="mostrarContrasena ? 'eye-off-outline' : 'eye-outline'" (click)="alternarMostrarContrasena()"
-      ></ion-icon>
+        <ion-input [(ngModel)]="clave" [type]="mostrarContrasena ? 'text' : 'password'" name="clave" type="password"
+          placeholder="Contraseña" class="input"></ion-input>
+        <ion-icon slot="end" [name]="mostrarContrasena ? 'eye-off-outline' : 'eye-outline'"
+          (click)="alternarMostrarContrasena()"></ion-icon>
       </ion-item>
       <ion-label *ngIf="errorClave" class="error">{{ errorClave }}</ion-label>
 
       <ion-label class="etiqueta">Confirmar contraseña (<span class="obligatorio">*</span>)</ion-label>
       <ion-item lines="none" class="campo1">
-        <ion-input name="claveConfirmada"   [type]="mostrarContrasena ? 'text' : 'password'" type="password" placeholder="Contraseña nuevamente" class="input"></ion-input>
-        <ion-icon slot="end" [name]="mostrarContrasena ? 'eye-off-outline' : 'eye-outline'" (click)="alternarMostrarContrasena()"
-      ></ion-icon>
+        <ion-input [(ngModel)]="claveConfirmada" name="claveConfirmada" [type]="mostrarContrasena ? 'text' : 'password'"
+          placeholder="Contraseña nuevamente" class="input"></ion-input>
+        <ion-icon slot="end" [name]="mostrarContrasena ? 'eye-off-outline' : 'eye-outline'"
+          (click)="alternarMostrarContrasena()"></ion-icon>
       </ion-item>
       <ion-label *ngIf="errorClaveConfirmada" class="error">{{ errorClaveConfirmada }}</ion-label>
-      
+
       <ion-button type="submit" class="boton-acceder">
         <span class="textoBoton">Continuar</span>
       </ion-button>
 
     </form>
+
+    <div *ngIf="mostrarConfirmacion" class="overlay">
+      <div class="modal-confirmacion">
+        <ion-icon name="checkmark-circle" class="icono-check"></ion-icon>
+        <h2 class="texto">¡Cuenta creada exitosamente!</h2>
+        <p class="texto">Para completar el proceso, inicia sesión y valida tu cuenta con el código que enviaremos a tu
+          correo.</p>
+        <ion-button (click)="irAInicioSesion()" class="boton-entendido">
+          <span class="textoBoton">Entendido</span>
+        </ion-button>
+      </div>
+    </div>
 
   </div>
 
