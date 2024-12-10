@@ -62,7 +62,7 @@ export class PedidoPage {
     if (/^\d*$/.test(valor)) {
       // Si solo hay números, limita a cinco dígitos
       this.errorMensaje = ''; // Limpia el mensaje de error
-      this.r_valor = valor.substring(0, 5); // Limita a cinco dígitos
+      this.r_valor = valor.substring(0, 4); // Limita a cinco dígitos
     } else {
       // Si contiene caracteres no numéricos, muestra un mensaje de error
       this.errorMensaje = 'Por favor, ingresa solo números';

@@ -75,7 +75,7 @@ export class CambiarInformacionNegPage implements OnInit {
 
       const headers = new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization':''
+        'Authorization': ''
       });
 
       this.http.post(this.apiUrl, body, { headers: headers }).subscribe(
