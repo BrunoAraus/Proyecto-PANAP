@@ -114,20 +114,27 @@ export class ResumenNegocioPage implements OnInit {
       this.totalMarraqueta = 0;
       return;
     }
+  
+  
     this.totalGastado = this.historico.reduce((total, reserva) => total + (reserva.R_VALOR || 0), 0);
-
-    const tiposDePan = this.historico.reduce((contadores, reserva) => {
+  
+  
+    const historicoFiltrado = this.historico.filter((reserva) => reserva.TIPO_PAN !== 'NO');
+  
+  
+    const tiposDePan = historicoFiltrado.reduce((contadores, reserva) => {
       const tipoPan = reserva.TIPO_PAN;
       if (tipoPan) {
         contadores[tipoPan] = (contadores[tipoPan] || 0) + 1;
       }
       return contadores;
     }, {});
-
+  
     this.panFavorito = Object.keys(tiposDePan).reduce((max, tipo) => {
       return tiposDePan[tipo] > tiposDePan[max] ? tipo : max;
     }, Object.keys(tiposDePan)[0]) || 'Sin preferencias';
-
+  
+  
     const tiposReserva = this.historico.reduce((contadores, reserva) => {
       const tipoReserva = reserva.TIPO;
       if (tipoReserva) {
@@ -135,10 +142,11 @@ export class ResumenNegocioPage implements OnInit {
       }
       return contadores;
     }, {});
-
+  
     this.preferenciaTipo = Object.keys(tiposReserva).reduce((max, tipo) => {
       return tiposReserva[tipo] > tiposReserva[max] ? tipo : max;
     }, Object.keys(tiposReserva)[0]) || 'Sin preferencias';
+  
 
     this.totalHallulla = this.historico.reduce((total, reserva) => total + (reserva.HALLULLA || 0), 0);
     this.totalMarraqueta = this.historico.reduce((total, reserva) => total + (reserva.MARRAQUETA || 0), 0);
@@ -293,6 +301,4 @@ export class ResumenNegocioPage implements OnInit {
   formatearCapital(texto: string): string {
     return texto.charAt(0).toUpperCase() + texto.slice(1);
   }
-  
-
 }

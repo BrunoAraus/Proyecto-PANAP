@@ -88,43 +88,38 @@ export class ResumenClientePage implements OnInit {
   calcularResumen() {
     if (!this.historico || this.historico.length === 0) {
       this.totalGastado = 0;
-      this.panFavorito = null;
+      this.panFavorito = 'Sin preferencias';
       this.totalHallulla = 0;
       this.totalMarraqueta = 0;
       return;
     }
   
-    
     this.totalGastado = this.historico.reduce((total, reserva) => total + (reserva.R_VALOR || 0), 0);
   
-    
     const tiposDePan = this.historico.reduce((contadores, reserva) => {
       const tipoPan = reserva.TIPO_PAN;
-      if (tipoPan) {
+      if (tipoPan && tipoPan !== 'NO') {
         contadores[tipoPan] = (contadores[tipoPan] || 0) + 1;
       }
       return contadores;
     }, {});
   
-    console.log('Contadores de pan:', tiposDePan);  
+    console.log('Contadores de pan:', tiposDePan);
   
-    
-    this.panFavorito = Object.keys(tiposDePan).reduce((max, tipo) => {
-      if (tiposDePan[tipo] > tiposDePan[max]) {
-        return tipo;
-      }
-      return max;
-    }, Object.keys(tiposDePan)[0]);  
+    if (Object.keys(tiposDePan).length > 0) {
+      this.panFavorito = Object.keys(tiposDePan).reduce((max, tipo) => {
+        return tiposDePan[tipo] > tiposDePan[max] ? tipo : max;
+      }, Object.keys(tiposDePan)[0]);
+    } else {
+      this.panFavorito = 'Sin preferencias';
+    }
   
-    console.log('Tipo de pan más solicitado:', this.panFavorito);  
+    console.log('Tipo de pan más solicitado:', this.panFavorito);
   
-    
-    this.panFavorito = this.panFavorito || 'Sin preferencias';
-  
-   
     this.totalHallulla = this.historico.reduce((total, reserva) => total + (reserva.HALLULLA || 0), 0);
     this.totalMarraqueta = this.historico.reduce((total, reserva) => total + (reserva.MARRAQUETA || 0), 0);
   }
+  
   
   formatearCapital(texto: string | undefined): string {
     if (!texto) return '';
