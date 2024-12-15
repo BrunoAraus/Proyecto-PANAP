@@ -11,11 +11,8 @@ PANAP no solo busca ser una herramienta útil para compradores y vendedores, sin
 
 ~ *Satya Nadella*, CEO de Microsoft.
 
-## Lenguajes de programación a utilizar
- - [Ionic](https://ionicframework.com)
-
-## Framework
- - [Angular](https://angular.dev)
+## Frameworks
+ - [Ionic](https://ionicframework.com) | [Angular](https://angular.dev) 
 
 ## Preguntas frecuentes
 
